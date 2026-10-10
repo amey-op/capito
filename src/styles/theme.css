@@ -1,0 +1,542 @@
+/*
+ * Rupee Quest whiteboard theme. Generic parts of docs/design/enjeen-index.css with our overrides
+ *. Plain CSS, no framework.
+ * Owner: Amey (src/styles/*). Fonts are self-hosted via @fontsource in main.tsx (works offline).
+ */
+
+:root {
+  --ground: #faf9f4;
+  --panel: #ffffff;
+  --foreground: #17170f;
+  --secondary: #f1f0e8;
+  --secondary-foreground: #57574c;
+
+  --primary: #17170f;
+  --primary-hover: #000000;
+
+  /* Marker colours. Meaning here: green = good, yellow = mixed/caution, red = bad,
+     blue = actions, purple = credit score and Joy. */
+  --info: #2563eb;
+  --info-bg: #e7effd;
+  --success: #16a34a;
+  --success-bg: #e7f6ec;
+  --warning: #ca8a04;
+  --warning-bg: #fbf1d9;
+  --destructive: #dc2626;
+  --destructive-bg: #fdeaea;
+  --purple: #7c3aed;
+  --purple-bg: #f1e9fd;
+  --accent: var(--info);
+
+  /* Hard offset shadows, no blur */
+  --shadow-card: 5px 5px 0 0 var(--foreground);
+  --shadow-card-hover: 8px 8px 0 0 var(--foreground);
+  --shadow-sm: 3px 3px 0 0 var(--foreground);
+
+  --border: 3px solid var(--foreground);
+  --border-sm: 2px solid var(--foreground);
+  --radius: 1rem;
+  --radius-sm: 0.75rem;
+  --tap: 44px;
+
+  --font-sans: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --font-indic: 'Noto Sans Devanagari', 'Noto Sans Telugu', var(--font-sans);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--ground);
+  background-image: radial-gradient(rgba(23, 23, 15, 0.16) 1.6px, transparent 1.6px);
+  background-size: 22px 22px;
+  color: var(--foreground);
+  line-height: 1.6;
+  overflow-x: clip;
+  min-height: 100vh;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--info);
+  font-weight: 800;
+}
+
+:focus-visible {
+  outline: 3px solid var(--info);
+  outline-offset: 3px;
+}
+
+/* ---------- typography ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+h1 {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+}
+h2 {
+  font-size: clamp(1.35rem, 4.5vw, 1.8rem);
+}
+h3 {
+  font-size: 1.15rem;
+}
+
+/* Hindi / Telugu: negative tracking and tight line-height break conjuncts and matras. */
+:lang(hi),
+:lang(te),
+.indic {
+  font-family: var(--font-indic);
+  letter-spacing: 0 !important;
+  line-height: 1.5;
+}
+:lang(hi) :is(h1, h2, h3, h4),
+:lang(te) :is(h1, h2, h3, h4),
+.indic :is(h1, h2, h3, h4) {
+  line-height: 1.35;
+}
+
+/* Rupee figures: mono, tabular, no tilt */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.muted {
+  color: var(--secondary-foreground);
+}
+
+.wordmark {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--foreground);
+}
+.wordmark b {
+  color: var(--info);
+  font-weight: 900;
+}
+
+/* Marker highlight behind a word */
+.hl {
+  display: inline-block;
+  padding: 0.02em 0.32em;
+  border-radius: 0.28em;
+  color: #fff;
+  background: var(--foreground);
+}
+.hl-green {
+  background: var(--success);
+  transform: rotate(-1deg);
+}
+.hl-blue {
+  background: var(--info);
+  transform: rotate(0.6deg);
+}
+.hl-yellow {
+  background: var(--warning);
+  transform: rotate(-0.6deg);
+  color: #1a1300;
+}
+.hl-purple {
+  background: var(--purple);
+  transform: rotate(1deg);
+}
+.hl-red {
+  background: var(--destructive);
+  transform: rotate(-0.8deg);
+}
+
+/* Tilted sticky-note eyebrow (tilts only on eyebrows and sticky notes) */
+.eyebrow {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.85rem;
+  border: 2.5px solid var(--foreground);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-1.5deg);
+  margin-bottom: 1rem;
+  background: var(--warning-bg);
+  color: #6b4a00;
+}
+.eyebrow.e-blue {
+  background: var(--info-bg);
+  color: #1a3a8f;
+}
+.eyebrow.e-green {
+  background: var(--success-bg);
+  color: #14532d;
+}
+.eyebrow.e-red {
+  background: var(--destructive-bg);
+  color: #7f1d1d;
+}
+.eyebrow.e-purple {
+  background: var(--purple-bg);
+  color: #4c1d95;
+}
+
+/* ---------- cards ---------- */
+
+/* Neo-brutalist card (was .glass-panel in the source stylesheet) */
+.card {
+  background: var(--panel);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.card.is-interactive:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Dense screens (portfolio, Plan the Month): thinner border, smaller shadow */
+.card-sm {
+  background: var(--panel);
+  border: var(--border-sm);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 0.85rem 1rem;
+}
+
+.card.panel-blue {
+  background: var(--info-bg);
+  border-color: var(--info);
+  box-shadow: 5px 5px 0 0 var(--info);
+}
+.card.panel-green {
+  background: var(--success-bg);
+  border-color: var(--success);
+  box-shadow: 5px 5px 0 0 var(--success);
+}
+.card.panel-yellow {
+  background: var(--warning-bg);
+  border-color: var(--warning);
+  box-shadow: 5px 5px 0 0 var(--warning);
+}
+.card.panel-red {
+  background: var(--destructive-bg);
+  border-color: var(--destructive);
+  box-shadow: 5px 5px 0 0 var(--destructive);
+}
+.card.panel-purple {
+  background: var(--purple-bg);
+  border-color: var(--purple);
+  box-shadow: 5px 5px 0 0 var(--purple);
+}
+
+/* Verdicts (event outcomes, gut-check tones): colour = verdict */
+.verdict-good {
+  background: var(--success-bg);
+  border-color: var(--success) !important;
+  box-shadow: 4px 4px 0 0 var(--success) !important;
+}
+.verdict-mixed {
+  background: var(--warning-bg);
+  border-color: var(--warning) !important;
+  box-shadow: 4px 4px 0 0 var(--warning) !important;
+}
+.verdict-bad {
+  background: var(--destructive-bg);
+  border-color: var(--destructive) !important;
+  box-shadow: 4px 4px 0 0 var(--destructive) !important;
+}
+.text-good {
+  color: var(--success);
+}
+.text-mixed {
+  color: var(--warning);
+}
+.text-bad {
+  color: var(--destructive);
+}
+
+.sticky {
+  transform: rotate(-1.2deg);
+  background: var(--warning-bg);
+}
+.card.sticky.s-purple {
+  background: var(--purple-bg);
+  border-color: var(--purple);
+  box-shadow: 5px 5px 0 0 var(--purple);
+}
+
+.marker-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: var(--border);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- buttons and inputs (tap targets ≥ 44px) ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: 0.75rem 1.5rem;
+  font-weight: 800;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+  font-family: var(--font-sans);
+  border: var(--border);
+  gap: 0.5rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--foreground);
+  background: var(--panel);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--info);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary {
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:not(:disabled):hover,
+.btn-secondary:not(:disabled):hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-card);
+}
+.btn-ghost {
+  background: transparent;
+  box-shadow: none;
+}
+.btn-ghost:hover {
+  background: var(--panel);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sm);
+}
+.btn-block {
+  width: 100%;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  min-height: var(--tap);
+  padding: 0.6rem 0.9rem;
+  border: var(--border-sm);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  color: var(--foreground);
+}
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2317170f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.4rem;
+}
+
+.marker-underline {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+.marker-underline::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.15em;
+  height: 0.32em;
+  background: var(--warning);
+  border-radius: 0.2em;
+  transform: rotate(-0.6deg);
+  z-index: -1;
+  opacity: 0.9;
+}
+.marker-underline.u-blue::after {
+  background: var(--info);
+}
+.marker-underline.u-green::after {
+  background: var(--success);
+}
+.marker-underline.u-purple::after {
+  background: var(--purple);
+}
+
+/* Hand-drawn SVG that draws itself */
+.draw path,
+.draw line,
+.draw polyline,
+.draw circle,
+.draw rect {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 1.4s ease forwards;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- layout ---------- */
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.grid-cards-small {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ground);
+  border-bottom: var(--border);
+}
+.app-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 60px;
+}
+.app-header .wordmark {
+  font-size: 1.25rem;
+}
+.app-nav {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.app-nav::-webkit-scrollbar {
+  display: none;
+}
+.app-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 0.6rem;
+  border-radius: 9999px;
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.app-nav a.active {
+  background: var(--foreground);
+  color: var(--ground);
+}
+.app-main {
+  flex: 1;
+  padding: 1.5rem 0 2.5rem;
+}
+.app-footer {
+  border-top: var(--border);
+  background: var(--panel);
+  padding: 1rem 0 1.25rem;
+  font-size: 0.85rem;
+}
+.app-footer p + p {
+  margin-top: 0.4rem;
+}
+
+/* Phones first: at 360px nothing scrolls sideways */
+@media (max-width: 480px) {
+  .app-header .container {
+    flex-wrap: wrap;
+    padding-top: 0.4rem;
+  }
+  .app-nav {
+    width: 100%;
+  }
+  .card {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .draw path,
+  .draw line,
+  .draw polyline,
+  .draw circle,
+  .draw rect {
+    stroke-dashoffset: 0;
+  }
+}

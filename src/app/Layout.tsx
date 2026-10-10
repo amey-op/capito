@@ -1,0 +1,49 @@
+import { useTranslation } from 'react-i18next';
+import { NavLink, Outlet } from 'react-router-dom';
+import { formatINR } from '@/core/format';
+import { useGameStore } from '@/core/store';
+
+const nav = [
+  { to: '/', key: 'ui.nav.home', end: true },
+  { to: '/portfolio', key: 'ui.nav.portfolio', end: false },
+  { to: '/glossary', key: 'ui.nav.glossary', end: false },
+  { to: '/scam-shield', key: 'ui.nav.scamShield', end: false },
+] as const;
+
+export function Layout() {
+  const { t } = useTranslation();
+  const month = useGameStore((s) => s.game.month);
+  const wallet = useGameStore((s) => s.game.buckets.wallet);
+  return (
+    <div className="app">
+      <header className="app-header">
+        <div className="container">
+          <NavLink to="/" className="wordmark" aria-label={t('ui.app.name')}>
+            Rupee <b>Quest</b>
+          </NavLink>
+          <span className="muted">
+            {t('ui.month', { month })} · {t('ui.wallet')} <span className="num">{formatINR(wallet)}</span>
+          </span>
+          <nav className="app-nav" aria-label={t('ui.nav.main')}>
+            {nav.map((n) => (
+              <NavLink key={n.to} to={n.to} end={n.end}>
+                {t(n.key)}
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+      </header>
+      <main className="app-main">
+        <div className="container">
+          <Outlet />
+        </div>
+      </main>
+      <footer className="app-footer">
+        <div className="container">
+          <p>{t('ui.footer.assumption')}</p>
+          <p className="muted">{t('ui.footer.notAdvice')}</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
