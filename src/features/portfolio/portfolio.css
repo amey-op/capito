@@ -44,7 +44,7 @@
 }
 .pf-bar-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 4.5rem 3.2rem;
+  grid-template-columns: minmax(0, 1fr) 4.5rem 3.6rem;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
@@ -133,8 +133,12 @@
 }
 .pf-fields {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.6rem;
+}
+.pf-bar-row .num {
+  white-space: nowrap;
+  text-align: right;
 }
 .pf-check {
   display: flex;
@@ -221,7 +225,7 @@
 
 @media (max-width: 380px) {
   .pf-bar-row {
-    grid-template-columns: minmax(0, 1fr) 3.4rem 2.8rem;
+    grid-template-columns: minmax(0, 1fr) 3.4rem 3.4rem;
   }
   .pf-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -20,7 +20,6 @@ afterEach(cleanup);
 
 describe('app shell routes', () => {
   it.each([
-    ['/scam-shield', 'Scam Shield', 'Team · work package R3'],
     ['/glossary', 'Word Bank', 'Team · work package A1'],
   ])('%s renders its placeholder with the owner', (path, title, owner) => {
     open(path);
@@ -37,6 +36,7 @@ describe('app shell routes', () => {
     ['/tools', 'Tools'],
     ['/', 'Your money journey'],
     ['/lesson/1.1', 'Income, expenses, needs and wants'],
+    ['/scam-shield', 'Scam Shield'],
   ])('%s renders its page inside the shell', (path, title) => {
     open(path);
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(title);
