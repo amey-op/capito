@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { ToolEmbedProps, isToolId, configToolIds } from '../../../core/tools';
 import { ConfigCalculator } from './ConfigCalculator';
 import { toolRegistry } from '../registry';
