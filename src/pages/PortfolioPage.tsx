@@ -6,6 +6,7 @@ import { useGameStore } from '@/core/store';
 import type { Effect } from '@/core/types';
 import { engine } from '@/engine';
 import { Buckets } from '@/features/portfolio/Buckets';
+import { CreditCard } from '@/features/portfolio/CreditCard';
 import { EffectList } from '@/features/portfolio/EffectList';
 import { Liabilities, ThingsOwned } from '@/features/portfolio/Liabilities';
 import { NextStep } from '@/features/portfolio/NextStep';
@@ -76,6 +77,7 @@ export function PortfolioPage() {
       )}
 
       <TopCard game={game} />
+      <CreditCard game={game} />
       <Buckets game={game} dispatch={dispatch} />
       <WantsGoals game={game} dispatch={dispatch} />
       <ThingsOwned game={game} />
