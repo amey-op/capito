@@ -1,153 +1,120 @@
-import { useState, useMemo } from 'react';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
-import { economy } from '../../../core/economy.config';
-import { formatINR } from '../../../core/format';
+import { useId, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { economy, type ScenarioId } from '@/core/economy.config';
+import { clamp } from '@/core/finance';
+import { formatINR } from '@/core/format';
+import { ToolChart } from './ToolChart';
+import '../tools.css';
 
-type Asset = 'savings' | 'fd' | 'gold' | 'mf' | 'shares';
+const assets = ['savings', 'fd', 'gold', 'mf', 'shares'] as const;
+type Asset = (typeof assets)[number];
+const scenarioIds: ScenarioId[] = ['steady', 'bumpy', 'crashYear'];
+const tone: Record<ScenarioId, string> = { steady: 'verdict-good', bumpy: 'verdict-mixed', crashYear: 'verdict-bad' };
+/** Same meaning as the result cards: green steady, yellow bumpy, red crash year. */
+const lineColor: Record<ScenarioId, string> = { steady: '#16a34a', bumpy: '#ca8a04', crashYear: '#dc2626' };
 
+const MAX_AMOUNT = 1_000_000;
+
+/** Year-end values of a mix that is topped back to the same shares every year. */
+export function mixPath(amount: number, sharePct: Record<Asset, number>, scenario: ScenarioId): number[] {
+  const total = assets.reduce((sum, a) => sum + sharePct[a], 0);
+  const years = economy.scenarios[scenario].savings.length;
+  const path = [amount];
+  for (let y = 0; y < years; y++) {
+    const growthPct = total > 0 ? assets.reduce((sum, a) => sum + (sharePct[a] / total) * economy.scenarios[scenario][a][y]!, 0) : 0;
+    path.push(path[y]! * (1 + growthPct / 100));
+  }
+  return path;
+}
+
+/** Try a mix of five kinds of holding across three pretend five-year markets. */
 export function BadYearSimulator() {
+  const { t } = useTranslation();
+  const amountId = useId();
   const [amount, setAmount] = useState(10000);
-  const [mix, setMix] = useState<Record<Asset, number>>({
-    savings: 20,
-    fd: 20,
-    gold: 20,
-    mf: 20,
-    shares: 20
-  });
+  const [mix, setMix] = useState<Record<Asset, number>>({ savings: 20, fd: 20, gold: 20, mf: 20, shares: 20 });
+  const totalPct = assets.reduce((sum, a) => sum + mix[a], 0);
 
-  const totalPct = Object.values(mix).reduce((a, b) => a + b, 0);
-
-  const handleMixChange = (asset: Asset, val: number) => {
-    setMix(prev => ({ ...prev, [asset]: val }));
-  };
-
-  const chartData = useMemo(() => {
-    // If not 100%, we won't calculate properly, or we just scale it. Let's assume normalized internally.
-    const normMix = { ...mix };
-    if (totalPct > 0) {
-      for (const k in normMix) {
-        normMix[k as Asset] = (normMix[k as Asset] / totalPct) * 100;
-      }
-    }
-
-    const data = [];
-    let steadyVal = amount;
-    let bumpyVal = amount;
-    let crashVal = amount;
-
-    data.push({
-      year: 0,
-      Steady: steadyVal,
-      Bumpy: bumpyVal,
-      Crash: crashVal
-    });
-
-    for (let yr = 0; yr < 5; yr++) {
-      let steadyGrowth = 0;
-      let bumpyGrowth = 0;
-      let crashGrowth = 0;
-
-      for (const asset of ['savings', 'fd', 'gold', 'mf', 'shares'] as Asset[]) {
-        const alloc = normMix[asset] / 100;
-        steadyGrowth += alloc * (economy.scenarios.steady[asset][yr] / 100);
-        bumpyGrowth += alloc * (economy.scenarios.bumpy[asset][yr] / 100);
-        crashGrowth += alloc * (economy.scenarios.crashYear[asset][yr] / 100);
-      }
-
-      steadyVal *= (1 + steadyGrowth);
-      bumpyVal *= (1 + bumpyGrowth);
-      crashVal *= (1 + crashGrowth);
-
-      data.push({
-        year: yr + 1,
-        Steady: Math.round(steadyVal),
-        Bumpy: Math.round(bumpyVal),
-        Crash: Math.round(crashVal)
-      });
-    }
-
-    return data;
-  }, [amount, mix, totalPct]);
+  const paths = useMemo(
+    () => Object.fromEntries(scenarioIds.map((id) => [id, mixPath(amount, mix, id)])) as Record<ScenarioId, number[]>,
+    [amount, mix],
+  );
+  const data = paths.steady.map((_, year) => ({
+    year,
+    steady: Math.round(paths.steady[year]!),
+    bumpy: Math.round(paths.bumpy[year]!),
+    crashYear: Math.round(paths.crashYear[year]!),
+  }));
+  const lines = scenarioIds.map((id) => ({ key: id, label: t(`tools.badYear.${id}`), color: lineColor[id] }));
+  const lowest = Math.min(...paths.crashYear, ...paths.bumpy);
 
   return (
-    <div className="p-4 border-4 border-black bg-white shadow-[6px_6px_0px_rgba(0,0,0,1)] max-w-sm mx-auto font-['Nunito']">
-      <h2 className="text-xl font-black mb-2 uppercase">Market Simulator</h2>
-      <p className="text-xs font-bold bg-yellow-100 border border-black p-2 mb-4 uppercase tracking-widest text-center">
-        Pretend market, not a prediction
-      </p>
+    <section className="card stack tl-tool" data-tool-id="badYear">
+      <div>
+        <span className="eyebrow">{t('tools.badYear.pretend')}</span>
+        <h2>{t('tools.badYear.title')}</h2>
+      </div>
+      <p>{t('tools.badYear.intro')}</p>
 
-      <div className="mb-4">
-        <label className="block font-bold mb-1 text-sm">Initial Investment</label>
-        <input 
-          type="number" 
-          value={amount} 
-          onChange={(e) => setAmount(Number(e.target.value))}
-          className="w-full border-2 border-black p-2 font-bold"
-        />
+      <div className="tl-input">
+        <div className="tl-input-top">
+          <label htmlFor={amountId}>{t('tools.badYear.amount')}</label>
+          <span className="tl-number">
+            <span aria-hidden="true">₹</span>
+            <input
+              id={amountId}
+              className="num"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              max={MAX_AMOUNT}
+              step={500}
+              value={amount}
+              onChange={(e) => setAmount(clamp(Number(e.target.value) || 0, 0, MAX_AMOUNT))}
+            />
+          </span>
+        </div>
       </div>
 
-      <div className="bg-gray-50 border-2 border-black p-3 mb-6">
-        <label className="block font-bold mb-2 text-sm uppercase border-b-2 border-black pb-1">
-          Asset Mix ({totalPct}%)
-        </label>
-        {(Object.keys(mix) as Asset[]).map(asset => (
-          <div key={asset} className="flex items-center mb-2 text-sm font-bold">
-            <span className="w-20 uppercase">{asset}</span>
-            <input 
-              type="range" 
-              min="0" 
-              max="100" 
-              value={mix[asset]} 
-              onChange={(e) => handleMixChange(asset, Number(e.target.value))}
-              className="flex-1 accent-black mr-2"
-            />
-            <span className="w-8 text-right">{mix[asset]}%</span>
-          </div>
-        ))}
+      <div className="card-sm stack">
+        <h3>{t('tools.badYear.mix')}</h3>
+        <div className="tl-mix">
+          {assets.map((asset) => (
+            <label key={asset} className="tl-mix-row">
+              <span>{t(`tools.badYear.asset.${asset}`)}</span>
+              <input
+                className="tl-range"
+                type="range"
+                min={0}
+                max={100}
+                step={5}
+                value={mix[asset]}
+                onChange={(e) => setMix((prev) => ({ ...prev, [asset]: Number(e.target.value) }))}
+              />
+              <span className="num">{mix[asset]}%</span>
+            </label>
+          ))}
+        </div>
         {totalPct !== 100 && (
-          <p className="text-red-500 text-xs font-bold uppercase mt-2">
-            Warning: Total is not 100%. Values will be scaled.
-          </p>
+          <p className="tl-note">{t(totalPct === 0 ? 'tools.badYear.mixEmpty' : 'tools.badYear.mixScaled', { total: totalPct })}</p>
         )}
       </div>
 
-      <div className="h-[250px] w-full mb-6 border-2 border-black p-2 bg-gray-50">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
-            <XAxis dataKey="year" fontSize={12} tickLine={false} />
-            <YAxis 
-              fontSize={12} 
-              tickLine={false} 
-              tickFormatter={(v) => `₹${(v/1000).toFixed(0)}k`} 
-              width={60}
-            />
-            <Tooltip 
-              formatter={(value: number) => formatINR(value)}
-              contentStyle={{ border: '2px solid black', borderRadius: 0, fontWeight: 'bold', fontFamily: 'Nunito' }}
-            />
-            <Legend wrapperStyle={{ fontSize: 12, fontWeight: 'bold' }} />
-            <Line type="monotone" dataKey="Steady" stroke="#10b981" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} />
-            <Line type="monotone" dataKey="Bumpy" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} />
-            <Line type="monotone" dataKey="Crash" stroke="#ef4444" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} />
-          </LineChart>
-        </ResponsiveContainer>
+      <ToolChart data={data} xKey="year" lines={lines} xLabel={t('tools.common.year')} />
+
+      <div className="tl-results">
+        {scenarioIds.map((id) => (
+          <div key={id} className={`card-sm tl-result ${tone[id]}`}>
+            <span className="tl-label">{t('tools.badYear.after', { market: t(`tools.badYear.${id}`) })}</span>
+            <span className="num">{formatINR(paths[id][paths[id].length - 1]!)}</span>
+          </div>
+        ))}
       </div>
 
-      <div className="border-t-4 border-black pt-4 text-sm font-bold">
-        <div className="flex justify-between mb-2">
-          <span>Final Steady:</span>
-          <span className="text-green-600">{formatINR(chartData[5].Steady)}</span>
-        </div>
-        <div className="flex justify-between mb-2">
-          <span>Final Bumpy:</span>
-          <span className="text-yellow-600">{formatINR(chartData[5].Bumpy)}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Final Crash Year:</span>
-          <span className="text-red-600">{formatINR(chartData[5].Crash)}</span>
-        </div>
-      </div>
-    </div>
+      <p className="card-sm tl-shocker" role="status">
+        {t(lowest < amount ? 'tools.badYear.dip' : 'tools.badYear.noDip', { lowest: formatINR(lowest), amount: formatINR(amount) })}
+      </p>
+      <p className="tl-foot muted">{t('tools.badYear.note')}</p>
+    </section>
   );
 }

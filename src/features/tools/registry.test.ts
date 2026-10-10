@@ -5,7 +5,7 @@ describe('Tool Registry', () => {
   it('leakFinder logic is correct', () => {
     const out = toolRegistry.leakFinder.compute({ perDay: 40, daysPerYear: 365 });
     expect(out.results[0].value).toBe(14600);
-    expect(out.shocker?.perYear).toBe(14600);
+    expect(out.shocker?.perYear).toBe('₹14,600');
   });
 
   it('depreciation computes lost amount', () => {
@@ -25,7 +25,7 @@ describe('Tool Registry', () => {
     expect(Math.round(extra)).toBe(319);
   });
 
-  it('sip calculator matches Finvitals check', () => {
+  it('sip calculator: payments at the start of each month', () => {
     // ₹10,000 x 15y @ 10% ≈ ₹41.79 L
     const out = toolRegistry.sip.compute({ monthly: 10000, ratePct: 10, years: 15 });
     const total = out.results.find(r => r.id === 'total')?.value || 0;

@@ -1,0 +1,190 @@
+{
+  "id": "3.2",
+  "level": 3,
+  "tier": "should",
+  "titleKey": "lesson.3_2.title",
+  "gutCheck": {
+    "promptKey": "lesson.3_2.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.3_2.gut.a.label",
+        "resultKey": "lesson.3_2.gut.a.result",
+        "tone": "bad"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.3_2.gut.b.label",
+        "resultKey": "lesson.3_2.gut.b.result",
+        "tone": "good"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.3_2.gut.c.label",
+        "resultKey": "lesson.3_2.gut.c.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.3_2.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.3_2.c1.text",
+      "art": "big-wave"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.3_2.c2.text",
+      "art": "small-coins-umbrella",
+      "terms": [
+        "premium"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.3_2.c3.text",
+      "art": "claim-form",
+      "terms": [
+        "sumAssured",
+        "claim"
+      ]
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.3_2.c4.text",
+      "art": "two-umbrellas",
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.3_2.c4.sort.prompt",
+        "categories": [
+          {
+            "id": "health",
+            "labelKey": "lesson.3_2.c4.sort.health"
+          },
+          {
+            "id": "term",
+            "labelKey": "lesson.3_2.c4.sort.term"
+          }
+        ],
+        "items": [
+          {
+            "id": "surgery",
+            "labelKey": "lesson.3_2.c4.sort.surgery",
+            "category": "health"
+          },
+          {
+            "id": "earner",
+            "labelKey": "lesson.3_2.c4.sort.earner",
+            "category": "term"
+          },
+          {
+            "id": "fever",
+            "labelKey": "lesson.3_2.c4.sort.fever",
+            "category": "health"
+          },
+          {
+            "id": "loan",
+            "labelKey": "lesson.3_2.c4.sort.loan",
+            "category": "term"
+          }
+        ],
+        "feedbackKey": "lesson.3_2.c4.sort.feedback"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.3_2.c5.text",
+      "art": "plan-compare",
+      "terms": [
+        "termEndowment"
+      ]
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.3_2.c6.text",
+      "art": "open-hand",
+      "terms": [
+        "disclosure"
+      ]
+    },
+    {
+      "id": "c7",
+      "textKey": "lesson.3_2.c7.text",
+      "art": "premium-vs-bill",
+      "interaction": {
+        "type": "tool",
+        "toolId": "shockAbsorber"
+      }
+    }
+  ],
+  "tool": {
+    "id": "shockAbsorber"
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.3_2.q1.prompt",
+      "options": [
+        "lesson.3_2.q1.o1",
+        "lesson.3_2.q1.o2",
+        "lesson.3_2.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.3_2.q1.right",
+      "feedbackWrongKey": "lesson.3_2.q1.wrong",
+      "terms": [
+        "premium"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.3_2.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.3_2.q2.right",
+      "feedbackWrongKey": "lesson.3_2.q2.wrong",
+      "terms": [
+        "termEndowment"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.3_2.q3.prompt",
+      "options": [
+        "lesson.3_2.q3.o1",
+        "lesson.3_2.q3.o2",
+        "lesson.3_2.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.3_2.q3.right",
+      "feedbackWrongKey": "lesson.3_2.q3.wrong",
+      "terms": [
+        "disclosure"
+      ]
+    }
+  ],
+  "terms": [
+    "premium",
+    "claim"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.3_2.effect",
+    "unlocks": [
+      "insurance"
+    ],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "insurance.term_vs_endowment_wording",
+      "verified": true
+    },
+    {
+      "key": "insurance.game_premium_150",
+      "verified": true
+    }
+  ]
+}

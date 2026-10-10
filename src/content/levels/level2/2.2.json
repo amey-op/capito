@@ -1,0 +1,191 @@
+{
+  "id": "2.2",
+  "level": 2,
+  "tier": "must",
+  "titleKey": "lesson.2_2.title",
+  "gutCheck": {
+    "promptKey": "lesson.2_2.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.2_2.gut.a.label",
+        "resultKey": "lesson.2_2.gut.a.result",
+        "tone": "bad"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.2_2.gut.b.label",
+        "resultKey": "lesson.2_2.gut.b.result",
+        "tone": "good"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.2_2.gut.c.label",
+        "resultKey": "lesson.2_2.gut.c.result",
+        "tone": "good"
+      }
+    ],
+    "bridgeKey": "lesson.2_2.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.2_2.c1.text",
+      "art": "phone-cards"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.2_2.c2.text",
+      "art": "two-cards",
+      "terms": [
+        "debitCard",
+        "creditCard"
+      ],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.2_2.c2.sort.prompt",
+        "categories": [
+          {
+            "id": "mine",
+            "labelKey": "lesson.2_2.c2.sort.mine"
+          },
+          {
+            "id": "bank",
+            "labelKey": "lesson.2_2.c2.sort.bank"
+          }
+        ],
+        "items": [
+          {
+            "id": "debit",
+            "labelKey": "lesson.2_2.c2.sort.debit",
+            "category": "mine"
+          },
+          {
+            "id": "credit",
+            "labelKey": "lesson.2_2.c2.sort.credit",
+            "category": "bank"
+          },
+          {
+            "id": "upi",
+            "labelKey": "lesson.2_2.c2.sort.upi",
+            "category": "mine"
+          },
+          {
+            "id": "cash",
+            "labelKey": "lesson.2_2.c2.sort.cash",
+            "category": "mine"
+          }
+        ],
+        "feedbackKey": "lesson.2_2.c2.sort.feedback"
+      }
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.2_2.c3.text",
+      "art": "phone-arrow",
+      "terms": [
+        "upi"
+      ]
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.2_2.c4.text",
+      "art": "pin-pad",
+      "terms": [
+        "upiPin"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.2_2.c4.reveal.prompt",
+        "answerKey": "lesson.2_2.c4.reveal.answer"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.2_2.c5.text",
+      "art": "otp-bubble",
+      "terms": [
+        "otp",
+        "cvv"
+      ]
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.2_2.c6.text",
+      "art": "qr-hook",
+      "terms": [
+        "collectRequest"
+      ],
+      "interaction": {
+        "type": "tool",
+        "toolId": "upiPractice"
+      }
+    }
+  ],
+  "tool": {
+    "id": "upiPractice"
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "trueFalse",
+      "promptKey": "lesson.2_2.q1.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.2_2.q1.right",
+      "feedbackWrongKey": "lesson.2_2.q1.wrong",
+      "terms": [
+        "upiPin"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "single",
+      "promptKey": "lesson.2_2.q2.prompt",
+      "options": [
+        "lesson.2_2.q2.o1",
+        "lesson.2_2.q2.o2",
+        "lesson.2_2.q2.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.2_2.q2.right",
+      "feedbackWrongKey": "lesson.2_2.q2.wrong",
+      "terms": [
+        "otp"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.2_2.q3.prompt",
+      "options": [
+        "lesson.2_2.q3.o1",
+        "lesson.2_2.q3.o2",
+        "lesson.2_2.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.2_2.q3.right",
+      "feedbackWrongKey": "lesson.2_2.q3.wrong",
+      "terms": [
+        "creditCard"
+      ]
+    }
+  ],
+  "terms": [
+    "debitCard",
+    "creditCard",
+    "upi",
+    "upiPin",
+    "otp"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.2_2.effect",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "upi.pin_only_to_send",
+      "verified": true
+    }
+  ]
+}

@@ -1,6 +1,10 @@
-import { ToolDef, ConfigToolId } from '../../core/tools';
-import * as finance from '../../core/finance';
-import { economy } from '../../core/economy.config';
+import { economy } from '@/core/economy.config';
+import * as finance from '@/core/finance';
+import { formatINR } from '@/core/format';
+import type { ConfigToolId, ToolDef } from '@/core/tools';
+
+/** Headline numbers are handed to the text already formatted, so no raw rupee figure reaches the screen. */
+const yearsText = (n: number) => (Number.isFinite(n) ? new Intl.NumberFormat('en-IN', { maximumFractionDigits: 1 }).format(n) : '–');
 
 export const toolRegistry: Record<ConfigToolId, ToolDef> = {
   leakFinder: {
@@ -15,7 +19,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
       const perYear = finance.leakPerYear(values.perDay, values.daysPerYear);
       return {
         results: [{ id: 'perYear', labelKey: 'tools.leakFinder.perYear', value: perYear, unit: 'inr', tone: 'bad' }],
-        shocker: { perYear, bags: Math.floor(perYear / 3000) },
+        shocker: { perYear: formatINR(perYear), perMonth: formatINR(perYear / 12) },
       };
     },
   },
@@ -38,7 +42,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'monthly', labelKey: 'tools.goalPlanner.monthly', value: monthly, unit: 'inr', tone: 'good' },
           { id: 'monthlyIfLate', labelKey: 'tools.goalPlanner.monthlyIfLate', value: monthlyIfLate, unit: 'inr', tone: 'mixed' },
         ],
-        shocker: { monthlyIfLate, extra: monthlyIfLate - monthly },
+        shocker: { monthlyIfLate: formatINR(monthlyIfLate), extra: formatINR(monthlyIfLate - monthly) },
       };
     },
   },
@@ -59,7 +63,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'valueNow', labelKey: 'tools.depreciation.valueNow', value: val, unit: 'inr', tone: 'mixed' },
           { id: 'lostAmount', labelKey: 'tools.depreciation.lostAmount', value: lost, unit: 'inr', tone: 'bad' },
         ],
-        shocker: { lost, cost: values.cost },
+        shocker: { lost: formatINR(lost), cost: formatINR(values.cost) },
       };
     },
   },
@@ -87,7 +91,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
       }
       return {
         results,
-        shocker: { extra: res.extra },
+        shocker: { extra: formatINR(res.extra) },
       };
     },
   },
@@ -111,7 +115,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'lostPct', labelKey: 'tools.inflation.lostPct', value: lostPct, unit: 'pct', tone: 'bad' },
           { id: 'ruleOf70', labelKey: 'tools.inflation.ruleOf70', value: r70, unit: 'years', tone: 'neutral' },
         ],
-        shocker: { power },
+        shocker: { power: formatINR(power), amount: formatINR(amount), years },
       };
     },
   },
@@ -146,7 +150,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'gap', labelKey: 'tools.timeMachine.gap', value: gap, unit: 'inr', tone: 'bad' },
         ],
         series,
-        shocker: { gap, delayYears },
+        shocker: { gap: formatINR(gap), delayYears },
       };
     },
   },
@@ -171,7 +175,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'interest', labelKey: 'tools.fd.interest', value: interest, unit: 'inr', tone: 'good' },
           { id: 'realRate', labelKey: 'tools.fd.realRate', value: realRate, unit: 'pct', tone: realRate > 0 ? 'good' : 'bad' },
         ],
-        shocker: { interest },
+        shocker: { interest: formatINR(interest) },
       };
     },
   },
@@ -195,7 +199,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'invested', labelKey: 'tools.rd.invested', value: invested, unit: 'inr', tone: 'neutral' },
           { id: 'interest', labelKey: 'tools.rd.interest', value: interest, unit: 'inr', tone: 'good' },
         ],
-        shocker: { maturity },
+        shocker: { maturity: formatINR(maturity), invested: formatINR(invested) },
       };
     },
   },
@@ -220,7 +224,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'total', labelKey: 'tools.sip.total', value: res.value, unit: 'inr', tone: 'good' },
         ],
         series,
-        shocker: { total: res.value },
+        shocker: { total: formatINR(res.value), invested: formatINR(res.invested) },
       };
     },
   },
@@ -242,7 +246,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'finalValue', labelKey: 'tools.lumpsum.finalValue', value: finalValue, unit: 'inr', tone: 'good' },
           { id: 'ruleOf72', labelKey: 'tools.lumpsum.ruleOf72', value: r72, unit: 'years', tone: 'neutral' },
         ],
-        shocker: { r72 },
+        shocker: { r72: yearsText(r72) },
       };
     },
   },
@@ -265,7 +269,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'sipNeeded', labelKey: 'tools.goalSip.sipNeeded', value: sipNeeded, unit: 'inr', tone: 'good' },
           { id: 'noReturns', labelKey: 'tools.goalSip.noReturns', value: noReturns, unit: 'inr', tone: 'neutral' },
         ],
-        shocker: { diff: noReturns - sipNeeded },
+        shocker: { diff: formatINR(noReturns - sipNeeded) },
       };
     },
   },
@@ -299,7 +303,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'gap', labelKey: 'tools.feeLens.gap', value: gap, unit: 'inr', tone: 'bad' },
         ],
         series,
-        shocker: { gap },
+        shocker: { gap: formatINR(gap) },
       };
     },
   },
@@ -319,11 +323,11 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
       const diff = etf - physical;
       return {
         results: [
-          { id: 'physical', labelKey: 'tools.goldCompare.physical', value: physical, unit: 'inr', tone: 'mixed' },
-          { id: 'etf', labelKey: 'tools.goldCompare.etf', value: etf, unit: 'inr', tone: 'good' },
-          { id: 'difference', labelKey: 'tools.goldCompare.difference', value: diff, unit: 'inr', tone: 'bad' },
+          { id: 'physical', labelKey: 'tools.goldCompare.physical', value: physical, unit: 'inr', tone: 'neutral' },
+          { id: 'etf', labelKey: 'tools.goldCompare.etf', value: etf, unit: 'inr', tone: 'neutral' },
+          { id: 'difference', labelKey: 'tools.goldCompare.difference', value: diff, unit: 'inr', tone: 'mixed' },
         ],
-        shocker: { diff },
+        shocker: { diff: formatINR(diff) },
       };
     },
   },
@@ -347,7 +351,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'tax', labelKey: 'tools.slab.tax', value: tax, unit: 'inr', tone: 'bad' },
           { id: 'effectiveRate', labelKey: 'tools.slab.effectiveRate', value: effectiveRate, unit: 'pct', tone: 'neutral' },
         ],
-        shocker: { tax },
+        shocker: { tax: formatINR(tax) },
       };
     },
   },
@@ -370,7 +374,7 @@ export const toolRegistry: Record<ConfigToolId, ToolDef> = {
           { id: 'inHand', labelKey: 'tools.takeHome.inHand', value: inHand, unit: 'inr', tone: 'good' },
           { id: 'deductions', labelKey: 'tools.takeHome.deductions', value: deductions, unit: 'inr', tone: 'bad' },
         ],
-        shocker: { inHand },
+        shocker: { inHand: formatINR(inHand), gross: formatINR(grossMonthly) },
       };
     },
   },
