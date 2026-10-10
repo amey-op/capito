@@ -1,50 +1,61 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import '../scamshield.css';
 
+const questions = [1, 2, 3, 4, 5] as const;
+
+/** The five-point check to run before any money leaves: more than one "no" means stop. */
 export function CheckItTool() {
   const { t } = useTranslation();
-  const [answers, setAnswers] = useState<Record<number, boolean | null>>({
-    1: null, 2: null, 3: null, 4: null, 5: null
-  });
+  const [answers, setAnswers] = useState<Record<number, boolean | undefined>>({});
 
-  const toggleAnswer = (q: number, val: boolean) => {
-    setAnswers(prev => ({ ...prev, [q]: val }));
-  };
-
-  const noCount = Object.values(answers).filter(v => v === false).length;
-  const answeredAll = Object.values(answers).every(v => v !== null);
+  const noCount = questions.filter((q) => answers[q] === false).length;
+  const answeredAll = questions.every((q) => answers[q] !== undefined);
+  const verdict = noCount > 1 ? 'Stop' : noCount === 1 ? 'Careful' : 'Safe';
 
   return (
-    <div className="p-4 border-4 border-black bg-white shadow-[6px_6px_0px_rgba(0,0,0,1)] max-w-sm mx-auto">
-      <h2 className="text-xl font-black mb-4 uppercase">{t('scamshield.checkIt.title')}</h2>
-      
-      <div className="space-y-4 mb-6">
-        {[1, 2, 3, 4, 5].map((q) => (
-          <div key={q} className="bg-gray-50 border-2 border-black p-3">
-            <p className="font-bold text-sm mb-2">{t(`scamshield.checkIt.q${q}`)}</p>
-            <div className="flex gap-2">
-              <button 
-                onClick={() => toggleAnswer(q, true)}
-                className={`flex-1 font-bold py-1 border-2 border-black ${answers[q] === true ? 'bg-green-400' : 'bg-white'}`}
+    <section className="card stack" data-tool-id="checkIt">
+      <h2>{t('scamshield.checkIt.title')}</h2>
+      <p>{t('scamshield.checkIt.intro')}</p>
+
+      <ul className="ss-list">
+        {questions.map((q) => (
+          <li key={q} className="card-sm ss-question">
+            <p id={`ss-q${q}`}>{t(`scamshield.checkIt.q${q}`)}</p>
+            <div className="ss-yesno" role="group" aria-labelledby={`ss-q${q}`}>
+              <button
+                type="button"
+                className={`btn ${answers[q] === true ? 'ss-pick' : 'btn-secondary'}`}
+                aria-pressed={answers[q] === true}
+                onClick={() => setAnswers((prev) => ({ ...prev, [q]: true }))}
               >
-                Yes
+                {t('scamshield.checkIt.yes')}
               </button>
-              <button 
-                onClick={() => toggleAnswer(q, false)}
-                className={`flex-1 font-bold py-1 border-2 border-black ${answers[q] === false ? 'bg-red-400' : 'bg-white'}`}
+              <button
+                type="button"
+                className={`btn ${answers[q] === false ? 'ss-pick' : 'btn-secondary'}`}
+                aria-pressed={answers[q] === false}
+                onClick={() => setAnswers((prev) => ({ ...prev, [q]: false }))}
               >
-                No
+                {t('scamshield.checkIt.no')}
               </button>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      {answeredAll && (
-        <div className={`p-4 border-2 border-black font-bold text-center ${noCount > 1 ? 'bg-red-200' : 'bg-green-200'}`}>
-          {noCount > 1 ? t('scamshield.checkIt.verdictStop') : t('scamshield.checkIt.verdictSafe')}
+      {answeredAll ? (
+        <div className={`card-sm stack ${verdict === 'Stop' ? 'verdict-bad' : verdict === 'Careful' ? 'verdict-mixed' : 'verdict-good'}`} role="status">
+          <strong>{t(`scamshield.checkIt.verdict${verdict}`)}</strong>
+          <div>
+            <button type="button" className="btn btn-secondary" onClick={() => setAnswers({})}>
+              {t('scamshield.checkIt.reset')}
+            </button>
+          </div>
         </div>
+      ) : (
+        <p className="muted">{t('scamshield.checkIt.pending')}</p>
       )}
-    </div>
+    </section>
   );
 }
