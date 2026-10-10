@@ -1,5 +1,5 @@
 /**
- * Tool contract (calculators, bespoke tools, static cards). Aryan's lane implements them in
+ * Tool contract (calculators, bespoke tools, static cards). They are implemented in
  * src/features/tools; the lesson player and portfolio only use `ToolEmbed` and `/tool/:id`.
  * CONTRACT FILE: change only through a `contract-change` PR.
  */

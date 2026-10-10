@@ -11,9 +11,9 @@ Practice money and pretend markets only. The app explains how things work; it do
 
 ## Setup
 
+Unzip the code (or clone the repository) and open a terminal in its folder, then:
+
 ```bash
-git clone https://github.com/IIIT-ECell/megathon26-team-illuminati.git
-cd megathon26-team-illuminati
 npm ci
 ```
 

@@ -11,9 +11,6 @@
   "ui.footer.notAdvice": "Practice money and pretend markets. This explains how things work; it is not advice.",
   "ui.month": "Month {{month}}",
   "ui.wallet": "Wallet",
-  "ui.placeholder.eyebrow": "Coming soon",
-  "ui.placeholder.owner": "Owner: {{owner}} · work package {{wp}}",
-  "ui.placeholder.note": "This page is a placeholder from Phase 0. The owner replaces it in their work package.",
   "ui.page.lesson": "Lesson",
   "ui.page.portfolio": "Portfolio and Plan the Month",
   "ui.page.event": "Life event",
@@ -110,8 +107,5 @@
   "ui.tool.unknown": "Unknown tool.",
   "ui.tool.placeholder": "The {{id}} tool arrives with work package R1.",
   "ui.back.home": "Back to home",
-  "ui.health.nextMoveStub": "The Money Health Score arrives with the engine (N1).",
-  "ui.owner.amey": "Team",
-  "ui.owner.nipun": "Team",
-  "ui.owner.aryan": "Team"
+  "ui.health.nextMoveStub": "The Money Health Score arrives with the engine (N1)."
 }

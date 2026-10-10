@@ -2,7 +2,6 @@
 <!-- One work package per PR (e.g. N1a, A2-level1). What does this PR add or change? -->
 
 **WP:** <!-- e.g. A1 / N1a / R1 -->
-**Owner:** <!-- amey | nipun | aryan -->
 
 ## Files outside my lane
 <!-- List any file outside your folders (docs/WORKFLOW.md §3) and why. "None" if none.
@@ -23,4 +22,4 @@
 <!-- Steps, routes to open, screenshots for UI (360 px). -->
 
 ## Questions / contract-change requests
-<!-- Anything the Harness or Amey must decide. -->
+<!-- Anything the reviewer must decide. -->
