@@ -1,6 +1,6 @@
 /*
- * Rupee Quest whiteboard theme. Generic parts of docs/design/enjeen-index.css with our overrides
- *. Plain CSS, no framework.
+ * Whiteboard theme. Generic parts of docs/design/enjeen-index.css with our overrides
+ * (Indic text spacing, dense-screen cards, verdict colours). Plain CSS, no framework.
  * Owner: Amey (src/styles/*). Fonts are self-hosted via @fontsource in main.tsx (works offline).
  */
 

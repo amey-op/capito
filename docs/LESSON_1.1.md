@@ -60,7 +60,7 @@
 - mini tap-sort (6 items): *school fees (need), rice and dal (need), game skin ₹300 (want), branded sneakers (want), phone recharge for online class (need), movie with friends (want)*; instant feedback.
 
 **Card 7: How this game works (the golden assumption)**
-- text: "In Rupee Quest, your **needs are already covered** by your family or by you. The money you earn here is only for **wants and savings**."
+- text: "In Capito, your **needs are already covered** by your family or by you. The money you earn here is only for **wants and savings**."
 - art: a house with a shield (needs covered) and a small wallet beside it.
 - footer: "Wants are not bad. They just need a plan."
 

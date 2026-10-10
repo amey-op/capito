@@ -1,4 +1,4 @@
-# Rupee Quest: Content & Curriculum (v3)
+# Capito: Content & Curriculum (v3)
 
 > Companion to **MECHANICS.md** (game rules, money, clock, scoring, consequences, event tables) and **PLAN.md** (product, tech, split, timeline). A fully written template lesson is in **LESSON_1.1.md**.
 > Tags: **[DECIDE]** your choice · **[VERIFY]** confirm on an official source before it appears on screen · **[CALC]** hand-computed, engine recomputes and tests it.

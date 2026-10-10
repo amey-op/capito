@@ -19,7 +19,7 @@ export function Layout() {
       <header className="app-header">
         <div className="container">
           <NavLink to="/" className="wordmark" aria-label={t('ui.app.name')}>
-            Rupee <b>Quest</b>
+            Cap<b>ito</b>
           </NavLink>
           <span className="muted">
             {t('ui.month', { month })} · {t('ui.wallet')} <span className="num">{formatINR(wallet)}</span>

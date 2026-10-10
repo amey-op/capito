@@ -1,4 +1,4 @@
-# Rupee Quest: Build Plan v3 (Vanguard Financial Literacy)
+# Capito: Build Plan v3 (Vanguard Financial Literacy)
 
 > Working title. v3 (2026-10-10): decisions from your review applied. Deadline ≈ 12 h from v1.
 > Files: **PLAN.md** (this: product, tech, split, timeline) · **CONTENT.md** (curriculum, 29 sub-sections) · **MECHANICS.md** (money, clock, scoring, credit, consequence engine, event tables) · **LESSON_1.1.md** (template lesson).
@@ -29,7 +29,7 @@ A mobile-first, offline-capable web app (PWA, also an APK) where Grade 11–12 s
 | Personas | Dropped. 3-tap Starting Profile kept (wording only, never money). **Placement check dropped** |
 | Learning evidence | First-attempt quiz scores + 10-question final quiz (no baseline: "students scored X", never "improved") |
 | Languages | English, Hindi, Telugu; **English term always shown beside translated text** |
-| AI | No runtime LLM |
+| Generated content | None at runtime: every lesson, event and number is fixed, reviewed content |
 | NGO | Separate NGO account; **anonymous progress syncs to the server** (no personal data) |
 | Team | Three people working in parallel lanes on separate branches, merged by pull request |
 | Hosting / backend | **Vercel** (PR previews) + **Supabase** (auth + data) in **Phase 2**; Phase 1 is localStorage only |
@@ -74,7 +74,7 @@ Every life event, scam alert and gut-check is data (`Choice` with `now`, `later`
 Score starts at 650 on first credit action; on-time EMI +10, missed −40 (+₹200 fee), second loan −15, default −30. Offers: 750+ ₹10,000 @14% · 700–749 ₹8,000 @18% · 650–699 ₹6,000 @22% · 600–649 ₹3,000 @26% · under 600 declined by banks · any score: instant loan app (≈44% a month, harassment risk). Offer screen always shows EMI, total paid, extra cost and "why this rate".
 
 ### 3.5 Theory cards ("sketch cards", Linelapse-inspired)
-Linelapse's course page never rendered for us; it appears to be an AI whiteboard-explainer tool **[VERIFY]**. We reproduce the idea in-app: swipeable cards with hand-drawn SVG that draws itself (CSS stroke animation) + one short line + tap-to-reveal, drawn with [rough.js](https://roughjs.com/) or plain SVG. No video files (heavy, hard to translate ×3, hard to keep offline). **Word Bank:** three layers per core term (say it simply → see it in life → say the real word + optional maths). **[DECIDE]** a few exported Linelapse clips for hero lessons, or in-app cards only (default).
+Linelapse's course page never rendered for us; it appears to be a whiteboard-explainer video tool **[VERIFY]**. We reproduce the idea in-app: swipeable cards with hand-drawn SVG that draws itself (CSS stroke animation) + one short line + tap-to-reveal, drawn with [rough.js](https://roughjs.com/) or plain SVG. No video files (heavy, hard to translate ×3, hard to keep offline). **Word Bank:** three layers per core term (say it simply → see it in life → say the real word + optional maths). **[DECIDE]** a few exported Linelapse clips for hero lessons, or in-app cards only (default).
 
 ### 3.6 Tools (split to fit 12 h)
 - **Bespoke builds (~5):** Budget Builder · Scam Shield + Check-it · UPI Practice · portfolio fast-forward / Bad-Year · event engine.
@@ -138,7 +138,7 @@ src/
 **Contracts first (hour 0–1):** shared TS types (`SubSection`, `Card`, `QuizItem`, `Term`, `Choice`, `LifeEvent`, `Bucket`, `PortfolioState`, `Scenario`, `ProgressEvent`, `DataAdapter`, tool registry `{id, inputs, compute(), explain()}`). `economy.config.ts` holds every number from MECHANICS.md.
 
 **Design rules:** 360 px first; one decision per screen; ≥ 44 px tap targets; high contrast; icons + words; no horizontal scroll; first load < ~1.5 MB; works with data off.
-**Look (decided 10 Oct):** the **whiteboard theme** (the team's existing design system) (dot grid, ink borders, hard offset shadows, marker colours, Nunito). Our own name/wordmark ("Rupee Quest"), **not** the EnJEEn wordmark, tagline or voice rules. Adjustments for us: (1) **Indic text:** `letter-spacing: 0` and `line-height ≥ 1.35` on Hindi/Telugu (negative tracking and 1.1 line-height break conjuncts/matras); Noto Sans Devanagari/Telugu at the same weights, self-hosted. (2) **Dense screens (portfolio, Plan the Month):** 2px borders and `3px 3px` shadows on small items; 3px/5px only on hero cards and buttons. (3) **Colour meaning:** green = good, yellow = mixed/caution, red = bad (event verdicts); blue = actions; purple = credit score and Joy (replaces "mentors"). (4) Tilts only on eyebrows and sticky notes; none on tables, numbers or quiz options; honour `prefers-reduced-motion`. (5) Self-host Nunito (and IBM Plex Mono for ₹ figures, after checking the ₹ glyph) so it works offline. (6) Drop dark mode unless time remains. Source of truth: `docs/design/enjeen-index.css` (copied from the EnJEEn landing page).
+**Look (decided 10 Oct):** the **whiteboard theme** (the team's existing design system) (dot grid, ink borders, hard offset shadows, marker colours, Nunito). Our own name/wordmark ("Capito"), **not** the EnJEEn wordmark, tagline or voice rules. Adjustments for us: (1) **Indic text:** `letter-spacing: 0` and `line-height ≥ 1.35` on Hindi/Telugu (negative tracking and 1.1 line-height break conjuncts/matras); Noto Sans Devanagari/Telugu at the same weights, self-hosted. (2) **Dense screens (portfolio, Plan the Month):** 2px borders and `3px 3px` shadows on small items; 3px/5px only on hero cards and buttons. (3) **Colour meaning:** green = good, yellow = mixed/caution, red = bad (event verdicts); blue = actions; purple = credit score and Joy (replaces "mentors"). (4) Tilts only on eyebrows and sticky notes; none on tables, numbers or quiz options; honour `prefers-reduced-motion`. (5) Self-host Nunito (and IBM Plex Mono for ₹ figures, after checking the ₹ glyph) so it works offline. (6) Drop dark mode unless time remains. Source of truth: `docs/design/enjeen-index.css` (copied from the EnJEEn landing page).
 
 ---
 
@@ -149,9 +149,9 @@ src/
 | **1. Foundation + engine** | **Lane 1** | scaffold, design system, router, i18n wiring, store, economy config, DataAdapter, **ledger/month-close/credit/health/consequence engines with tests**, portfolio screen, Plan the Month, wants/goals, milestones, PWA, deploy, APK | Shell by hour 3; engine + portfolio playable by hour 6 |
 | **2. Lessons, content, games** | **Lane 2** | lesson player (gut-check → cards → tool slot → quiz), Word Bank, **23 MUST lessons as JSON (EN)**, events and scam alerts as data, Scam Shield, Check-it, glossary | Player + Level 1 by hour 3; all MUST content by hour 6 |
 | **3. Tools + NGO** | Lane 3 | generic config-calculator component + ~14 formulas with Vitest first, Budget Builder, UPI Practice, NGO login/class/dashboard | Calculators by hour 5; NGO by hour 8 |
-| **Docs & pitch** | Lane 1 (last hours) | README, architecture slide, deck, demo script, privacy/Responsible-AI note | Deck by hour 11 |
+| **Docs & pitch** | Lane 1 (last hours) | README, architecture slide, deck, demo script, privacy note | Deck by hour 11 |
 
-Prompt for each agent: *"Read PLAN.md, CONTENT.md, MECHANICS.md and `src/core/types.ts`. You own only `<folders>`. Do not edit others. Build `<deliverables>`. Run `npm run dev` and `npm test` before saying done."*
+Each lane reads PLAN.md, CONTENT.md, MECHANICS.md and `src/core/types.ts`, edits only its own folders, and runs `npm run check` before a pull request.
 
 ---
 
@@ -210,7 +210,7 @@ Also prepare: limitations slide (assumption-based sims; translations reviewed by
 | Content accuracy (taxes, rates, rules change) | Tested formulas; dated config; `verified` flags (unverified facts hidden); no product names |
 | Economy feels unbalanced | All numbers in one config; two full playtests by hour 8 |
 | Engine bugs (interest, credit, shortfall) | Vitest on ledger, month-close, EMI/FD/RD/SIP, credit rules, scripted episodes |
-| 3-agent merge conflicts | Folder ownership, branches, fixed merge points |
+| Merge conflicts between three lanes | Folder ownership, branches, fixed merge points |
 | No Android SDK/JDK on this PC | APK last; PWA primary; install SDK early in background |
 | Hindi/Telugu quality | Native review; glossary first; "draft" label if unreviewed |
 | Free-tier/wifi at demo | Mock/seeded mode always available; batched writes |
@@ -233,7 +233,7 @@ Devices: rural India ~90% of 14–18-year-olds can use a household smartphone, b
 **Decided 10 Oct:** backend = Supabase (Phase 2), hosting = Vercel, UI = whiteboard theme, Phase 1 English only, work in branches + PRs. **Still open platform/team items:**
 1. **Backend:** Firebase (needs a free project) or mock-only?
 2. **Hosting account** (Vercel / Netlify / GitHub Pages)?
-3. **Branding:** own name/logo or Vanguard colours? Keep "Rupee Quest"?
+3. **Branding:** own name/logo or Vanguard colours? Name decided: "Capito".
 4. **Linelapse:** in-app sketch cards (default) or a few exported clips?
 5. **Hindi and Telugu reviewers?**
 6. **Lane split OK?**

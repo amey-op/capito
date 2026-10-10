@@ -1,4 +1,4 @@
-# Rupee Quest
+# Capito
 
 A mobile-first financial-literacy game for Grade 11–12 students in Hyderabad (Megathon X, Vanguard India brief). Each lesson is one game-month: gut-check → cards → tool → quiz → practice money → Plan the Month → life events with consequences.
 
@@ -18,7 +18,7 @@ npm run check   # typecheck + all tests (formulas, engine contract, content chec
 npm run build   # typecheck + production build into dist/
 ```
 
-Phase 1 stores the game in `localStorage` (`rupee-quest-state`); no accounts, no env vars. `.env.example` lists the Phase 2 Supabase placeholders. Never commit a real `.env`.
+Phase 1 stores the game in `localStorage` (`capito-state`); no accounts, no env vars. `.env.example` lists the Phase 2 Supabase placeholders. Never commit a real `.env`.
 
 ## Stack
 

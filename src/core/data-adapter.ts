@@ -25,8 +25,8 @@ export interface DataAdapter {
   clear(): Promise<void>;
 }
 
-export const STATE_STORAGE_KEY = 'rupee-quest-state';
-export const PROGRESS_STORAGE_KEY = 'rupee-quest-progress';
+export const STATE_STORAGE_KEY = 'capito-state';
+export const PROGRESS_STORAGE_KEY = 'capito-progress';
 const SNAPSHOT_KEY = `${STATE_STORAGE_KEY}-snapshot`;
 
 /** Minimal storage surface so tests can pass an in-memory map. */
