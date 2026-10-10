@@ -170,6 +170,29 @@
   accent-color: var(--success);
 }
 
+/* UPI practice: send / receive tabs, then the pretend phone screen */
+.tl-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.btn.tl-tab {
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border-width: 2px;
+  line-height: 1.25;
+}
+.btn.tl-tab .num {
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+.btn.tl-tab.is-on {
+  background: var(--foreground);
+  color: var(--ground);
+}
+
 /* UPI practice: the pretend phone screen */
 .tl-phone {
   align-items: center;

@@ -109,29 +109,45 @@ describe('budget builder', () => {
 });
 
 describe('upi practice', () => {
-  const play = (picks: Array<'pin' | 'decline'>) => {
+  const choiceButtons = () => screen.getAllByRole('button').filter((b) => b.closest('.tl-choices'));
+  /** Answer every screen in both tabs with the given pick. */
+  const play = (pick: (id: string) => 'pin' | 'decline') => {
     render(<UpiPractice />);
-    picks.forEach((pick) => {
-      const [pinButton, declineButton] = screen.getAllByRole('button');
-      fireEvent.click(pick === 'pin' ? pinButton! : declineButton!);
+    for (const round of upiRounds) {
+      const [pinButton, declineButton] = choiceButtons();
+      fireEvent.click(pick(round.id) === 'pin' ? pinButton! : declineButton!);
       expect(untranslated()).toEqual([]);
       expect(rawRupees()).toEqual([]);
       fireEvent.click(screen.getByRole('button', { name: /Next screen|See my score/ }));
-    });
+      const go = screen.queryByRole('button', { name: /^Go to / });
+      if (go) fireEvent.click(go);
+    }
   };
 
+  it('has a Send money tab and a Receive money tab', () => {
+    render(<UpiPractice />);
+    const [send, receive] = screen.getAllByRole('tab');
+    expect(send!.textContent).toContain('Send money');
+    expect(receive!.textContent).toContain('Receive money');
+    expect(send!.getAttribute('aria-selected')).toBe('true');
+    fireEvent.click(receive!);
+    expect(receive!.getAttribute('aria-selected')).toBe('true');
+    expect(screen.getByText(/From: your friend Asha/)).toBeTruthy();
+  });
+
   it('the safe choices score full marks: a PIN only when you are the one paying', () => {
-    play(upiRounds.map((r) => r.safe));
+    play((id) => upiRounds.find((r) => r.id === id)!.safe);
     expect(screen.getByText('You kept your money safe on 5 of 5 screens.')).toBeTruthy();
     expect(screen.getByText(/A UPI PIN only ever sends money/)).toBeTruthy();
   });
 
   it('entering the PIN everywhere is right only once', () => {
-    play(upiRounds.map(() => 'pin'));
+    play(() => 'pin');
     expect(screen.getByText('You kept your money safe on 1 of 5 screens.')).toBeTruthy();
   });
 
-  it('only the round where you chose to pay is safe with a PIN', () => {
+  it('no "receive" screen is ever safe with a PIN', () => {
     expect(upiRounds.filter((r) => r.safe === 'pin').map((r) => r.id)).toEqual(['canteen']);
+    expect(upiRounds.filter((r) => r.tab === 'receive').every((r) => r.safe === 'decline')).toBe(true);
   });
 });
