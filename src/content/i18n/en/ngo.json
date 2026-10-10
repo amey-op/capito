@@ -32,13 +32,14 @@
 
   "ngo.levels.title": "Progress by level",
   "ngo.levels.intro": "Share of learners who finished every lesson in each level.",
-  "ngo.levels.axis": "Level {{level}}",
+  "ngo.levels.short": "L{{level}}",
   "ngo.levels.item": "Level {{level}}: {{pct}}% finished",
   "ngo.levels.chartLabel": "Bar chart of the share of learners who finished each level",
 
   "ngo.quiz.title": "Quiz scores by level",
   "ngo.quiz.intro": "Average score on the first try, before learners see the answers.",
   "ngo.quiz.item": "Level {{level}}: {{pct}}%",
+  "ngo.quiz.chartLabel": "Bar chart of the average first-try quiz score in each level",
   "ngo.quiz.none": "Level {{level}}: nobody yet",
   "ngo.quiz.lowestTitle": "Lessons to revisit",
   "ngo.quiz.lowestItem": "{{pct}}% on the first try · {{count}} learners",

@@ -1,0 +1,333 @@
+/* NGO view and start page. Theme tokens only (src/styles/theme.css). */
+
+.ngo-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- header ---------- */
+
+.ngo-header {
+  flex-wrap: wrap;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+.ngo-header-title {
+  font-weight: 900;
+  margin-right: auto;
+}
+.ngo-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  border: var(--border-sm);
+  border-radius: 9999px;
+  background: var(--warning-bg);
+  color: #6b4a00;
+  font-weight: 900;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.ngo-header-link {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- dashboard ---------- */
+
+.ngo-dash {
+  gap: 1.75rem;
+}
+.ngo-dash h1 {
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  line-height: 1.15;
+}
+.ngo-dash h2 {
+  font-size: 1.35rem;
+}
+.ngo-dash h3 {
+  font-size: 1.05rem;
+}
+.ngo-dash .card,
+.ngo-dash .card-sm,
+.ngo-two > * {
+  min-width: 0;
+}
+.ngo-eyebrow {
+  align-self: flex-start;
+  margin-bottom: 0;
+}
+.ngo-class-meta {
+  font-weight: 800;
+}
+.ngo-code {
+  padding: 0.15rem 0.6rem;
+  border: var(--border-sm);
+  border-radius: var(--radius-sm);
+  background: var(--secondary);
+}
+
+.ngo-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.85rem;
+}
+.ngo-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+.ngo-tile-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--secondary-foreground);
+}
+.ngo-tile-value {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.ngo-two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.ngo-chart {
+  height: 200px;
+  width: 100%;
+}
+.ngo-figures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.15rem 1rem;
+  font-size: 0.85rem;
+}
+.ngo-lowest {
+  padding-left: 1.25rem;
+  margin: 0;
+  gap: 0.6rem;
+}
+
+.ngo-weak-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ngo-weak h3 {
+  margin: 0;
+}
+.ngo-weak-head {
+  gap: 0.5rem;
+}
+.ngo-kind {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.55rem;
+  border: var(--border-sm);
+  border-radius: 6px;
+}
+.ngo-kind.is-scam {
+  background: var(--destructive-bg);
+  color: #7f1d1d;
+}
+.ngo-kind.is-life {
+  background: var(--info-bg);
+  color: #1a3a8f;
+}
+.ngo-meter {
+  height: 12px;
+  border: var(--border-sm);
+  border-radius: 9999px;
+  background: var(--secondary);
+  overflow: hidden;
+}
+.ngo-meter span {
+  display: block;
+  height: 100%;
+  background: var(--destructive);
+}
+.ngo-hint {
+  padding: 0.55rem 0.8rem;
+  border-left: 5px solid var(--warning);
+  background: var(--warning-bg);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.ngo-big {
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.ngo-device-note {
+  padding: 0.55rem 0.8rem;
+  border-left: 5px solid var(--purple);
+  background: var(--purple-bg);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* ---------- learners table (scrolls inside its own box on phones) ---------- */
+
+.ngo-table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+  border: var(--border-sm);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+}
+.ngo-table-wrap:focus-visible {
+  outline: 3px solid var(--info);
+  outline-offset: 2px;
+}
+.ngo-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.ngo-table th,
+.ngo-table td {
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid var(--secondary);
+  text-align: left;
+  white-space: nowrap;
+}
+.ngo-table thead th {
+  background: var(--secondary);
+  border-bottom: var(--border-sm);
+  padding: 0;
+}
+.ngo-table .is-num {
+  text-align: right;
+}
+.ngo-table tbody th {
+  font-weight: 800;
+}
+.ngo-sort {
+  display: flex;
+  align-items: center;
+  justify-content: inherit;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 0.7rem;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 900;
+  color: var(--foreground);
+  cursor: pointer;
+  text-align: inherit;
+}
+.ngo-table thead th.is-num .ngo-sort {
+  justify-content: flex-end;
+}
+.ngo-sort:hover {
+  background: var(--panel);
+}
+.ngo-sort:focus-visible {
+  outline: 3px solid var(--info);
+  outline-offset: -3px;
+}
+.ngo-sort-mark {
+  font-size: 0.7rem;
+  color: var(--secondary-foreground);
+}
+.ngo-table tr.is-device {
+  background: var(--purple-bg);
+}
+.ngo-table tr.is-device th {
+  box-shadow: inset 5px 0 0 var(--purple);
+}
+.ngo-you {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.45rem;
+  border: 2px solid var(--purple);
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #4c1d95;
+}
+
+/* ---------- privacy ---------- */
+
+.ngo-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.25rem;
+}
+.ngo-list.is-never li::marker {
+  content: '✕  ';
+  color: var(--destructive);
+  font-weight: 900;
+}
+
+/* ---------- start page ---------- */
+
+.start {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.start-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 0;
+}
+.start-main .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.start .wordmark {
+  font-size: clamp(2.5rem, 10vw, 4rem);
+}
+.start-tagline {
+  font-size: 1.15rem;
+  max-width: 60ch;
+}
+.start-doors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+}
+.start-door {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 160px;
+  color: var(--foreground);
+  text-decoration: none;
+}
+.start-door h2 {
+  font-size: 1.5rem;
+}
+.start-door:focus-visible {
+  outline: 3px solid var(--info);
+  outline-offset: 4px;
+}
+.start-door .start-arrow {
+  margin-top: auto;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
