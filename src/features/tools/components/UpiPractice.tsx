@@ -1,82 +1,150 @@
 import { useState } from 'react';
-import { formatINR } from '../../../core/format';
+import { useTranslation } from 'react-i18next';
+import { formatINR } from '@/core/format';
+import '../tools.css';
 
+/**
+ * Practice screens, in two tabs like a payments app. `tab` is what the screen claims to be about;
+ * `direction` is where the money would really go; `safe` is the choice that keeps the student's
+ * money safe. The rule under all of them: a UPI PIN only ever sends money.
+ */
+export const upiRounds = [
+  { id: 'canteen', tab: 'send', direction: 'out', amount: 120, safe: 'pin' },
+  { id: 'otpCall', tab: 'send', direction: 'out', amount: 1500, safe: 'decline' },
+  { id: 'friend', tab: 'receive', direction: 'in', amount: 200, safe: 'decline' },
+  { id: 'refund', tab: 'receive', direction: 'out', amount: 500, safe: 'decline' },
+  { id: 'prizeQr', tab: 'receive', direction: 'out', amount: 2000, safe: 'decline' },
+] as const;
+
+type Tab = 'send' | 'receive';
+type Pick = 'pin' | 'decline';
+type RoundId = (typeof upiRounds)[number]['id'];
+const tabs: Tab[] = ['send', 'receive'];
+
+/** Pretend payment screens: decide when a PIN belongs and when it is a trap. Nothing here is a real payment. */
 export function UpiPractice() {
-  const [tab, setTab] = useState<'send' | 'receive'>('send');
-  const [feedback, setFeedback] = useState<string | null>(null);
-  const [feedbackType, setFeedbackType] = useState<'good' | 'bad' | null>(null);
+  const { t } = useTranslation();
+  const [tab, setTab] = useState<Tab>('send');
+  const [picks, setPicks] = useState<Partial<Record<RoundId, Pick>>>({});
+  // The screen being shown stays up after an answer until the student moves on.
+  const [shown, setShown] = useState<RoundId | null>(null);
 
-  const handlePinTap = (isSend: boolean) => {
-    if (isSend) {
-      setFeedback("Correct! You enter your PIN to authorize sending money.");
-      setFeedbackType('good');
-    } else {
-      setFeedback("STOP! A PIN is ONLY for sending money. Scammers use 'Receive' requests to steal from you.");
-      setFeedbackType('bad');
-    }
+  const inTab = (which: Tab) => upiRounds.filter((r) => r.tab === which);
+  const left = (which: Tab) => inTab(which).filter((r) => !picks[r.id]).length;
+  const correct = upiRounds.filter((r) => picks[r.id] === r.safe).length;
+  const allDone = upiRounds.every((r) => picks[r.id]) && shown === null;
+
+  const restart = () => {
+    setPicks({});
+    setShown(null);
+    setTab('send');
+  };
+
+  const tabBar = (
+    <div className="tl-tabs" role="tablist" aria-label={t('tools.upiPractice.title')}>
+      {tabs.map((which) => (
+        <button
+          key={which}
+          type="button"
+          role="tab"
+          aria-selected={tab === which}
+          className={`btn tl-tab${tab === which ? ' is-on' : ''}`}
+          onClick={() => {
+            setTab(which);
+            setShown(null);
+          }}
+        >
+          {t(`tools.upiPractice.tab.${which}`)}
+          <span className="num">{t('tools.upiPractice.tabLeft', { n: left(which) })}</span>
+        </button>
+      ))}
+    </div>
+  );
+
+  if (allDone) {
+    return (
+      <section className="card stack tl-tool" data-tool-id="upiPractice">
+        <h2>{t('tools.upiPractice.title')}</h2>
+        <div className={`card-sm stack ${correct === upiRounds.length ? 'verdict-good' : 'verdict-mixed'}`} role="status">
+          <strong>{t('tools.upiPractice.score', { correct, total: upiRounds.length })}</strong>
+          <p>{t('tools.upiPractice.rule')}</p>
+        </div>
+        <ul className="tl-rules">
+          {['pin', 'receive', 'otp'].map((rule) => (
+            <li key={rule} className="card-sm">
+              {t(`tools.upiPractice.rule.${rule}`)}
+            </li>
+          ))}
+        </ul>
+        <button type="button" className="btn btn-secondary btn-block" onClick={restart}>
+          {t('tools.upiPractice.again')}
+        </button>
+      </section>
+    );
+  }
+
+  const round = upiRounds.find((r) => r.id === shown) ?? inTab(tab).find((r) => !picks[r.id]);
+
+  if (!round) {
+    // This tab is finished; the other one still has screens.
+    const other: Tab = tab === 'send' ? 'receive' : 'send';
+    return (
+      <section className="card stack tl-tool" data-tool-id="upiPractice">
+        <h2>{t('tools.upiPractice.title')}</h2>
+        {tabBar}
+        <p className="card-sm">{t(`tools.upiPractice.tabDone.${tab}`)}</p>
+        <button type="button" className="btn btn-primary btn-block" onClick={() => setTab(other)}>
+          {t(`tools.upiPractice.goTo.${other}`)}
+        </button>
+      </section>
+    );
+  }
+
+  const picked = picks[round.id];
+  const right = picked === round.safe;
+  const choose = (pick: Pick) => {
+    if (picked) return;
+    setPicks((prev) => ({ ...prev, [round.id]: pick }));
+    setShown(round.id);
   };
 
   return (
-    <div className="p-4 border-4 border-black bg-gray-100 shadow-[6px_6px_0px_rgba(0,0,0,1)] max-w-sm mx-auto font-['Nunito']">
-      <h2 className="text-xl font-black mb-4 uppercase text-center">UPI Practice</h2>
-      
-      <div className="flex gap-2 mb-4">
-        <button 
-          onClick={() => { setTab('send'); setFeedback(null); }}
-          className={`flex-1 font-bold py-2 border-2 border-black ${tab === 'send' ? 'bg-black text-white' : 'bg-white text-black'}`}
-        >
-          Send Money
-        </button>
-        <button 
-          onClick={() => { setTab('receive'); setFeedback(null); }}
-          className={`flex-1 font-bold py-2 border-2 border-black ${tab === 'receive' ? 'bg-black text-white' : 'bg-white text-black'}`}
-        >
-          Receive Money
-        </button>
+    <section className="card stack tl-tool" data-tool-id="upiPractice">
+      <h2>{t('tools.upiPractice.title')}</h2>
+      <p className="muted">{t('tools.upiPractice.pretend')}</p>
+      {tabBar}
+
+      <div className="card-sm stack tl-phone" role="tabpanel">
+        <span className="tl-label">{t(`tools.upiPractice.${round.id}.from`)}</span>
+        <span className="num tl-phone-amount">{formatINR(round.amount)}</span>
+        <p>{t(`tools.upiPractice.${round.id}.screen`, { amount: formatINR(round.amount) })}</p>
       </div>
 
-      <div className="bg-white border-2 border-black p-4 mb-4 min-h-[250px] flex flex-col items-center justify-center">
-        {tab === 'send' ? (
-          <>
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2 border-2 border-black font-bold">
-              SJ
-            </div>
-            <p className="font-bold">Paying Suresh Traders</p>
-            <p className="text-3xl font-black mb-6">{formatINR(500)}</p>
-            
-            <button 
-              onClick={() => handlePinTap(true)}
-              className="w-full max-w-[200px] border-2 border-black border-dashed bg-gray-50 py-3 text-center font-bold text-gray-500 hover:bg-gray-200 uppercase"
-            >
-              Enter UPI PIN
-            </button>
-          </>
-        ) : (
-          <>
-            <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-2 border-2 border-black font-bold">
-              UK
-            </div>
-            <p className="font-bold">Unknown User requested money</p>
-            <p className="text-3xl font-black mb-2">{formatINR(5000)}</p>
-            <p className="text-xs font-bold text-red-500 uppercase mb-6 bg-red-50 px-2 py-1 border border-red-200">
-              Note: Refund Process
-            </p>
-            
-            <button 
-              onClick={() => handlePinTap(false)}
-              className="w-full max-w-[200px] border-2 border-black border-dashed bg-gray-50 py-3 text-center font-bold text-gray-500 hover:bg-gray-200 uppercase"
-            >
-              Enter UPI PIN
-            </button>
-          </>
-        )}
-      </div>
-
-      {feedback && (
-        <div className={`p-3 border-2 border-black font-bold animate-fade-in ${feedbackType === 'good' ? 'bg-green-200' : 'bg-red-400 text-white'}`}>
-          {feedback}
+      {!picked ? (
+        <div className="tl-choices">
+          <button type="button" className="btn btn-secondary" onClick={() => choose('pin')}>
+            {t(`tools.upiPractice.${round.id}.pin`)}
+          </button>
+          <button type="button" className="btn btn-secondary" onClick={() => choose('decline')}>
+            {t(`tools.upiPractice.${round.id}.decline`)}
+          </button>
         </div>
+      ) : (
+        <>
+          <div className={`card-sm stack ${right ? 'verdict-good' : 'verdict-bad'}`} role="status">
+            <strong>{t(right ? 'tools.upiPractice.right' : 'tools.upiPractice.wrong')}</strong>
+            <p>{t(`tools.upiPractice.${round.id}.why`, { amount: formatINR(round.amount) })}</p>
+            <p className="muted">
+              {t(round.direction === 'out' ? 'tools.upiPractice.moneyOut' : 'tools.upiPractice.moneyIn', {
+                amount: formatINR(round.amount),
+              })}
+            </p>
+          </div>
+          <button type="button" className="btn btn-primary btn-block" onClick={() => setShown(null)}>
+            {t(upiRounds.every((r) => picks[r.id]) ? 'tools.upiPractice.finish' : 'tools.upiPractice.next')}
+          </button>
+        </>
       )}
-    </div>
+    </section>
   );
 }

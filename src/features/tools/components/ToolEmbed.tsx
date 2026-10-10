@@ -18,7 +18,7 @@ export function ToolEmbed({ toolId, prefill, onClose }: ToolEmbedProps) {
     if (isConfigTool(toolId)) return <ConfigCalculator toolDef={toolRegistry[toolId]} prefill={prefill} onClose={onClose} />;
     if (toolId === 'checkIt') return <CheckItTool />;
     if (toolId === 'nowWhat') return <NowWhatTool />;
-    if (toolId === 'budgetBuilder') return <BudgetBuilder />;
+    if (toolId === 'budgetBuilder') return <BudgetBuilder prefill={prefill} />;
     if (toolId === 'upiPractice') return <UpiPractice />;
     if (toolId === 'badYear') return <BadYearSimulator />;
   }

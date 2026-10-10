@@ -1,88 +1,144 @@
-import { useState } from 'react';
-import { formatINR } from '../../../core/format';
+import { useId, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { economy } from '@/core/economy.config';
+import { clamp, defaultSplit } from '@/core/finance';
+import { formatINR } from '@/core/format';
+import type { ToolPrefill } from '@/core/tools';
+import '../tools.css';
 
-export function BudgetBuilder() {
-  const M = 4000; // Default practice money
-  const [savingsPct, setSavingsPct] = useState(40);
-  const [surprise, setSurprise] = useState<number | null>(null);
+/** Surprise expenses, drawn in this order (no dice, so the same choices always teach the same thing). */
+export const surprises = [
+  { id: 'screen', cost: 1200 },
+  { id: 'cycle', cost: 600 },
+  { id: 'gift', cost: 800 },
+  { id: 'form', cost: 1500 },
+] as const;
 
-  const savings = Math.round((M * savingsPct) / 100);
-  const wants = M - savings;
-  const whatsLeft = savings - (surprise || 0);
+const STEP = 100;
+const MIN_MONEY = 1000;
+const MAX_MONEY = 10000;
 
-  const triggerSurprise = () => {
-    const amt = Math.floor(Math.random() * (1500 - 600 + 1)) + 600;
-    setSurprise(amt);
+interface BudgetBuilderProps {
+  prefill?: ToolPrefill;
+}
+
+/**
+ * Split a month's practice money between wants and savings, then draw a surprise expense and see
+ * whether the savings side can take the hit.
+ */
+export function BudgetBuilder({ prefill = {} }: BudgetBuilderProps) {
+  const { t } = useTranslation();
+  const moneyId = useId();
+  const wantsId = useId();
+  const savingsId = useId();
+  const [money, setMoney] = useState(() => clamp(prefill.income ?? prefill.amount ?? 4000, MIN_MONEY, MAX_MONEY));
+  const [savings, setSavings] = useState(() => Math.round(defaultSplit(money).savings / STEP) * STEP);
+  const [drawn, setDrawn] = useState<number | null>(null);
+
+  const wants = money - savings;
+  const savingsPct = money > 0 ? Math.round((savings / money) * 100) : 0;
+  const surprise = drawn === null ? null : surprises[drawn % surprises.length]!;
+  const left = surprise ? savings - surprise.cost : 0;
+
+  const changeMoney = (next: number) => {
+    const m = clamp(Math.round(next / STEP) * STEP, MIN_MONEY, MAX_MONEY);
+    // Keep the same share going to savings when the amount changes.
+    setSavings(Math.round((m * (money > 0 ? savings / money : economy.split.savingsPct / 100)) / STEP) * STEP);
+    setMoney(m);
   };
 
-  const resetSurprise = () => setSurprise(null);
-
   return (
-    <div className="p-4 border-4 border-black bg-white shadow-[6px_6px_0px_rgba(0,0,0,1)] max-w-sm mx-auto font-['Nunito']">
-      <h2 className="text-xl font-black mb-2 uppercase">Budget Builder</h2>
-      <p className="text-sm font-bold opacity-80 mb-6">
-        Practice Money: {formatINR(M)} (Needs are covered by family)
-      </p>
+    <section className="card stack tl-tool" data-tool-id="budgetBuilder">
+      <h2>{t('tools.budgetBuilder.title')}</h2>
+      <p>{t('tools.budgetBuilder.intro')}</p>
 
-      <div className="mb-6 bg-gray-50 p-4 border-2 border-black">
-        <label className="block font-bold mb-4 uppercase text-sm">
-          Allocate your money
-        </label>
-        
-        <input 
-          type="range" 
-          min="0" 
-          max="100" 
-          value={savingsPct} 
-          onChange={(e) => setSavingsPct(Number(e.target.value))}
-          className="w-full accent-black mb-4"
-        />
-
-        <div className="flex justify-between font-bold">
-          <div className="text-left">
-            <span className="block text-xs uppercase opacity-70">Wants ({100 - savingsPct}%)</span>
-            {formatINR(wants)}
-          </div>
-          <div className="text-right">
-            <span className="block text-xs uppercase opacity-70">Savings ({savingsPct}%)</span>
-            {formatINR(savings)}
-          </div>
+      <div className="tl-input">
+        <div className="tl-input-top">
+          <label htmlFor={moneyId}>{t('tools.budgetBuilder.money')}</label>
+          <span className="tl-number">
+            <span aria-hidden="true">₹</span>
+            <input
+              id={moneyId}
+              className="num"
+              type="number"
+              inputMode="numeric"
+              min={MIN_MONEY}
+              max={MAX_MONEY}
+              step={STEP}
+              value={money}
+              onChange={(e) => changeMoney(Number(e.target.value) || MIN_MONEY)}
+            />
+          </span>
         </div>
       </div>
 
-      {!surprise ? (
-        <button 
-          onClick={triggerSurprise}
-          className="w-full bg-yellow-400 border-4 border-black py-3 font-black uppercase shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform mb-4"
-        >
-          Draw a Surprise Expense
-        </button>
-      ) : (
-        <div className="mb-6 animate-fade-in">
-          <div className={`p-4 border-4 border-black mb-4 shadow-[4px_4px_0px_rgba(0,0,0,1)] ${whatsLeft >= 0 ? 'bg-green-200' : 'bg-red-200'}`}>
-            <h3 className="font-black uppercase mb-1">Surprise!</h3>
-            <p className="font-bold mb-4">Your phone screen broke. Cost: {formatINR(surprise)}</p>
-            
-            <div className="border-t-2 border-black pt-2 flex justify-between font-bold">
-              <span>Savings left:</span>
-              <span>{formatINR(whatsLeft)}</span>
-            </div>
-            
-            <p className="mt-4 text-sm font-semibold">
-              {whatsLeft >= 0 
-                ? "You handled the emergency gracefully using your savings! No stress."
-                : "Oops. You didn't save enough for this emergency. You might have to borrow or cut back on wants."}
-            </p>
+      <div className="tl-split" aria-hidden="true">
+        <span className="tl-split-wants" style={{ width: `${100 - savingsPct}%` }} />
+        <span className="tl-split-savings" style={{ width: `${savingsPct}%` }} />
+      </div>
+
+      <div className="tl-inputs">
+        <div className="tl-input">
+          <div className="tl-input-top">
+            <label htmlFor={wantsId}>{t('tools.budgetBuilder.wants')}</label>
+            <span className="num">{formatINR(wants)}</span>
           </div>
-          
-          <button 
-            onClick={resetSurprise}
-            className="w-full bg-blue-200 border-4 border-black py-2 font-black uppercase shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform"
-          >
-            Reset
-          </button>
+          <input
+            id={wantsId}
+            className="tl-range tl-range-wants"
+            type="range"
+            min={0}
+            max={money}
+            step={STEP}
+            value={wants}
+            onChange={(e) => setSavings(money - Number(e.target.value))}
+          />
+          <span className="muted">{t('tools.budgetBuilder.share', { pct: 100 - savingsPct })}</span>
         </div>
+        <div className="tl-input">
+          <div className="tl-input-top">
+            <label htmlFor={savingsId}>{t('tools.budgetBuilder.savings')}</label>
+            <span className="num">{formatINR(savings)}</span>
+          </div>
+          <input
+            id={savingsId}
+            className="tl-range tl-range-savings"
+            type="range"
+            min={0}
+            max={money}
+            step={STEP}
+            value={savings}
+            onChange={(e) => setSavings(Number(e.target.value))}
+          />
+          <span className="muted">{t('tools.budgetBuilder.share', { pct: savingsPct })}</span>
+        </div>
+      </div>
+
+      {surprise ? (
+        <div className={`card-sm stack ${left >= 0 ? 'verdict-good' : 'verdict-bad'}`} role="status">
+          <span className="tl-label">{t('tools.budgetBuilder.surprise')}</span>
+          <strong>{t(`tools.budgetBuilder.surprise.${surprise.id}`, { cost: formatINR(surprise.cost) })}</strong>
+          <p>
+            {left >= 0
+              ? t('tools.budgetBuilder.covered', { left: formatINR(left) })
+              : t('tools.budgetBuilder.short', { short: formatINR(-left), savings: formatINR(savings) })}
+          </p>
+          <div className="row">
+            <button type="button" className="btn btn-primary tl-btn" onClick={() => setDrawn((d) => (d ?? 0) + 1)}>
+              {t('tools.budgetBuilder.drawAgain')}
+            </button>
+            <button type="button" className="btn btn-secondary tl-btn" onClick={() => setDrawn(null)}>
+              {t('tools.budgetBuilder.changeSplit')}
+            </button>
+          </div>
+        </div>
+      ) : (
+        <button type="button" className="btn btn-primary btn-block" onClick={() => setDrawn(0)}>
+          {t('tools.budgetBuilder.draw')}
+        </button>
       )}
-    </div>
+
+      <p className="tl-foot muted">{t('tools.budgetBuilder.note')}</p>
+    </section>
   );
 }
