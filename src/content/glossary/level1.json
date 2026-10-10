@@ -1,8 +1,98 @@
 [
-  { "id": "income", "introducedIn": "1.1", "core": true, "verified": true },
-  { "id": "expense", "introducedIn": "1.1", "core": true, "verified": true },
-  { "id": "need", "introducedIn": "1.1", "core": true, "verified": true },
-  { "id": "want", "introducedIn": "1.1", "core": true, "verified": true },
-  { "id": "fixedExpense", "introducedIn": "1.1", "core": false, "verified": true },
-  { "id": "variableExpense", "introducedIn": "1.1", "core": false, "verified": true }
+  {
+    "id": "income",
+    "introducedIn": "1.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "expense",
+    "introducedIn": "1.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "need",
+    "introducedIn": "1.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "want",
+    "introducedIn": "1.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "fixedExpense",
+    "introducedIn": "1.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "variableExpense",
+    "introducedIn": "1.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "goal",
+    "introducedIn": "1.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "opportunityCost",
+    "introducedIn": "1.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "budget",
+    "introducedIn": "1.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "payYourselfFirst",
+    "introducedIn": "1.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "fiftyThirtyTwenty",
+    "introducedIn": "1.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "savingsRate",
+    "introducedIn": "1.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "asset",
+    "introducedIn": "1.4",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "liability",
+    "introducedIn": "1.4",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "netWorth",
+    "introducedIn": "1.4",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "depreciation",
+    "introducedIn": "1.4",
+    "core": true,
+    "verified": true
+  }
 ]
