@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { NavLink, Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { formatINR } from '@/core/format';
 import { useGameStore } from '@/core/store';
 
 const nav = [
   { to: '/', key: 'ui.nav.home', end: true },
   { to: '/portfolio', key: 'ui.nav.portfolio', end: false },
+  { to: '/tools', key: 'ui.nav.tools', end: false },
   { to: '/glossary', key: 'ui.nav.glossary', end: false },
   { to: '/scam-shield', key: 'ui.nav.scamShield', end: false },
 ] as const;
@@ -14,6 +16,11 @@ export function Layout() {
   const { t } = useTranslation();
   const month = useGameStore((s) => s.game.month);
   const wallet = useGameStore((s) => s.game.buckets.wallet);
+  const { pathname } = useLocation();
+  // A new page starts at the top (the browser keeps the old scroll position otherwise).
+  useEffect(() => {
+    window.scrollTo?.({ top: 0 });
+  }, [pathname]);
   return (
     <div className="app">
       <header className="app-header">

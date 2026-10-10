@@ -18,7 +18,6 @@ afterEach(cleanup);
 describe('app shell routes', () => {
   it.each([
     ['/', 'Home and level map', 'Team · work package A3'],
-    ['/lesson/1.1', 'Income, expenses, needs and wants', 'Team · work package A1'],
     ['/scam-shield', 'Scam Shield', 'Team · work package R3'],
     ['/glossary', 'Word Bank', 'Team · work package A1'],
   ])('%s renders its placeholder with the owner', (path, title, owner) => {
@@ -33,6 +32,8 @@ describe('app shell routes', () => {
     ['/portfolio', 'Your portfolio'],
     ['/event/e1_1', 'Life event'],
     ['/tool/emi?principal=6000', 'Tool'],
+    ['/tools', 'Tools'],
+    ['/lesson/1.1', 'Income, expenses, needs and wants'],
   ])('%s renders its page inside the shell', (path, title) => {
     open(path);
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(title);
@@ -42,5 +43,13 @@ describe('app shell routes', () => {
   it('unknown paths show not found', () => {
     open('/nope');
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Page not found');
+  });
+
+  it('the top nav links to Tools, and /tools lists the calculators', () => {
+    open('/tools');
+    const nav = screen.getByRole('navigation', { name: 'Main navigation' });
+    expect(nav.querySelector('a[href="/tools"]')?.textContent).toBe('Tools');
+    expect(document.querySelector('a[href="/tool/emi"]')).toBeTruthy();
+    expect(document.querySelector('a[href="/tool/sip"]')).toBeTruthy();
   });
 });

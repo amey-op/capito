@@ -424,7 +424,7 @@ select {
 /* ---------- layout ---------- */
 
 .container {
-  max-width: 720px;
+  max-width: 1040px;
   margin: 0 auto;
   padding: 0 1rem;
   width: 100%;
@@ -468,14 +468,14 @@ select {
 .app-header .wordmark {
   font-size: 1.25rem;
 }
+.app-header .wordmark,
+.app-header .muted {
+  white-space: nowrap;
+}
 .app-nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.25rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.app-nav::-webkit-scrollbar {
-  display: none;
 }
 .app-nav a {
   display: inline-flex;
