@@ -1,0 +1,92 @@
+[
+  {
+    "id": "savingsAccount",
+    "introducedIn": "2.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "kyc",
+    "introducedIn": "2.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "nominee",
+    "introducedIn": "2.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "interest",
+    "introducedIn": "2.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "dicgc",
+    "introducedIn": "2.1",
+    "core": true,
+    "verified": false
+  },
+  {
+    "id": "statement",
+    "introducedIn": "2.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "ifsc",
+    "introducedIn": "2.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "minimumBalance",
+    "introducedIn": "2.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "debitCard",
+    "introducedIn": "2.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "creditCard",
+    "introducedIn": "2.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "upi",
+    "introducedIn": "2.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "upiPin",
+    "introducedIn": "2.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "otp",
+    "introducedIn": "2.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "cvv",
+    "introducedIn": "2.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "collectRequest",
+    "introducedIn": "2.2",
+    "core": false,
+    "verified": true
+  }
+]

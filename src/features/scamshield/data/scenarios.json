@@ -1,7 +1,7 @@
 [
   {
     "id": "upiRefund",
-    "channel": "whatsapp",
+    "channel": "chat",
     "isScam": true,
     "redFlags": ["urgency", "reward", "small_trust_payment"]
   },
@@ -13,7 +13,7 @@
   },
   {
     "id": "fakeTask",
-    "channel": "whatsapp",
+    "channel": "chat",
     "isScam": true,
     "redFlags": ["reward", "small_trust_payment"]
   },
@@ -42,7 +42,7 @@
     "redFlags": ["reward"]
   },
   {
-    "id": "telegramTips",
+    "id": "tipsGroup",
     "channel": "social",
     "isScam": true,
     "redFlags": ["reward", "secrecy"]
