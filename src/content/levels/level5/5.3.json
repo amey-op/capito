@@ -1,0 +1,169 @@
+{
+  "id": "5.3",
+  "level": 5,
+  "tier": "must",
+  "titleKey": "lesson.5_3.title",
+  "gutCheck": {
+    "promptKey": "lesson.5_3.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.5_3.gut.a.label",
+        "resultKey": "lesson.5_3.gut.a.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.5_3.gut.b.label",
+        "resultKey": "lesson.5_3.gut.b.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.5_3.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.5_3.c1.text",
+      "art": "key-and-open-hand"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.5_3.c2.text",
+      "art": "locked-box",
+      "terms": [
+        "fixedDeposit"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_3.c2.reveal.prompt",
+        "answerKey": "lesson.5_3.c2.reveal.answer"
+      }
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.5_3.c3.text",
+      "art": "broken-lock",
+      "terms": [
+        "prematureWithdrawal"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_3.c3.reveal.prompt",
+        "answerKey": "lesson.5_3.c3.reveal.answer"
+      }
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.5_3.c4.text",
+      "art": "slice",
+      "terms": [
+        "taxOnInterest"
+      ]
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.5_3.c5.text",
+      "art": "post-office",
+      "terms": [
+        "smallSavingsScheme"
+      ]
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.5_3.c6.text",
+      "art": "two-arrows",
+      "terms": [
+        "realReturn"
+      ]
+    },
+    {
+      "id": "c7",
+      "textKey": "lesson.5_3.c7.text",
+      "art": "calendar-pin",
+      "interaction": {
+        "type": "tool",
+        "toolId": "fd",
+        "prefill": {
+          "principal": 6000,
+          "ratePct": 6.5,
+          "months": 6
+        }
+      }
+    }
+  ],
+  "tool": {
+    "id": "fd",
+    "prefill": {
+      "principal": 6000,
+      "ratePct": 6.5,
+      "months": 6
+    }
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.5_3.q1.prompt",
+      "options": [
+        "lesson.5_3.q1.o1",
+        "lesson.5_3.q1.o2",
+        "lesson.5_3.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.5_3.q1.right",
+      "feedbackWrongKey": "lesson.5_3.q1.wrong",
+      "terms": [
+        "prematureWithdrawal"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.5_3.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.5_3.q2.right",
+      "feedbackWrongKey": "lesson.5_3.q2.wrong",
+      "terms": [
+        "fixedDeposit"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.5_3.q3.prompt",
+      "options": [
+        "lesson.5_3.q3.o1",
+        "lesson.5_3.q3.o2",
+        "lesson.5_3.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.5_3.q3.right",
+      "feedbackWrongKey": "lesson.5_3.q3.wrong",
+      "terms": [
+        "realReturn"
+      ]
+    }
+  ],
+  "terms": [
+    "fixedDeposit",
+    "prematureWithdrawal"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.5_3.effect",
+    "unlocks": [
+      "fd"
+    ],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "ppf.rate_current_quarter",
+      "verified": false
+    },
+    {
+      "key": "fd.6000_6m",
+      "verified": true
+    }
+  ]
+}

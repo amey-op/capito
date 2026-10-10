@@ -1,0 +1,122 @@
+[
+  {
+    "id": "loan",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "principal",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "interestRate",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "tenure",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "emi",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "flatReducingRate",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "processingFee",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "noCostEmi",
+    "introducedIn": "4.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "creditLimit",
+    "introducedIn": "4.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "minimumDue",
+    "introducedIn": "4.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "creditScore",
+    "introducedIn": "4.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "utilisation",
+    "introducedIn": "4.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "billingCycle",
+    "introducedIn": "4.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "interestFreePeriod",
+    "introducedIn": "4.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "lateFee",
+    "introducedIn": "4.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "bnpl",
+    "introducedIn": "4.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "nbfc",
+    "introducedIn": "4.4",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "collateral",
+    "introducedIn": "4.4",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "coSigning",
+    "introducedIn": "4.4",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "moneylender",
+    "introducedIn": "4.4",
+    "core": false,
+    "verified": true
+  }
+]

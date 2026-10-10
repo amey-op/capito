@@ -1,0 +1,188 @@
+[
+  {
+    "id": "risk",
+    "introducedIn": "6.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "investmentReturn",
+    "introducedIn": "6.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "volatility",
+    "introducedIn": "6.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "diversification",
+    "introducedIn": "6.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "equity",
+    "introducedIn": "6.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "debt",
+    "introducedIn": "6.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "mutualFund",
+    "introducedIn": "6.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "sip",
+    "introducedIn": "6.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "rupeeCostAveraging",
+    "introducedIn": "6.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "indexFund",
+    "introducedIn": "6.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "expenseRatio",
+    "introducedIn": "6.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "sebi",
+    "introducedIn": "6.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "goldEtf",
+    "introducedIn": "6.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "makingCharges",
+    "introducedIn": "6.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "share",
+    "introducedIn": "6.4",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "sensexNifty",
+    "introducedIn": "6.4",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "dematAccount",
+    "introducedIn": "6.4",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "assetClass",
+    "introducedIn": "6.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "hallmark",
+    "introducedIn": "6.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "illiquid",
+    "introducedIn": "6.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "sgb",
+    "introducedIn": "6.2",
+    "core": false,
+    "verified": false
+  },
+  {
+    "id": "digitalGold",
+    "introducedIn": "6.2",
+    "core": false,
+    "verified": false
+  },
+  {
+    "id": "nav",
+    "introducedIn": "6.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "unit",
+    "introducedIn": "6.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "lumpsum",
+    "introducedIn": "6.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "amc",
+    "introducedIn": "6.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "directRegular",
+    "introducedIn": "6.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "dividend",
+    "introducedIn": "6.4",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "stockExchange",
+    "introducedIn": "6.4",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "timeHorizon",
+    "introducedIn": "6.5",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "assetAllocation",
+    "introducedIn": "6.5",
+    "core": false,
+    "verified": true
+  }
+]
