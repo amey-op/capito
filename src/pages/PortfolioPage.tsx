@@ -11,6 +11,7 @@ import { EffectList } from '@/features/portfolio/EffectList';
 import { Liabilities, ThingsOwned } from '@/features/portfolio/Liabilities';
 import { NextStep } from '@/features/portfolio/NextStep';
 import { PlanMonth } from '@/features/portfolio/PlanMonth';
+import { Summary } from '@/features/portfolio/Summary';
 import { TopCard } from '@/features/portfolio/TopCard';
 import { WantsGoals } from '@/features/portfolio/WantsGoals';
 import '@/features/portfolio/portfolio.css';
@@ -61,6 +62,8 @@ export function PortfolioPage() {
           </ul>
         </section>
       )}
+
+      <Summary game={game} />
 
       {!isNewPlayer && pending.length === 0 && <NextStep game={game} />}
 
