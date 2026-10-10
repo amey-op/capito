@@ -290,3 +290,40 @@ describe('credit-score card', () => {
     expect(card.getByText(/Real credit bureaus use their own/)).toBeTruthy();
   });
 });
+
+describe('end-of-game summary', () => {
+  it('is not shown before the final quiz', () => {
+    start(play(lesson('1.1')));
+    open('/portfolio');
+    expect(screen.queryByRole('region', { name: 'Your journey so far' })).toBeNull();
+  });
+
+  it('shows the quiz score, before and after, milestones and the money plan', () => {
+    const played = play(
+      lesson('1.1'),
+      { type: 'PLAN_MONTH', plan: {} } as Action,
+      lesson('9.1'),
+      { type: 'PLAN_MONTH', plan: {} } as Action,
+      { type: 'FINAL_QUIZ_RESULT', correct: 8, total: 10 },
+    );
+    start(played);
+    open('/portfolio');
+    const card = within(screen.getByRole('region', { name: 'Your journey so far' }));
+    expect(card.getByText('Final quiz: 8 of 10 right.')).toBeTruthy();
+    // Net worth went from nothing to what the two lessons paid.
+    expect(card.getByText(formatINR(engine.netWorth(played)))).toBeTruthy();
+    expect(card.getAllByText(String(engine.health(engine.newGame()).total)).length).toBeGreaterThan(0);
+    expect(card.getAllByText(String(engine.health(played).total)).length).toBeGreaterThan(0);
+    expect(card.getByText(`Milestones earned: ${played.milestones.length}`)).toBeTruthy();
+    for (const id of played.milestones) expect(card.getByText(en[`portfolio.milestone.${id}`]!)).toBeTruthy();
+    expect(card.getByText('My money plan')).toBeTruthy();
+    expect(card.getByText('Save first, then spend the rest.')).toBeTruthy();
+    expect(card.getAllByRole('listitem').filter((li) => li.closest('.pf-talk'))).toHaveLength(3);
+    expect(card.getByText(/assumptions, not a promise/)).toBeTruthy();
+  });
+
+  it('every milestone the engine can award has a name', () => {
+    const ids = ['firstStep', 'first10kSaved', 'goalsSet3', 'safetyNet1', 'safetyNet3', 'firstRdMatured', 'smartBorrower', 'debtFree', 'diversified', 'recordsKeeper', 'stayedCalm', 'finisher'];
+    expect(ids.filter((id) => !(`portfolio.milestone.${id}` in en))).toEqual([]);
+  });
+});
