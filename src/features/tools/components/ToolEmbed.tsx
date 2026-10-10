@@ -2,6 +2,7 @@
 import { ToolEmbedProps, isToolId, configToolIds } from '../../../core/tools';
 import { ConfigCalculator } from './ConfigCalculator';
 import { toolRegistry } from '../registry';
+import { CheckItTool, NowWhatTool } from '../../scamshield';
 
 export function ToolEmbed({ toolId, prefill, onClose }: ToolEmbedProps) {
   if (!isToolId(toolId)) {
@@ -21,6 +22,14 @@ export function ToolEmbed({ toolId, prefill, onClose }: ToolEmbedProps) {
         <ConfigCalculator toolDef={def} prefill={prefill} />
       </div>
     );
+  }
+
+  if (toolId === 'checkIt') {
+    return <CheckItTool />;
+  }
+
+  if (toolId === 'nowWhat') {
+    return <NowWhatTool />;
   }
 
   // Bespoke & static tools will go here later (R2, R3)
