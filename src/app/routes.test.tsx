@@ -19,8 +19,6 @@ describe('app shell routes', () => {
   it.each([
     ['/', 'Home and level map', "Amey · work package A3"],
     ['/lesson/1.1', 'Income, expenses, needs and wants', "Amey · work package A1"],
-    ['/portfolio', 'Portfolio and Plan the Month', "Nipun · work package N3"],
-    ['/event/e1_1', 'Life event', "Nipun · work package N3"],
     ['/tool/emi?principal=6000', 'Tool', "Aryan · work package R1"],
     ['/scam-shield', 'Scam Shield', "Aryan · work package R3"],
     ['/glossary', 'Word Bank', "Amey · work package A1"],
@@ -28,6 +26,16 @@ describe('app shell routes', () => {
     open(path);
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(title);
     expect(screen.getByText(new RegExp(owner))).toBeTruthy();
+    expect(screen.getByText(/needs \(food, home, school fees, travel\) are already taken care of/)).toBeTruthy();
+  });
+
+  // N3 replaced these two placeholders with the real pages (tested in src/features/portfolio).
+  it.each([
+    ['/portfolio', 'Your portfolio'],
+    ['/event/e1_1', 'Life event'],
+  ])('%s renders its page inside the shell', (path, title) => {
+    open(path);
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(title);
     expect(screen.getByText(/needs \(food, home, school fees, travel\) are already taken care of/)).toBeTruthy();
   });
 

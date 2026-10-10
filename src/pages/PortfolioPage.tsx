@@ -1,6 +1,69 @@
-import { Placeholder } from '@/app/Placeholder';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { eventById } from '@/content';
+import { useGameStore } from '@/core/store';
+import type { Effect } from '@/core/types';
+import { Buckets } from '@/features/portfolio/Buckets';
+import { EffectList } from '@/features/portfolio/EffectList';
+import { Liabilities, ThingsOwned } from '@/features/portfolio/Liabilities';
+import { PlanMonth } from '@/features/portfolio/PlanMonth';
+import { TopCard } from '@/features/portfolio/TopCard';
+import { WantsGoals } from '@/features/portfolio/WantsGoals';
+import '@/features/portfolio/portfolio.css';
 
-/** Owner: Nipun (N3 replaces this with the portfolio and Plan the Month). */
+/**
+ * The portfolio. Right after a lesson's quiz it opens on Plan the Month; once the month is
+ * closed it shows what the month did, any life events waiting, and then the portfolio itself.
+ */
 export function PortfolioPage() {
-  return <Placeholder titleKey="ui.page.portfolio" owner="nipun" wp="N3" />;
+  const { t } = useTranslation();
+  const game = useGameStore((s) => s.game);
+  const dispatch = useGameStore((s) => s.dispatch);
+  const [closed, setClosed] = useState<{ month: number; effects: Effect[] } | null>(null);
+
+  if (game.awaitingPlan) {
+    return <PlanMonth game={game} dispatch={dispatch} onClosed={(effects) => setClosed({ month: game.month, effects })} />;
+  }
+
+  const pending = game.pendingEvents.filter((id) => eventById.has(id));
+  return (
+    <div className="stack">
+      <div>
+        <span className="eyebrow">{t('portfolio.eyebrow')}</span>
+        <h1 id="page-title">{t('portfolio.title')}</h1>
+      </div>
+
+      {closed && (
+        <section className="card panel-blue stack" role="status">
+          <h2>{t('portfolio.closed.title', { month: closed.month })}</h2>
+          <EffectList effects={closed.effects} />
+        </section>
+      )}
+
+      {pending.length > 0 && (
+        <section className="card panel-yellow stack" aria-labelledby="pf-pending">
+          <h2 id="pf-pending">{t('portfolio.pending.title')}</h2>
+          <p>{t('portfolio.pending.hint')}</p>
+          <ul className="pf-list">
+            {pending.map((id) => (
+              <li key={id}>
+                <Link className="btn btn-secondary btn-block" to={`/event/${id}`}>
+                  {t(eventById.get(id)!.titleKey)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <TopCard game={game} />
+      <Buckets game={game} dispatch={dispatch} />
+      <WantsGoals game={game} dispatch={dispatch} />
+      <ThingsOwned game={game} />
+      <Liabilities game={game} dispatch={dispatch} />
+
+      <p className="muted">{t('portfolio.practiceMoney')}</p>
+    </div>
+  );
 }
