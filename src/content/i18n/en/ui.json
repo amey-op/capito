@@ -32,7 +32,7 @@
   "ui.tool.placeholder": "The {{id}} tool arrives with work package R1.",
   "ui.back.home": "Back to home",
   "ui.health.nextMoveStub": "The Money Health Score arrives with the engine (N1).",
-  "ui.owner.amey": "Amey",
-  "ui.owner.nipun": "Nipun",
-  "ui.owner.aryan": "Aryan"
+  "ui.owner.amey": "Team",
+  "ui.owner.nipun": "Team",
+  "ui.owner.aryan": "Team"
 }

@@ -3,15 +3,20 @@
   "term.tax.life": "Just like society fees pay for the building watchman, taxes pay for national roads and schools.",
   "term.tax.real": "Tax (Direct and Indirect)",
   "term.gst.simple": "A tax you pay when you buy goods or services.",
-  "term.gst.life": "When you buy a \u20b910,000 phone, you also pay GST on top of the price.",
+  "term.gst.life": "When you buy a ₹10,000 phone, you also pay GST on top of the price.",
   "term.gst.real": "Goods and Services Tax",
   "term.pan.simple": "A 10-digit number used to track your taxes.",
   "term.pan.life": "You need a PAN card to open a bank account or file taxes.",
   "term.pan.real": "Permanent Account Number",
   "term.slab.simple": "Income tax rates that increase in steps as your income grows.",
-  "term.slab.life": "If you earn \u20b94 lakh, you pay 0% tax. If you earn \u20b96 lakh, you pay 5% only on the extra \u20b92 lakh.",
+  "term.slab.life": "If you earn ₹4 lakh, you pay 0% tax. If you earn ₹6 lakh, you pay 5% only on the extra ₹2 lakh.",
   "term.slab.real": "Tax Slab",
   "term.tds.simple": "Tax deducted by the person paying you, before you get the money.",
   "term.tds.life": "Your boss deducts a portion of your salary and pays it directly to the government.",
-  "term.tds.real": "Tax Deducted at Source"
+  "term.tds.real": "Tax Deducted at Source",
+  "term.tax.name": "Tax",
+  "term.gst.name": "GST (Goods and Services Tax)",
+  "term.pan.name": "PAN (Permanent Account Number)",
+  "term.slab.name": "Tax slab",
+  "term.tds.name": "TDS (Tax Deducted at Source)"
 }

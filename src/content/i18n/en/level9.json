@@ -41,5 +41,18 @@
   "lesson.9_1.fq10.prompt": "You should use your Net (In-hand) salary for budgeting.",
   "lesson.9_1.fq10.right": "Correct!",
   "lesson.9_1.fq10.wrong": "Review Level 7.",
-  "lesson.9_1.portfolio": "You are done!"
+  "lesson.9_1.portfolio": "You are done!",
+  "lesson.9_1.q1.prompt": "Your emergency fund covers less than one month. Which move comes first?",
+  "lesson.9_1.q1.o1": "Put more practice money into shares",
+  "lesson.9_1.q1.o2": "Add to your emergency fund",
+  "lesson.9_1.q1.right": "Yes. A safety net comes before growth, so a surprise does not force you to borrow or sell at a loss.",
+  "lesson.9_1.q1.wrong": "Not quite. Shares can fall right when you need the money. Build the safety net first, then grow.",
+  "lesson.9_1.q2.prompt": "After this game, you know exactly how your real money will grow.",
+  "lesson.9_1.q2.right": "Right, that is false. The game used pretend rates and markets. Real returns change and can be negative.",
+  "lesson.9_1.q2.wrong": "Not quite. Everything here used assumptions, not promises. Real returns change and can be negative.",
+  "lesson.9_1.q3.prompt": "Which habit is worth keeping from this journey?",
+  "lesson.9_1.q3.o1": "Save a fixed amount first, then spend the rest",
+  "lesson.9_1.q3.o2": "Spend first and save whatever is left",
+  "lesson.9_1.q3.right": "Yes. Paying yourself first is the habit that makes the rest possible.",
+  "lesson.9_1.q3.wrong": "Not quite. If you spend first, there is usually nothing left. Save first, then spend."
 }

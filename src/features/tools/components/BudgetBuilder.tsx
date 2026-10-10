@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { formatRupee } from '../../../core/format';
+import { formatINR } from '../../../core/format';
 
 export function BudgetBuilder() {
   const M = 4000; // Default practice money
@@ -21,7 +21,7 @@ export function BudgetBuilder() {
     <div className="p-4 border-4 border-black bg-white shadow-[6px_6px_0px_rgba(0,0,0,1)] max-w-sm mx-auto font-['Nunito']">
       <h2 className="text-xl font-black mb-2 uppercase">Budget Builder</h2>
       <p className="text-sm font-bold opacity-80 mb-6">
-        Practice Money: {formatRupee(M)} (Needs are covered by family)
+        Practice Money: {formatINR(M)} (Needs are covered by family)
       </p>
 
       <div className="mb-6 bg-gray-50 p-4 border-2 border-black">
@@ -41,11 +41,11 @@ export function BudgetBuilder() {
         <div className="flex justify-between font-bold">
           <div className="text-left">
             <span className="block text-xs uppercase opacity-70">Wants ({100 - savingsPct}%)</span>
-            {formatRupee(wants)}
+            {formatINR(wants)}
           </div>
           <div className="text-right">
             <span className="block text-xs uppercase opacity-70">Savings ({savingsPct}%)</span>
-            {formatRupee(savings)}
+            {formatINR(savings)}
           </div>
         </div>
       </div>
@@ -61,11 +61,11 @@ export function BudgetBuilder() {
         <div className="mb-6 animate-fade-in">
           <div className={`p-4 border-4 border-black mb-4 shadow-[4px_4px_0px_rgba(0,0,0,1)] ${whatsLeft >= 0 ? 'bg-green-200' : 'bg-red-200'}`}>
             <h3 className="font-black uppercase mb-1">Surprise!</h3>
-            <p className="font-bold mb-4">Your phone screen broke. Cost: {formatRupee(surprise)}</p>
+            <p className="font-bold mb-4">Your phone screen broke. Cost: {formatINR(surprise)}</p>
             
             <div className="border-t-2 border-black pt-2 flex justify-between font-bold">
               <span>Savings left:</span>
-              <span>{formatRupee(whatsLeft)}</span>
+              <span>{formatINR(whatsLeft)}</span>
             </div>
             
             <p className="mt-4 text-sm font-semibold">

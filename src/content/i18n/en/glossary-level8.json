@@ -19,5 +19,12 @@
   "term.guaranteedReturns.real": "Guaranteed Returns",
   "term.cybercrime1930.simple": "The national helpline for reporting financial cybercrime.",
   "term.cybercrime1930.life": "If you get scammed, dialing 1930 immediately can freeze the stolen money.",
-  "term.cybercrime1930.real": "Cybercrime Helpline 1930"
+  "term.cybercrime1930.real": "Cybercrime Helpline 1930",
+  "term.phishing.name": "Phishing",
+  "term.socialEngineering.name": "Social engineering",
+  "term.ponziScheme.name": "Ponzi scheme",
+  "term.mlm.name": "MLM (multi-level marketing)",
+  "term.registeredIntermediary.name": "Registered intermediary",
+  "term.guaranteedReturns.name": "Guaranteed returns",
+  "term.cybercrime1930.name": "Cybercrime helpline 1930"
 }

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
 import { economy } from '../../../core/economy.config';
-import { formatRupee } from '../../../core/format';
+import { formatINR } from '../../../core/format';
 
 type Asset = 'savings' | 'fd' | 'gold' | 'mf' | 'shares';
 
@@ -123,7 +123,7 @@ export function BadYearSimulator() {
               width={60}
             />
             <Tooltip 
-              formatter={(value: number) => formatRupee(value)}
+              formatter={(value: number) => formatINR(value)}
               contentStyle={{ border: '2px solid black', borderRadius: 0, fontWeight: 'bold', fontFamily: 'Nunito' }}
             />
             <Legend wrapperStyle={{ fontSize: 12, fontWeight: 'bold' }} />
@@ -137,15 +137,15 @@ export function BadYearSimulator() {
       <div className="border-t-4 border-black pt-4 text-sm font-bold">
         <div className="flex justify-between mb-2">
           <span>Final Steady:</span>
-          <span className="text-green-600">{formatRupee(chartData[5].Steady)}</span>
+          <span className="text-green-600">{formatINR(chartData[5].Steady)}</span>
         </div>
         <div className="flex justify-between mb-2">
           <span>Final Bumpy:</span>
-          <span className="text-yellow-600">{formatRupee(chartData[5].Bumpy)}</span>
+          <span className="text-yellow-600">{formatINR(chartData[5].Bumpy)}</span>
         </div>
         <div className="flex justify-between">
           <span>Final Crash Year:</span>
-          <span className="text-red-600">{formatRupee(chartData[5].Crash)}</span>
+          <span className="text-red-600">{formatINR(chartData[5].Crash)}</span>
         </div>
       </div>
     </div>

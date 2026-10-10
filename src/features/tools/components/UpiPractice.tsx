@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { formatRupee } from '../../../core/format';
+import { formatINR } from '../../../core/format';
 
 export function UpiPractice() {
   const [tab, setTab] = useState<'send' | 'receive'>('send');
@@ -42,7 +42,7 @@ export function UpiPractice() {
               SJ
             </div>
             <p className="font-bold">Paying Suresh Traders</p>
-            <p className="text-3xl font-black mb-6">{formatRupee(500)}</p>
+            <p className="text-3xl font-black mb-6">{formatINR(500)}</p>
             
             <button 
               onClick={() => handlePinTap(true)}
@@ -57,7 +57,7 @@ export function UpiPractice() {
               UK
             </div>
             <p className="font-bold">Unknown User requested money</p>
-            <p className="text-3xl font-black mb-2">{formatRupee(5000)}</p>
+            <p className="text-3xl font-black mb-2">{formatINR(5000)}</p>
             <p className="text-xs font-bold text-red-500 uppercase mb-6 bg-red-50 px-2 py-1 border border-red-200">
               Note: Refund Process
             </p>
