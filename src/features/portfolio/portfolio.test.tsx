@@ -267,3 +267,26 @@ describe('lesson → Plan the Month → events → next lesson', () => {
     expect(screen.getByRole('link', { name: /^Start lesson / })).toBeTruthy();
   });
 });
+
+describe('credit-score card', () => {
+  it('is hidden until a score exists', () => {
+    start(play(lesson('1.1')));
+    open('/portfolio');
+    expect(screen.queryByRole('region', { name: 'Credit score' })).toBeNull();
+  });
+
+  it('shows the score, the offer for its band, the next band and what moves it', () => {
+    start(play(lesson('4.2', 3, ['liabilities', 'credit']), { type: 'PLAN_MONTH', plan: {} } as Action, { type: 'CHECK_CREDIT_SCORE' }));
+    open('/portfolio');
+    const card = within(screen.getByRole('region', { name: 'Credit score' }));
+    const { credit } = economy;
+    const band = credit.offers.find((o) => credit.start >= o.minScore)!;
+    const next = credit.offers[credit.offers.indexOf(band) - 1]!;
+    expect(card.getByText(String(credit.start))).toBeTruthy();
+    expect(card.getByText(new RegExp(`up to ${formatINR(band.maxAmount)} at ${band.ratePa}% a year`))).toBeTruthy();
+    expect(card.getByText(new RegExp(`Reach ${next.minScore} and the offer becomes up to ${formatINR(next.maxAmount)}`))).toBeTruthy();
+    expect(card.getByText(`EMI paid on time +${credit.deltas.onTimeEmi}`)).toBeTruthy();
+    expect(card.getByText(`EMI missed −${Math.abs(credit.deltas.missedEmi)}`)).toBeTruthy();
+    expect(card.getByText(/Real credit bureaus use their own/)).toBeTruthy();
+  });
+});
