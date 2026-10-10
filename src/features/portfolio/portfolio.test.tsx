@@ -237,3 +237,33 @@ describe('portfolio page for a new player', () => {
     expect(screen.queryByText('Your practice money starts with a lesson')).toBeNull();
   });
 });
+
+describe('lesson → Plan the Month → events → next lesson', () => {
+  it('closing the month with no event waiting offers the next lesson', () => {
+    start(play(lesson('1.1')));
+    open('/portfolio');
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Plan the Month');
+    fireEvent.click(screen.getByRole('button', { name: /Close month/ }));
+    expect(game().awaitingPlan).toBe(false);
+    const next = screen.getByRole('link', { name: /^Start lesson / });
+    expect(next.getAttribute('href')).toMatch(/^\/lesson\/\d\.\d$/);
+    expect(next.getAttribute('href')).not.toBe('/lesson/1.1');
+  });
+
+  it('a waiting life event comes first; the next lesson is offered once it is dealt with', () => {
+    start(play(lesson('4.1', 3, ['liabilities'])));
+    open('/portfolio');
+    fireEvent.click(screen.getByRole('button', { name: /Close month/ }));
+    expect(game().pendingEvents).toContain('e4_1');
+    expect(screen.queryByRole('link', { name: /^Start lesson / })).toBeNull();
+
+    fireEvent.click(within(screen.getByRole('region', { name: 'Something has come up' })).getAllByRole('link')[0]!);
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(en['event.e4_1.title']);
+    const choices = screen.getAllByRole('button').filter((b) => b.className.includes('pf-choice'));
+    fireEvent.click(choices[choices.length - 1]!);
+    fireEvent.click(screen.getByRole('link', { name: 'Back to your portfolio' }));
+
+    expect(game().pendingEvents).toEqual([]);
+    expect(screen.getByRole('link', { name: /^Start lesson / })).toBeTruthy();
+  });
+});

@@ -8,6 +8,7 @@ import { engine } from '@/engine';
 import { Buckets } from '@/features/portfolio/Buckets';
 import { EffectList } from '@/features/portfolio/EffectList';
 import { Liabilities, ThingsOwned } from '@/features/portfolio/Liabilities';
+import { NextStep } from '@/features/portfolio/NextStep';
 import { PlanMonth } from '@/features/portfolio/PlanMonth';
 import { TopCard } from '@/features/portfolio/TopCard';
 import { WantsGoals } from '@/features/portfolio/WantsGoals';
@@ -59,6 +60,8 @@ export function PortfolioPage() {
           </ul>
         </section>
       )}
+
+      {!isNewPlayer && pending.length === 0 && <NextStep game={game} />}
 
       {isNewPlayer && (
         <section className="card panel-blue stack" aria-labelledby="pf-start">
