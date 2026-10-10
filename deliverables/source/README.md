@@ -1,6 +1,6 @@
 # Report sources
 
-`M2.html` and `final_report.html` are the sources of `../M2.pdf` and `../final_report.pdf`.
+`M2.html` is the source of `../M2.pdf`.
 Edit the HTML, then print it to PDF with Microsoft Edge (A4, no headers or footers):
 
 ```bash
