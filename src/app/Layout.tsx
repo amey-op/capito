@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { formatINR } from '@/core/format';
 import { useGameStore } from '@/core/store';
+import { isLanguage, setLanguage, supportedLanguages } from '@/core/i18n';
 
 const nav = [
   { to: '/', key: 'ui.nav.home', end: true },
@@ -13,7 +14,8 @@ const nav = [
 ] as const;
 
 export function Layout() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = isLanguage(i18n.language) ? i18n.language : 'en';
   const month = useGameStore((s) => s.game.month);
   const wallet = useGameStore((s) => s.game.buckets.wallet);
   const { pathname } = useLocation();
@@ -38,7 +40,28 @@ export function Layout() {
               </NavLink>
             ))}
           </nav>
+          <select
+            className="lang-switch"
+            aria-label={t('ui.lang.label')}
+            value={lang}
+            onChange={(e) => {
+              if (isLanguage(e.target.value)) void setLanguage(e.target.value);
+            }}
+          >
+            {supportedLanguages.map((l) => (
+              <option key={l} value={l} lang={l}>
+                {t(`ui.lang.${l}`)}
+              </option>
+            ))}
+          </select>
         </div>
+        {lang !== 'en' && (
+          <div className="container">
+            <p className="muted lang-draft" role="note">
+              {t('ui.lang.draft')}
+            </p>
+          </div>
+        )}
       </header>
       <main className="app-main">
         <div className="container">
