@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import '@/core/i18n';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { routerFuture, routes } from './routes';
@@ -61,5 +61,47 @@ describe('app shell routes', () => {
     expect(document.querySelector('main a[href="/portfolio"]')).toBeTruthy();
     expect(document.querySelector('main a[href="/tools"]')).toBeTruthy();
     expect(screen.queryByText(/Coming soon|work package/)).toBeNull();
+  });
+});
+
+describe('start page and NGO view', () => {
+  it('the student footer links to the start page', () => {
+    open('/');
+    const link = screen.getByRole('link', { name: 'Switch to NGO view' });
+    expect(link.getAttribute('href')).toBe('/start');
+  });
+
+  it('/start shows two doors without the student header', () => {
+    open('/start');
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Welcome to Capito');
+    expect(screen.getByRole('link', { name: /I'm a student/ }).getAttribute('href')).toBe('/');
+    expect(screen.getByRole('link', { name: /I'm from an NGO/ }).getAttribute('href')).toBe('/ngo');
+    expect(screen.queryByRole('navigation', { name: 'Main navigation' })).toBeNull();
+  });
+
+  it('/ngo shows the class dashboard with the sample-data label and every section', () => {
+    open('/ngo');
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Class 11 · Demo group');
+    expect(screen.getByText('Sample data')).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Student app' }).getAttribute('href')).toBe('/');
+    expect(screen.getByText('Class code HYD-7QX3')).toBeTruthy();
+    expect(screen.getByText('32 learners')).toBeTruthy();
+    for (const name of ['At a glance', 'Progress by level', 'Quiz scores by level', 'Weak spots', 'Scam safety', 'Learners', 'Privacy']) {
+      expect(screen.getByRole('heading', { level: 2, name })).toBeTruthy();
+    }
+    expect(screen.getByText('This device (you)')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Download CSV' })).toBeTruthy();
+    expect(screen.queryByRole('navigation', { name: 'Main navigation' })).toBeNull();
+  });
+
+  it('the learners table sorts when a column heading is pressed', () => {
+    open('/ngo');
+    const table = screen.getByRole('table');
+    const nickname = table.querySelector('thead th') as HTMLElement;
+    expect(nickname.getAttribute('aria-sort')).toBe('none');
+    fireEvent.click(screen.getByRole('button', { name: /^Nickname/ }));
+    expect(nickname.getAttribute('aria-sort')).toBe('ascending');
+    const names = [...table.querySelectorAll('tbody th')].map((th) => th.textContent ?? '');
+    expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b)));
   });
 });
