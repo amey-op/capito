@@ -221,3 +221,19 @@ describe('EventPage', () => {
     expect(screen.getByText('There is no such event.')).toBeTruthy();
   });
 });
+
+describe('portfolio page for a new player', () => {
+  it('points to the lessons until the first practice money is earned', () => {
+    start(engine.newGame());
+    open('/portfolio');
+    expect(screen.getByText('Your practice money starts with a lesson')).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Go to the lessons' }).getAttribute('href')).toBe('/');
+    expect(screen.getByRole('link', { name: 'Budget Builder' }).getAttribute('href')).toBe('/tool/budgetBuilder');
+  });
+
+  it('the start card goes away once a lesson has paid out', () => {
+    start(play(lesson('1.1')));
+    open('/portfolio');
+    expect(screen.queryByText('Your practice money starts with a lesson')).toBeNull();
+  });
+});
