@@ -49,6 +49,9 @@ export function Layout() {
         <div className="container">
           <p>{t('ui.footer.assumption')}</p>
           <p className="muted">{t('ui.footer.notAdvice')}</p>
+          <p>
+            <NavLink to="/start">{t('ngo.switch')}</NavLink>
+          </p>
         </div>
       </footer>
     </div>

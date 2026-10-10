@@ -3,11 +3,14 @@ import { EventPage } from '@/pages/EventPage';
 import { GlossaryPage } from '@/pages/GlossaryPage';
 import { HomePage } from '@/pages/HomePage';
 import { LessonPage } from '@/pages/LessonPage';
+import { NgoPage } from '@/pages/NgoPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { PortfolioPage } from '@/pages/PortfolioPage';
 import { ScamShieldPage } from '@/pages/ScamShieldPage';
+import { StartPage } from '@/pages/StartPage';
 import { ToolPage } from '@/pages/ToolPage';
 import { ToolsPage } from '@/pages/ToolsPage';
+import { NgoLayout } from '@/features/ngo/NgoLayout';
 import { Layout } from './Layout';
 
 /** Opt in to React Router v7 behaviour now, so upgrading later changes nothing. */
@@ -21,6 +24,12 @@ export const routerFuture = {
 
 /** Route table. Owners per docs/WORKFLOW.md §3 (each placeholder says who replaces it). */
 export const routes: RouteObject[] = [
+  // Two doors (student / NGO) and the NGO view: outside the student shell.
+  { path: '/start', element: <StartPage /> },
+  {
+    element: <NgoLayout />,
+    children: [{ path: '/ngo', element: <NgoPage /> }],
+  },
   {
     element: <Layout />,
     children: [

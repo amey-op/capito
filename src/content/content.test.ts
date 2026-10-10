@@ -177,6 +177,7 @@ describe('i18n files', () => {
         tools: /^tools\./,
         scamshield: /^scamshield\./,
         portfolio: /^portfolio\./,
+        ngo: /^ngo\./,
       };
       return fixed[name] ?? null;
     };
