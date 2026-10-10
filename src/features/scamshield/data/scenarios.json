@@ -1,0 +1,80 @@
+[
+  {
+    "id": "upiRefund",
+    "channel": "whatsapp",
+    "isScam": true,
+    "redFlags": ["urgency", "reward", "small_trust_payment"]
+  },
+  {
+    "id": "qrScanReceive",
+    "channel": "sms",
+    "isScam": true,
+    "redFlags": ["urgency", "reward"]
+  },
+  {
+    "id": "fakeTask",
+    "channel": "whatsapp",
+    "isScam": true,
+    "redFlags": ["reward", "small_trust_payment"]
+  },
+  {
+    "id": "instantLoan",
+    "channel": "sms",
+    "isScam": true,
+    "redFlags": ["urgency", "secrecy"]
+  },
+  {
+    "id": "kycExpires",
+    "channel": "sms",
+    "isScam": true,
+    "redFlags": ["urgency", "authority"]
+  },
+  {
+    "id": "digitalArrest",
+    "channel": "call",
+    "isScam": true,
+    "redFlags": ["urgency", "authority", "secrecy"]
+  },
+  {
+    "id": "doubleMoney",
+    "channel": "social",
+    "isScam": true,
+    "redFlags": ["reward"]
+  },
+  {
+    "id": "telegramTips",
+    "channel": "social",
+    "isScam": true,
+    "redFlags": ["reward", "secrecy"]
+  },
+  {
+    "id": "scholarshipFee",
+    "channel": "sms",
+    "isScam": true,
+    "redFlags": ["reward", "small_trust_payment"]
+  },
+  {
+    "id": "genuineBank",
+    "channel": "sms",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "genuineUpi",
+    "channel": "sms",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "genuineScholarship",
+    "channel": "email",
+    "isScam": false,
+    "redFlags": []
+  },
+  {
+    "id": "genuineTax",
+    "channel": "email",
+    "isScam": false,
+    "redFlags": []
+  }
+]
