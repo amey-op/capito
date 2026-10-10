@@ -1,0 +1,57 @@
+/* Word Bank page. Builds on src/styles/theme.css; dense list so thin borders and small shadows. */
+
+.wb-search input {
+  width: 100%;
+  max-width: 520px;
+}
+.wb-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--secondary-foreground);
+}
+.wb-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.9rem;
+}
+@media (max-width: 380px) {
+  .wb-list {
+    grid-template-columns: 1fr;
+  }
+}
+.wb-item {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  min-width: 0;
+}
+.wb-head {
+  justify-content: space-between;
+  align-items: baseline;
+}
+.wb-name {
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+.wb-from {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--info);
+  white-space: nowrap;
+}
+.wb-life {
+  background: var(--warning-bg);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+}
+.wb-real summary {
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--info);
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+}

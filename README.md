@@ -1,80 +1,81 @@
 # Capito
 
-A mobile-first financial-literacy game for Grade 11–12 students in Hyderabad (Megathon X, Vanguard India brief). Each lesson is one game-month: gut-check → cards → tool → quiz → practice money → Plan the Month → life events with consequences.
+A mobile-first financial-literacy game for Grade 11–12 students. Each lesson is one game-month: a gut-check choice, short cards, a calculator, a 3-question quiz that pays practice money, then Plan the Month and life events with consequences.
 
-> **Golden assumption:** needs are covered by family or by you; practice money is only for wants and savings.
-> **Guardrail:** we educate, never recommend. Every projection is an assumption, not a promise.
+Practice money and pretend markets only. The app explains how things work; it does not give advice or recommend any product.
 
-Design docs are in [`docs/`](docs/), starting with [`docs/PLAN.md`](docs/PLAN.md).
+## Requirements
 
-## Run it
+- Node.js 22 or newer (npm comes with it)
+- Any modern browser; the app is built for phones (360 px wide) and laptops
 
-Needs Node 22+.
+## Setup
 
 ```bash
-npm ci          # install exactly what the lockfile says
-npm run dev     # http://localhost:5173
-npm run check   # typecheck + all tests (formulas, engine contract, content checks, routes)
-npm run build   # typecheck + production build into dist/
+git clone https://github.com/IIIT-ECell/megathon26-team-illuminati.git
+cd megathon26-team-illuminati
+npm ci
 ```
 
-Phase 1 stores the game in `localStorage` (`capito-state`); no accounts, no env vars. `.env.example` lists the Phase 2 Supabase placeholders. Never commit a real `.env`.
+## Run
 
-## Stack
-
-React 18, Vite, TypeScript (strict), React Router 6, Zustand (+ persist), zod, i18next, Recharts, Vitest. Plain CSS whiteboard theme (no Tailwind). Fonts self-hosted with `@fontsource` so the app works offline. Hosting: Vercel (`vercel.json` has SPA rewrites).
-
-## Code map (who owns what: docs/WORKFLOW.md §3)
-
-```
-src/
-  core/                 CONTRACTS (Amey; change only via a `contract-change` PR)
-    types.ts            GameState, Action, EngineAPI, Effect, HealthBreakdown, WhatIf, LoanOffer
-    content-schema.ts   zod schemas for lessons, events, glossary terms (types inferred)
-    economy.config.ts   every game number from docs/MECHANICS.md
-    finance.ts          every formula (SIP, EMI, FD, RD, depreciation, inflation, slabs…) + tests
-    tools.ts            ToolDef, tool ids, ToolEmbedProps, prefill parsing
-    state.ts            initialGameState()
-    store.ts            Zustand store: dispatch(action) → engine.reduce, persisted
-    data-adapter.ts     DataAdapter interface + local adapter (Supabase in Phase 2)
-    i18n.ts, format.ts  i18next setup; ₹ formatting with Indian grouping, lakh/crore
-  engine/               Nipun (N1/N2). A0 ships a STUB that pays quiz money; replace it
-  features/tools/       Aryan (R1). A0 ships a placeholder ToolEmbed
-  pages/                route pages; placeholders say which WP replaces them
-  app/                  Layout, routes, App
-  styles/theme.css      whiteboard theme
-  content/
-    curriculum.ts       the 29 sub-sections (tier, owner)
-    levels/levelN/*.json      one lesson per file (1.1 is the exemplar)
-    events/levelN.json        life events and scam alerts (arrays)
-    glossary/levelN.json      terms {id, introducedIn, core, verified}
-    i18n/en/*.json            flat keys, one file per area: ui, levelN, glossary-levelN, events, tools, scamshield, portfolio
-    index.ts, i18n.ts         glob loaders (validated with zod; duplicate keys detected)
-    content.test.ts           the content checks every PR must pass
+```bash
+npm run dev
 ```
 
-## Contract notes (read before building on A0)
+Then open http://localhost:5173.
 
-- **Actions.** UI dispatches `Action`s only; the engine returns `{ state, effects }`. The A0 gaps are closed:
-  - `SHIELD_RESULT {seen, correct}` for Scam Shield.
-  - `GameState.lastCompletedSubSection`, with the rule that events fire after the month closes for the sub-section in their `after` field.
-  - `GameState.retrySnapshot` for "try again once".
-  - A `finalQuiz` (10 items) on lesson 9.1, plus a `FINAL_QUIZ_RESULT` action.
-  - Per-level glossary and i18n files, loaded by glob.
-  - `DataAdapter`.
-  - `ToolEmbed({toolId, prefill})`.
-- **Money.** `finance.quizPayout` gives ₹2,000 + ₹1,000 × correct. `finance.retryBonus` pays only the improvement on a retry.
-- **Engine rules.** Deterministic: no `Math.random` and no `Date.now`. Round only at display (`roundRupees`, `formatINR`).
-- **Text.** All text is an i18n key: `lesson.<id with _>.<part>`, `event.<eventId>.<part>`, `term.<id>.name|simple|life|real|maths`, `ui.*`, `tools.*`, `scamshield.*`, `portfolio.*`. The content test enforces which prefix lives in which file.
-- **Unverified facts.** Facts marked `verified:false` (tax slabs, credit bands…) must be labelled approximate and not shown as fact.
-- **Tool prefill.** Query params are shared by "Predict" links and lesson cards: `principal`, `ratePct`, `months`, `monthly`, `years`, `amount`, `target`, `instalment`, `cost`, `income`.
+## Check and build
 
-## Windows note
+```bash
+npm run check   # typecheck and all tests
+npm run build   # typecheck and production build into dist/
+npm run preview # serve the production build locally
+```
 
-If Windows Smart App Control blocks native modules (`rollup…win32…node` "blocked by Application Control policy"), install locally with a rollup WASM override. Do **not** commit that override; CI runs on Linux.
+Progress is saved in the browser (`localStorage`); there are no accounts and no environment variables are needed. `vercel.json` holds the single-page-app rewrite used for hosting.
+
+### Windows note
+
+If Windows blocks Rollup's native module ("blocked by Application Control policy"), use the WebAssembly build for your local install only:
 
 ```bash
 npm pkg set overrides.rollup=npm:@rollup/wasm-node@^4
 ```
 
-Then delete `node_modules` and `package-lock.json`, run `npm install`, and restore both files from git before committing. Keeping the repo **outside OneDrive** avoids `node_modules` sync problems.
+Then delete `node_modules` and `package-lock.json` and run `npm install`. Do not commit those two changed files.
+
+## Project layout
+
+- `src/core`: shared types, content schemas, game numbers (`economy.config.ts`) and money formulas (`finance.ts`)
+- `src/engine`: the game simulation (months, buckets, credit score, life events)
+- `src/features`: lesson player, portfolio, tools, Scam Shield, home, Word Bank
+- `src/content`: lessons, events, glossary and English text as JSON
+- `docs`: product plan, curriculum, game mechanics and the lesson template
+- `deliverables`: milestone reports
+
+## Built with
+
+| Library | Use | Licence |
+|---|---|---|
+| [React](https://react.dev) and React DOM | user interface | MIT |
+| [React Router](https://reactrouter.com) | pages and links | MIT |
+| [Vite](https://vitejs.dev) and @vitejs/plugin-react | dev server and build | MIT |
+| [TypeScript](https://www.typescriptlang.org) | types | Apache-2.0 |
+| [Zustand](https://github.com/pmndrs/zustand) | game state, saved in the browser | MIT |
+| [Zod](https://zod.dev) | content validation | MIT |
+| [i18next](https://www.i18next.com) and react-i18next | all app text | MIT |
+| [Recharts](https://recharts.org) | calculator charts | MIT |
+| [Vitest](https://vitest.dev), [Testing Library](https://testing-library.com), [jsdom](https://github.com/jsdom/jsdom) | tests | MIT |
+| [Fontsource](https://fontsource.org): Nunito, IBM Plex Mono | self-hosted fonts | fonts under SIL Open Font License 1.1 |
+
+## Design assets
+
+- The whiteboard visual style (dot grid, ink borders, offset shadows, marker colours) is adapted from an existing stylesheet that a team member owns. A copy is kept in `docs/design/enjeen-index.css` for reference.
+- `docs/design/finvitals-calculator-reference.webp` is a screenshot of a third-party calculator, kept only as layout inspiration. No code, images or text from it are used in the app.
+- Card illustrations are simple line drawings made for this project.
+- The brief and reference decks in `resources/` belong to their authors and are included for context only.
+
+## Licence
+
+[MIT](LICENSE)
