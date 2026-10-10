@@ -60,7 +60,7 @@ const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n
 /** How many lessons each learner has finished: mostly levels 1–5, a few further, two finished. */
 function lessonCount(rng: () => number, index: number, total: number): number {
   if (index < 2) return total;
-  if (index < 6) return 18 + Math.floor(rng() * 9); // into levels 6–8
+  if (index < 9) return 26 + Math.floor(rng() * 3); // into level 8
   return 2 + Math.floor(rng() * 16); // through levels 1–5 (5.3 is the 18th lesson)
 }
 

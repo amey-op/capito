@@ -112,7 +112,8 @@ describe('aggregation', () => {
       learner({ firstChoices: { e1_1: 'combo', e1_3: 'save', e1_2: 'skip' } }),
       learner({ firstChoices: { e1_1: 'skip' } }),
     ];
-    const spots = weakSpots(ls, list);
+    const spots = weakSpots(ls, list, 1);
+    expect(weakSpots(ls, list, 3).map((s) => s.eventId)).toEqual(['e1_1']);
     // e1_2 has no bad choice, so it never shows.
     expect(spots.map((s) => [s.eventId, s.badChoiceId, s.bad, s.seen, s.pct])).toEqual([
       ['e1_1', 'combo', 2, 3, 67],

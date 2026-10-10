@@ -12,6 +12,7 @@ import {
   scamSafety,
   summaryTiles,
   weakSpots,
+  WEAK_MIN_SEEN,
   type WeakSpot,
 } from './aggregate';
 import { DEMO_CLASS, demoClass } from './demoClass';
@@ -145,7 +146,9 @@ export function NgoDashboard() {
 
       <section className="stack" aria-labelledby="ngo-weak">
         <h2 id="ngo-weak">{t('ngo.weak.title')}</h2>
-        <p className="muted">{t('ngo.weak.intro')}</p>
+        <p className="muted">
+          {t('ngo.weak.intro')} {t('ngo.weak.min', { count: WEAK_MIN_SEEN })}
+        </p>
         <ol className="stack ngo-weak-list">
           {shownWeak.map((s) => (
             <WeakSpotCard key={s.eventId} spot={s} />

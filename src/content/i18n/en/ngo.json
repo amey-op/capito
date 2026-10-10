@@ -50,6 +50,7 @@
   "ngo.weak.seen": "{{bad}} of {{seen}} learners",
   "ngo.weak.kind.life": "Life event",
   "ngo.weak.kind.scamAlert": "Scam alert",
+  "ngo.weak.min": "Events met by fewer than {{count}} learners are left out.",
   "ngo.weak.hint": "Talk about it in class",
   "ngo.weak.more": "Show all {{count}}",
   "ngo.weak.less": "Show top 5",

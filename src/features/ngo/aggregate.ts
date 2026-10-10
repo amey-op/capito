@@ -87,6 +87,9 @@ export function lowestLessons(learners: Learner[], n = 3, minLearners = 3): Arra
     .slice(0, n);
 }
 
+/** Fewest learners an event needs before it counts as a weak spot. */
+export const WEAK_MIN_SEEN = 5;
+
 export interface WeakSpot {
   eventId: string;
   kind: LifeEvent['kind'];
@@ -99,14 +102,17 @@ export interface WeakSpot {
   pct: number;
 }
 
-/** Life events and scam alerts ranked by the share of learners whose first choice was the bad one. */
-export function weakSpots(learners: Learner[], eventList: LifeEvent[] = events): WeakSpot[] {
+/**
+ * Life events and scam alerts ranked by the share of learners whose first choice was the bad one.
+ * Events met by fewer than `minSeen` learners are left out (one or two answers say little).
+ */
+export function weakSpots(learners: Learner[], eventList: LifeEvent[] = events, minSeen = WEAK_MIN_SEEN): WeakSpot[] {
   const spots: WeakSpot[] = [];
   eventList.forEach((event) => {
     const badIds = event.choices.filter((c) => c.verdict === 'bad').map((c) => c.id);
     if (badIds.length === 0) return;
     const firsts = learners.map((l) => l.firstChoices[event.id]).filter((c): c is string => c !== undefined);
-    if (firsts.length === 0) return;
+    if (firsts.length === 0 || firsts.length < minSeen) return;
     const counts = badIds.map((id) => ({ id, n: firsts.filter((c) => c === id).length }));
     const bad = counts.reduce((a, c) => a + c.n, 0);
     const top = counts.reduce((a, c) => (c.n > a.n ? c : a));
