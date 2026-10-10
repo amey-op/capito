@@ -1,0 +1,170 @@
+{
+  "id": "2.3",
+  "level": 2,
+  "tier": "should",
+  "titleKey": "lesson.2_3.title",
+  "gutCheck": {
+    "promptKey": "lesson.2_3.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.2_3.gut.a.label",
+        "resultKey": "lesson.2_3.gut.a.result",
+        "tone": "good"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.2_3.gut.b.label",
+        "resultKey": "lesson.2_3.gut.b.result",
+        "tone": "bad"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.2_3.gut.c.label",
+        "resultKey": "lesson.2_3.gut.c.result",
+        "tone": "good"
+      }
+    ],
+    "bridgeKey": "lesson.2_3.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.2_3.c1.text",
+      "art": "bank-flow"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.2_3.c2.text",
+      "art": "interest-split",
+      "terms": [
+        "interest"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.2_3.c2.reveal.prompt",
+        "answerKey": "lesson.2_3.c2.reveal.answer"
+      }
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.2_3.c3.text",
+      "art": "queue-teller"
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.2_3.c4.text",
+      "art": "three-dials",
+      "terms": [
+        "minimumBalance"
+      ],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.2_3.c4.sort.prompt",
+        "categories": [
+          {
+            "id": "adds",
+            "labelKey": "lesson.2_3.c4.sort.adds"
+          },
+          {
+            "id": "takes",
+            "labelKey": "lesson.2_3.c4.sort.takes"
+          }
+        ],
+        "items": [
+          {
+            "id": "interest",
+            "labelKey": "lesson.2_3.c4.sort.interest",
+            "category": "adds"
+          },
+          {
+            "id": "minFee",
+            "labelKey": "lesson.2_3.c4.sort.minFee",
+            "category": "takes"
+          },
+          {
+            "id": "sms",
+            "labelKey": "lesson.2_3.c4.sort.sms",
+            "category": "takes"
+          },
+          {
+            "id": "cardFee",
+            "labelKey": "lesson.2_3.c4.sort.cardFee",
+            "category": "takes"
+          }
+        ],
+        "feedbackKey": "lesson.2_3.c4.sort.feedback"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.2_3.c5.text",
+      "art": "two-passbooks"
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.2_3.c6.text",
+      "art": "scale-even"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.2_3.q1.prompt",
+      "options": [
+        "lesson.2_3.q1.o1",
+        "lesson.2_3.q1.o2",
+        "lesson.2_3.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.2_3.q1.right",
+      "feedbackWrongKey": "lesson.2_3.q1.wrong",
+      "terms": [
+        "interest"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.2_3.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.2_3.q2.right",
+      "feedbackWrongKey": "lesson.2_3.q2.wrong",
+      "terms": [
+        "minimumBalance"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.2_3.q3.prompt",
+      "options": [
+        "lesson.2_3.q3.o1",
+        "lesson.2_3.q3.o2",
+        "lesson.2_3.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.2_3.q3.right",
+      "feedbackWrongKey": "lesson.2_3.q3.wrong",
+      "terms": [
+        "minimumBalance"
+      ]
+    }
+  ],
+  "terms": [
+    "interest",
+    "minimumBalance"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.2_3.effect",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "accounts.a_vs_b",
+      "verified": true
+    }
+  ]
+}
