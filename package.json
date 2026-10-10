@@ -1,9 +1,9 @@
 {
-  "name": "rupee-quest",
+  "name": "capito",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Rupee Quest: a portfolio-driven financial-literacy game for Grade 11-12 students (Megathon X, Vanguard India brief).",
+  "description": "Capito: a portfolio-driven financial-literacy game for Grade 11-12 students (Megathon X, Vanguard India brief).",
   "engines": {
     "node": ">=22"
   },

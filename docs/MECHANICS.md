@@ -1,4 +1,4 @@
-# Rupee Quest: Game Mechanics & Consequence Engine (v1)
+# Capito: Game Mechanics & Consequence Engine (v1)
 
 > New file. This is the rulebook the portfolio / simulation engine is built from. Curriculum is in CONTENT.md; product/tech/split is in PLAN.md.
 > Every number is a **config value** in `economy.config.ts` (tunable in minutes). All figures are **practice values**, labelled as such on screen.
@@ -8,7 +8,7 @@
 
 ## 0. The golden assumption (shown at the start and in the Portfolio footer)
 
-> **"In Rupee Quest your needs (food, home, school fees, travel) are already taken care of, by your family or by you. The practice money you earn here is only for your wants and your savings."**
+> **"In Capito your needs (food, home, school fees, travel) are already taken care of, by your family or by you. The practice money you earn here is only for your wants and your savings."**
 
 Consequences of this rule:
 - **We never simulate needs.** There is no rent/food/fees to input or vary. Needs are *taught* (Level 1) but not *played*.
