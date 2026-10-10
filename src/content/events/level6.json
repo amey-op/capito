@@ -1,0 +1,264 @@
+[
+  {
+    "id": "e6_1",
+    "level": 6,
+    "kind": "life",
+    "after": "6.1",
+    "titleKey": "event.e6_1.title",
+    "introKey": "event.e6_1.intro",
+    "choices": [
+      {
+        "id": "shares",
+        "labelKey": "event.e6_1.shares.label",
+        "verdict": "good",
+        "outcomeKey": "event.e6_1.shares.outcome",
+        "whyKey": "event.e6_1.shares.why",
+        "termsToReinforce": [
+          "volatility"
+        ]
+      },
+      {
+        "id": "mix",
+        "labelKey": "event.e6_1.mix.label",
+        "verdict": "good",
+        "outcomeKey": "event.e6_1.mix.outcome",
+        "whyKey": "event.e6_1.mix.why",
+        "termsToReinforce": [
+          "diversification"
+        ]
+      },
+      {
+        "id": "savings",
+        "labelKey": "event.e6_1.savings.label",
+        "verdict": "good",
+        "outcomeKey": "event.e6_1.savings.outcome",
+        "whyKey": "event.e6_1.savings.why",
+        "termsToReinforce": [
+          "risk"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6_2",
+    "level": 6,
+    "kind": "life",
+    "after": "6.2",
+    "titleKey": "event.e6_2.title",
+    "introKey": "event.e6_2.intro",
+    "choices": [
+      {
+        "id": "jewellery",
+        "labelKey": "event.e6_2.jewellery.label",
+        "verdict": "mixed",
+        "now": {
+          "invest": {
+            "asset": "goldPhysical",
+            "amount": 3000
+          },
+          "episode": "goldDip"
+        },
+        "availableIf": {
+          "minBucket": {
+            "bucket": "wallet",
+            "amount": 3000
+          }
+        },
+        "outcomeKey": "event.e6_2.jewellery.outcome",
+        "whyKey": "event.e6_2.jewellery.why",
+        "termsToReinforce": [
+          "makingCharges"
+        ]
+      },
+      {
+        "id": "etf",
+        "labelKey": "event.e6_2.etf.label",
+        "verdict": "good",
+        "now": {
+          "invest": {
+            "asset": "gold",
+            "amount": 3000
+          },
+          "episode": "goldDip"
+        },
+        "availableIf": {
+          "minBucket": {
+            "bucket": "wallet",
+            "amount": 3000
+          }
+        },
+        "outcomeKey": "event.e6_2.etf.outcome",
+        "whyKey": "event.e6_2.etf.why",
+        "termsToReinforce": [
+          "goldEtf"
+        ]
+      },
+      {
+        "id": "app",
+        "labelKey": "event.e6_2.app.label",
+        "verdict": "bad",
+        "flags": [
+          "unregulated_gold"
+        ],
+        "outcomeKey": "event.e6_2.app.outcome",
+        "whyKey": "event.e6_2.app.why"
+      },
+      {
+        "id": "none",
+        "labelKey": "event.e6_2.none.label",
+        "verdict": "mixed",
+        "outcomeKey": "event.e6_2.none.outcome",
+        "whyKey": "event.e6_2.none.why"
+      }
+    ]
+  },
+  {
+    "id": "e6_3",
+    "level": 6,
+    "kind": "life",
+    "after": "6.3",
+    "titleKey": "event.e6_3.title",
+    "introKey": "event.e6_3.intro",
+    "choices": [
+      {
+        "id": "watch",
+        "labelKey": "event.e6_3.watch.label",
+        "verdict": "mixed",
+        "now": {
+          "episode": "crash"
+        },
+        "later": [
+          {
+            "inMonths": 2,
+            "eventId": "e6_5"
+          }
+        ],
+        "outcomeKey": "event.e6_3.watch.outcome",
+        "whyKey": "event.e6_3.watch.why"
+      },
+      {
+        "id": "plan",
+        "labelKey": "event.e6_3.plan.label",
+        "verdict": "good",
+        "now": {
+          "episode": "crash"
+        },
+        "later": [
+          {
+            "inMonths": 2,
+            "eventId": "e6_5"
+          }
+        ],
+        "outcomeKey": "event.e6_3.plan.outcome",
+        "whyKey": "event.e6_3.plan.why"
+      }
+    ]
+  },
+  {
+    "id": "e6_4",
+    "level": 6,
+    "kind": "scamAlert",
+    "after": "6.4",
+    "titleKey": "event.e6_4.title",
+    "introKey": "event.e6_4.intro",
+    "choices": [
+      {
+        "id": "buy",
+        "labelKey": "event.e6_4.buy.label",
+        "verdict": "bad",
+        "now": {
+          "invest": {
+            "asset": "tipStock",
+            "amount": 2000
+          },
+          "episode": "tipPump"
+        },
+        "later": [
+          {
+            "inMonths": 2,
+            "noteKey": "event.e6_4.buy.later"
+          }
+        ],
+        "shield": -1,
+        "flags": [
+          "fell_for_tip"
+        ],
+        "availableIf": {
+          "minBucket": {
+            "bucket": "wallet",
+            "amount": 2000
+          }
+        },
+        "outcomeKey": "event.e6_4.buy.outcome",
+        "whyKey": "event.e6_4.buy.why"
+      },
+      {
+        "id": "ignore",
+        "labelKey": "event.e6_4.ignore.label",
+        "verdict": "mixed",
+        "outcomeKey": "event.e6_4.ignore.outcome",
+        "whyKey": "event.e6_4.ignore.why"
+      },
+      {
+        "id": "check",
+        "labelKey": "event.e6_4.check.label",
+        "verdict": "good",
+        "shield": 1,
+        "outcomeKey": "event.e6_4.check.outcome",
+        "whyKey": "event.e6_4.check.why"
+      }
+    ]
+  },
+  {
+    "id": "e6_5",
+    "level": 6,
+    "kind": "life",
+    "after": "6.5",
+    "titleKey": "event.e6_5.title",
+    "introKey": "event.e6_5.intro",
+    "choices": [
+      {
+        "id": "sell",
+        "labelKey": "event.e6_5.sell.label",
+        "verdict": "bad",
+        "now": {
+          "moves": [
+            {
+              "from": "mf",
+              "to": "wallet",
+              "amount": null
+            }
+          ]
+        },
+        "flags": [
+          "panic_sold"
+        ],
+        "outcomeKey": "event.e6_5.sell.outcome",
+        "whyKey": "event.e6_5.sell.why"
+      },
+      {
+        "id": "hold",
+        "labelKey": "event.e6_5.hold.label",
+        "verdict": "good",
+        "flags": [
+          "stayed_calm"
+        ],
+        "outcomeKey": "event.e6_5.hold.outcome",
+        "whyKey": "event.e6_5.hold.why",
+        "termsToReinforce": [
+          "rupeeCostAveraging"
+        ]
+      },
+      {
+        "id": "pause",
+        "labelKey": "event.e6_5.pause.label",
+        "verdict": "mixed",
+        "flags": [
+          "sip_paused"
+        ],
+        "outcomeKey": "event.e6_5.pause.outcome",
+        "whyKey": "event.e6_5.pause.why"
+      }
+    ]
+  }
+]

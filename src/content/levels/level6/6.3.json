@@ -1,0 +1,185 @@
+{
+  "id": "6.3",
+  "level": 6,
+  "tier": "must",
+  "titleKey": "lesson.6_3.title",
+  "banner": "notAdvice",
+  "gutCheck": {
+    "promptKey": "lesson.6_3.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.6_3.gut.a.label",
+        "resultKey": "lesson.6_3.gut.a.result",
+        "tone": "bad"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.6_3.gut.b.label",
+        "resultKey": "lesson.6_3.gut.b.result",
+        "tone": "good"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.6_3.gut.c.label",
+        "resultKey": "lesson.6_3.gut.c.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.6_3.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.6_3.c1.text",
+      "art": "many-hands-basket",
+      "terms": [
+        "mutualFund",
+        "amc"
+      ]
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.6_3.c2.text",
+      "art": "unit-tag",
+      "terms": [
+        "unit",
+        "nav"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.6_3.c3.text",
+      "art": "drip-and-bucket",
+      "terms": [
+        "sip",
+        "lumpsum"
+      ]
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.6_3.c4.text",
+      "art": "units-by-price",
+      "terms": [
+        "rupeeCostAveraging"
+      ]
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.6_3.c5.text",
+      "art": "copy-or-pick",
+      "terms": [
+        "indexFund"
+      ]
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.6_3.c6.text",
+      "art": "small-slice-big-pie",
+      "terms": [
+        "expenseRatio",
+        "directRegular"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.6_3.c6.reveal.prompt",
+        "answerKey": "lesson.6_3.c6.reveal.answer"
+      }
+    },
+    {
+      "id": "c7",
+      "textKey": "lesson.6_3.c7.text",
+      "art": "regulator-badge",
+      "terms": [
+        "sebi"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.6_3.c7.reveal.prompt",
+        "answerKey": "lesson.6_3.c7.reveal.answer"
+      }
+    }
+  ],
+  "tool": {
+    "id": "sip",
+    "prefill": {
+      "monthly": 500,
+      "ratePct": 12,
+      "years": 10
+    }
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.6_3.q1.prompt",
+      "options": [
+        "lesson.6_3.q1.o1",
+        "lesson.6_3.q1.o2",
+        "lesson.6_3.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.6_3.q1.right",
+      "feedbackWrongKey": "lesson.6_3.q1.wrong",
+      "terms": [
+        "sip"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "single",
+      "promptKey": "lesson.6_3.q2.prompt",
+      "options": [
+        "lesson.6_3.q2.o1",
+        "lesson.6_3.q2.o2",
+        "lesson.6_3.q2.o3"
+      ],
+      "correct": 0,
+      "feedbackRightKey": "lesson.6_3.q2.right",
+      "feedbackWrongKey": "lesson.6_3.q2.wrong",
+      "terms": [
+        "rupeeCostAveraging"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "trueFalse",
+      "promptKey": "lesson.6_3.q3.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.6_3.q3.right",
+      "feedbackWrongKey": "lesson.6_3.q3.wrong",
+      "terms": [
+        "mutualFund"
+      ]
+    }
+  ],
+  "terms": [
+    "mutualFund",
+    "sip",
+    "rupeeCostAveraging",
+    "indexFund",
+    "expenseRatio",
+    "sebi"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.6_3.effect",
+    "unlocks": [
+      "mf"
+    ],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "mf.minors_through_guardian",
+      "verified": false
+    },
+    {
+      "key": "sip.500_12pct",
+      "verified": true
+    },
+    {
+      "key": "fee.gap_1pt",
+      "verified": true
+    }
+  ]
+}

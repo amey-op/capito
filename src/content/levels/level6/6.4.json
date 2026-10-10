@@ -1,0 +1,151 @@
+{
+  "id": "6.4",
+  "level": 6,
+  "tier": "must",
+  "titleKey": "lesson.6_4.title",
+  "banner": "notAdvice",
+  "gutCheck": {
+    "promptKey": "lesson.6_4.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.6_4.gut.a.label",
+        "resultKey": "lesson.6_4.gut.a.result",
+        "tone": "bad"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.6_4.gut.b.label",
+        "resultKey": "lesson.6_4.gut.b.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.6_4.gut.c.label",
+        "resultKey": "lesson.6_4.gut.c.result",
+        "tone": "good"
+      }
+    ],
+    "bridgeKey": "lesson.6_4.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.6_4.c1.text",
+      "art": "pie-slice",
+      "terms": [
+        "share"
+      ]
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.6_4.c2.text",
+      "art": "scoreboard",
+      "terms": [
+        "stockExchange",
+        "sensexNifty"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.6_4.c3.text",
+      "art": "digital-locker",
+      "terms": [
+        "dematAccount"
+      ]
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.6_4.c4.text",
+      "art": "mood-line",
+      "terms": [
+        "dividend"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.6_4.c4.reveal.prompt",
+        "answerKey": "lesson.6_4.c4.reveal.answer"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.6_4.c5.text",
+      "art": "megaphone"
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.6_4.c6.text",
+      "art": "long-dip",
+      "interaction": {
+        "type": "tool",
+        "toolId": "priceMoodSwings"
+      }
+    }
+  ],
+  "tool": {
+    "id": "priceMoodSwings"
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.6_4.q1.prompt",
+      "options": [
+        "lesson.6_4.q1.o1",
+        "lesson.6_4.q1.o2",
+        "lesson.6_4.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.6_4.q1.right",
+      "feedbackWrongKey": "lesson.6_4.q1.wrong",
+      "terms": [
+        "share"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.6_4.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.6_4.q2.right",
+      "feedbackWrongKey": "lesson.6_4.q2.wrong",
+      "terms": [
+        "share"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.6_4.q3.prompt",
+      "options": [
+        "lesson.6_4.q3.o1",
+        "lesson.6_4.q3.o2",
+        "lesson.6_4.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.6_4.q3.right",
+      "feedbackWrongKey": "lesson.6_4.q3.wrong",
+      "terms": [
+        "sensexNifty"
+      ]
+    }
+  ],
+  "terms": [
+    "share",
+    "sensexNifty",
+    "dematAccount"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.6_4.effect",
+    "unlocks": [
+      "shares"
+    ],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "demat.minors_through_guardian",
+      "verified": false
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "id": "4.2",
+  "level": 4,
+  "tier": "must",
+  "titleKey": "lesson.4_2.title",
+  "gutCheck": {
+    "promptKey": "lesson.4_2.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.4_2.gut.a.label",
+        "resultKey": "lesson.4_2.gut.a.result",
+        "tone": "bad"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.4_2.gut.b.label",
+        "resultKey": "lesson.4_2.gut.b.result",
+        "tone": "good"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.4_2.gut.c.label",
+        "resultKey": "lesson.4_2.gut.c.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.4_2.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.4_2.c1.text",
+      "art": "two-cards"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.4_2.c2.text",
+      "art": "card-ceiling",
+      "terms": [
+        "creditLimit"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.4_2.c3.text",
+      "art": "calendar-bill",
+      "terms": [
+        "billingCycle",
+        "interestFreePeriod"
+      ]
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.4_2.c4.text",
+      "art": "small-coin-big-bill",
+      "terms": [
+        "minimumDue",
+        "lateFee"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.4_2.c4.reveal.prompt",
+        "answerKey": "lesson.4_2.c4.reveal.answer"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.4_2.c5.text",
+      "art": "cart-later",
+      "terms": [
+        "bnpl"
+      ],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.4_2.c5.sort.prompt",
+        "categories": [
+          {
+            "id": "borrow",
+            "labelKey": "lesson.4_2.c5.sort.borrow"
+          },
+          {
+            "id": "own",
+            "labelKey": "lesson.4_2.c5.sort.own"
+          }
+        ],
+        "items": [
+          {
+            "id": "card",
+            "labelKey": "lesson.4_2.c5.sort.card",
+            "category": "borrow"
+          },
+          {
+            "id": "bnpl",
+            "labelKey": "lesson.4_2.c5.sort.bnpl",
+            "category": "borrow"
+          },
+          {
+            "id": "debit",
+            "labelKey": "lesson.4_2.c5.sort.debit",
+            "category": "own"
+          },
+          {
+            "id": "upi",
+            "labelKey": "lesson.4_2.c5.sort.upi",
+            "category": "own"
+          }
+        ],
+        "feedbackKey": "lesson.4_2.c5.sort.feedback"
+      }
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.4_2.c6.text",
+      "art": "gauge",
+      "terms": [
+        "utilisation"
+      ],
+      "interaction": {
+        "type": "tool",
+        "toolId": "minimumDueTrap"
+      }
+    }
+  ],
+  "tool": {
+    "id": "minimumDueTrap"
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.4_2.q1.prompt",
+      "options": [
+        "lesson.4_2.q1.o1",
+        "lesson.4_2.q1.o2",
+        "lesson.4_2.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.4_2.q1.right",
+      "feedbackWrongKey": "lesson.4_2.q1.wrong",
+      "terms": [
+        "minimumDue"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.4_2.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.4_2.q2.right",
+      "feedbackWrongKey": "lesson.4_2.q2.wrong",
+      "terms": [
+        "bnpl"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.4_2.q3.prompt",
+      "options": [
+        "lesson.4_2.q3.o1",
+        "lesson.4_2.q3.o2",
+        "lesson.4_2.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.4_2.q3.right",
+      "feedbackWrongKey": "lesson.4_2.q3.wrong",
+      "terms": [
+        "utilisation"
+      ]
+    }
+  ],
+  "terms": [
+    "creditLimit",
+    "minimumDue",
+    "utilisation"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.4_2.effect",
+    "unlocks": [
+      "credit"
+    ],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "card.interest_rate_range",
+      "verified": false
+    },
+    {
+      "key": "card.eligibility",
+      "verified": false
+    }
+  ]
+}

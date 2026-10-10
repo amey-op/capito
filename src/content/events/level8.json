@@ -1,0 +1,124 @@
+[
+  {
+    "id": "e8_1",
+    "level": 8,
+    "kind": "scamAlert",
+    "after": "8.2",
+    "titleKey": "event.e8_1.title",
+    "introKey": "event.e8_1.intro",
+    "choices": [
+      {
+        "id": "deposit",
+        "labelKey": "event.e8_1.deposit.label",
+        "verdict": "bad",
+        "now": {
+          "money": -2000
+        },
+        "shield": -1,
+        "flags": [
+          "fell_for_task"
+        ],
+        "outcomeKey": "event.e8_1.deposit.outcome",
+        "whyKey": "event.e8_1.deposit.why"
+      },
+      {
+        "id": "report",
+        "labelKey": "event.e8_1.report.label",
+        "verdict": "good",
+        "shield": 1,
+        "outcomeKey": "event.e8_1.report.outcome",
+        "whyKey": "event.e8_1.report.why"
+      },
+      {
+        "id": "check",
+        "labelKey": "event.e8_1.check.label",
+        "verdict": "good",
+        "now": {
+          "joy": 1
+        },
+        "shield": 1,
+        "outcomeKey": "event.e8_1.check.outcome",
+        "whyKey": "event.e8_1.check.why"
+      }
+    ]
+  },
+  {
+    "id": "e8_2",
+    "level": 8,
+    "kind": "scamAlert",
+    "after": "8.1",
+    "titleKey": "event.e8_2.title",
+    "introKey": "event.e8_2.intro",
+    "choices": [
+      {
+        "id": "click",
+        "labelKey": "event.e8_2.click.label",
+        "verdict": "bad",
+        "now": {
+          "money": -1500
+        },
+        "shield": -1,
+        "flags": [
+          "phished"
+        ],
+        "outcomeKey": "event.e8_2.click.outcome",
+        "whyKey": "event.e8_2.click.why"
+      },
+      {
+        "id": "delete",
+        "labelKey": "event.e8_2.delete.label",
+        "verdict": "good",
+        "shield": 1,
+        "outcomeKey": "event.e8_2.delete.outcome",
+        "whyKey": "event.e8_2.delete.why"
+      },
+      {
+        "id": "call",
+        "labelKey": "event.e8_2.call.label",
+        "verdict": "good",
+        "shield": 1,
+        "outcomeKey": "event.e8_2.call.outcome",
+        "whyKey": "event.e8_2.call.why"
+      }
+    ]
+  },
+  {
+    "id": "e8_3",
+    "level": 8,
+    "kind": "scamAlert",
+    "after": "8.3",
+    "titleKey": "event.e8_3.title",
+    "introKey": "event.e8_3.intro",
+    "choices": [
+      {
+        "id": "join",
+        "labelKey": "event.e8_3.join.label",
+        "verdict": "bad",
+        "now": {
+          "money": -2000
+        },
+        "shield": -1,
+        "flags": [
+          "fell_for_tips"
+        ],
+        "outcomeKey": "event.e8_3.join.outcome",
+        "whyKey": "event.e8_3.join.why"
+      },
+      {
+        "id": "ignore",
+        "labelKey": "event.e8_3.ignore.label",
+        "verdict": "mixed",
+        "outcomeKey": "event.e8_3.ignore.outcome",
+        "whyKey": "event.e8_3.ignore.why"
+      },
+      {
+        "id": "check",
+        "labelKey": "event.e8_3.check.label",
+        "verdict": "good",
+        "shield": 1,
+        "outcomeKey": "event.e8_3.check.outcome",
+        "whyKey": "event.e8_3.check.why"
+      }
+    ]
+  }
+]

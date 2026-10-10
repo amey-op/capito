@@ -1,0 +1,156 @@
+{
+  "id": "4.4",
+  "level": 4,
+  "tier": "should",
+  "titleKey": "lesson.4_4.title",
+  "gutCheck": {
+    "promptKey": "lesson.4_4.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.4_4.gut.a.label",
+        "resultKey": "lesson.4_4.gut.a.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.4_4.gut.b.label",
+        "resultKey": "lesson.4_4.gut.b.result",
+        "tone": "good"
+      }
+    ],
+    "bridgeKey": "lesson.4_4.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.4_4.c1.text",
+      "art": "many-doors"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.4_4.c2.text",
+      "art": "bank-stamp",
+      "terms": [
+        "nbfc"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.4_4.c3.text",
+      "art": "shadow-lender",
+      "terms": [
+        "moneylender"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.4_4.c3.reveal.prompt",
+        "answerKey": "lesson.4_4.c3.reveal.answer"
+      }
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.4_4.c4.text",
+      "art": "phone-contacts",
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.4_4.c4.sort.prompt",
+        "categories": [
+          {
+            "id": "warn",
+            "labelKey": "lesson.4_4.c4.sort.warn"
+          },
+          {
+            "id": "fine",
+            "labelKey": "lesson.4_4.c4.sort.fine"
+          }
+        ],
+        "items": [
+          {
+            "id": "contacts",
+            "labelKey": "lesson.4_4.c4.sort.contacts",
+            "category": "warn"
+          },
+          {
+            "id": "paper",
+            "labelKey": "lesson.4_4.c4.sort.paper",
+            "category": "fine"
+          },
+          {
+            "id": "fast",
+            "labelKey": "lesson.4_4.c4.sort.fast",
+            "category": "warn"
+          },
+          {
+            "id": "listed",
+            "labelKey": "lesson.4_4.c4.sort.listed",
+            "category": "fine"
+          }
+        ],
+        "feedbackKey": "lesson.4_4.c4.sort.feedback"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.4_4.c5.text",
+      "art": "checklist"
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.4_4.c6.text",
+      "art": "key-and-signature",
+      "terms": [
+        "collateral",
+        "coSigning"
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.4_4.q1.prompt",
+      "options": [
+        "lesson.4_4.q1.o1",
+        "lesson.4_4.q1.o2",
+        "lesson.4_4.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.4_4.q1.right",
+      "feedbackWrongKey": "lesson.4_4.q1.wrong"
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.4_4.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.4_4.q2.right",
+      "feedbackWrongKey": "lesson.4_4.q2.wrong"
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.4_4.q3.prompt",
+      "options": [
+        "lesson.4_4.q3.o1",
+        "lesson.4_4.q3.o2",
+        "lesson.4_4.q3.o3"
+      ],
+      "correct": 0,
+      "feedbackRightKey": "lesson.4_4.q3.right",
+      "feedbackWrongKey": "lesson.4_4.q3.wrong"
+    }
+  ],
+  "terms": [],
+  "portfolioEffect": {
+    "decisionKey": "lesson.4_4.effect",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "education_loan.terms",
+      "verified": false
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "id": "6.1",
+  "level": 6,
+  "tier": "must",
+  "titleKey": "lesson.6_1.title",
+  "banner": "notAdvice",
+  "gutCheck": {
+    "promptKey": "lesson.6_1.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.6_1.gut.a.label",
+        "resultKey": "lesson.6_1.gut.a.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.6_1.gut.b.label",
+        "resultKey": "lesson.6_1.gut.b.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.6_1.gut.c.label",
+        "resultKey": "lesson.6_1.gut.c.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.6_1.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.6_1.c1.text",
+      "art": "see-saw"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.6_1.c2.text",
+      "art": "target-and-miss",
+      "terms": [
+        "investmentReturn",
+        "risk"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.6_1.c3.text",
+      "art": "zigzag",
+      "terms": [
+        "volatility"
+      ]
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.6_1.c4.text",
+      "art": "own-or-lend",
+      "terms": [
+        "equity",
+        "debt"
+      ],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.6_1.c4.sort.prompt",
+        "categories": [
+          {
+            "id": "equity",
+            "labelKey": "lesson.6_1.c4.sort.equity"
+          },
+          {
+            "id": "debt",
+            "labelKey": "lesson.6_1.c4.sort.debt"
+          }
+        ],
+        "items": [
+          {
+            "id": "shares",
+            "labelKey": "lesson.6_1.c4.sort.shares",
+            "category": "equity"
+          },
+          {
+            "id": "fd",
+            "labelKey": "lesson.6_1.c4.sort.fd",
+            "category": "debt"
+          },
+          {
+            "id": "fund",
+            "labelKey": "lesson.6_1.c4.sort.fund",
+            "category": "equity"
+          },
+          {
+            "id": "bond",
+            "labelKey": "lesson.6_1.c4.sort.bond",
+            "category": "debt"
+          }
+        ],
+        "feedbackKey": "lesson.6_1.c4.sort.feedback"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.6_1.c5.text",
+      "art": "many-baskets",
+      "terms": [
+        "diversification",
+        "assetClass"
+      ]
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.6_1.c6.text",
+      "art": "crowd-arrow"
+    },
+    {
+      "id": "c7",
+      "textKey": "lesson.6_1.c7.text",
+      "art": "warning-sign"
+    }
+  ],
+  "tool": {
+    "id": "badYear"
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.6_1.q1.prompt",
+      "options": [
+        "lesson.6_1.q1.o1",
+        "lesson.6_1.q1.o2",
+        "lesson.6_1.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.6_1.q1.right",
+      "feedbackWrongKey": "lesson.6_1.q1.wrong",
+      "terms": [
+        "diversification"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.6_1.q2.prompt",
+      "correct": true,
+      "feedbackRightKey": "lesson.6_1.q2.right",
+      "feedbackWrongKey": "lesson.6_1.q2.wrong",
+      "terms": [
+        "risk"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.6_1.q3.prompt",
+      "options": [
+        "lesson.6_1.q3.o1",
+        "lesson.6_1.q3.o2",
+        "lesson.6_1.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.6_1.q3.right",
+      "feedbackWrongKey": "lesson.6_1.q3.wrong",
+      "terms": [
+        "equity"
+      ]
+    }
+  ],
+  "terms": [
+    "risk",
+    "investmentReturn",
+    "volatility",
+    "diversification",
+    "equity",
+    "debt"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.6_1.effect",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "sebi.fno_retail_losses",
+      "verified": false
+    },
+    {
+      "key": "crypto.status",
+      "verified": false
+    }
+  ]
+}

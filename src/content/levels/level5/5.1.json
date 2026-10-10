@@ -1,0 +1,159 @@
+{
+  "id": "5.1",
+  "level": 5,
+  "tier": "must",
+  "titleKey": "lesson.5_1.title",
+  "gutCheck": {
+    "promptKey": "lesson.5_1.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.5_1.gut.a.label",
+        "resultKey": "lesson.5_1.gut.a.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.5_1.gut.b.label",
+        "resultKey": "lesson.5_1.gut.b.result",
+        "tone": "good"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.5_1.gut.c.label",
+        "resultKey": "lesson.5_1.gut.c.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.5_1.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.5_1.c1.text",
+      "art": "old-ticket"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.5_1.c2.text",
+      "art": "rising-tags",
+      "terms": [
+        "inflation"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.5_1.c3.text",
+      "art": "fading-note",
+      "terms": [
+        "purchasingPower"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_1.c3.reveal.prompt",
+        "answerKey": "lesson.5_1.c3.reveal.answer"
+      }
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.5_1.c4.text",
+      "art": "seventy",
+      "terms": [
+        "ruleOf70"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_1.c4.reveal.prompt",
+        "answerKey": "lesson.5_1.c4.reveal.answer"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.5_1.c5.text",
+      "art": "minus-sign",
+      "terms": [
+        "realReturn"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_1.c5.reveal.prompt",
+        "answerKey": "lesson.5_1.c5.reveal.answer"
+      }
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.5_1.c6.text",
+      "art": "melting-coin",
+      "interaction": {
+        "type": "tool",
+        "toolId": "inflation",
+        "prefill": {
+          "amount": 100,
+          "ratePct": 6,
+          "years": 10
+        }
+      }
+    }
+  ],
+  "tool": {
+    "id": "inflation",
+    "prefill": {
+      "amount": 100,
+      "ratePct": 6,
+      "years": 10
+    }
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.5_1.q1.prompt",
+      "options": [
+        "lesson.5_1.q1.o1",
+        "lesson.5_1.q1.o2",
+        "lesson.5_1.q1.o3"
+      ],
+      "correct": 0,
+      "feedbackRightKey": "lesson.5_1.q1.right",
+      "feedbackWrongKey": "lesson.5_1.q1.wrong"
+    },
+    {
+      "id": "q2",
+      "type": "single",
+      "promptKey": "lesson.5_1.q2.prompt",
+      "options": [
+        "lesson.5_1.q2.o1",
+        "lesson.5_1.q2.o2",
+        "lesson.5_1.q2.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.5_1.q2.right",
+      "feedbackWrongKey": "lesson.5_1.q2.wrong",
+      "terms": [
+        "realReturn"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "trueFalse",
+      "promptKey": "lesson.5_1.q3.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.5_1.q3.right",
+      "feedbackWrongKey": "lesson.5_1.q3.wrong",
+      "terms": [
+        "purchasingPower"
+      ]
+    }
+  ],
+  "terms": [
+    "inflation",
+    "purchasingPower",
+    "realReturn"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.5_1.effect",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": []
+}

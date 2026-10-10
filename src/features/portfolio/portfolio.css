@@ -1,0 +1,229 @@
+/*
+ * Portfolio, Plan the Month and event screens (Nipun's lane). Builds on src/styles/theme.css.
+ * Dense screens: 2px borders and 3px shadows on small items; 3px / 5px only on hero cards and buttons.
+ * 360px first, tap targets at least 44px, no tilt on numbers or tables.
+ */
+
+.pf-hero-number {
+  font-size: clamp(2rem, 9vw, 3rem);
+  line-height: 1.1;
+}
+
+.pf-meters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 0.6rem;
+}
+.pf-meter {
+  border: var(--border-sm);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  padding: 0.5rem 0.65rem;
+  min-width: 0;
+}
+.pf-meter .pf-label {
+  display: block;
+}
+.pf-meter.is-purple {
+  background: var(--purple-bg);
+  border-color: var(--purple);
+}
+
+.pf-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--secondary-foreground);
+}
+
+/* Money Health Score: five small bars */
+.pf-bars {
+  display: grid;
+  gap: 0.45rem;
+}
+.pf-bar-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 4.5rem 3.2rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+.pf-bar {
+  height: 0.8rem;
+  border: var(--border-sm);
+  border-radius: 9999px;
+  background: var(--secondary);
+  overflow: hidden;
+}
+.pf-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--success);
+}
+.pf-bar.is-mid > span {
+  background: var(--warning);
+}
+.pf-bar.is-low > span {
+  background: var(--destructive);
+}
+.pf-bar.is-info > span {
+  background: var(--info);
+}
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+.pf-bucket {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.pf-bucket .num {
+  font-size: 1.2rem;
+}
+
+.pf-list {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+.pf-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.pf-item > :first-child {
+  min-width: 0;
+  flex: 1 1 10rem;
+}
+
+/* Small buttons still meet the 44px tap target */
+.pf-btn {
+  min-height: var(--tap);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  border-width: 2px;
+}
+.pf-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  font-size: 0.9rem;
+}
+
+.pf-form {
+  display: grid;
+  gap: 0.6rem;
+}
+.pf-field {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.pf-field input,
+.pf-field select {
+  width: 100%;
+  min-width: 0;
+}
+.pf-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.6rem;
+}
+.pf-check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--tap);
+}
+.pf-check input {
+  width: 1.4rem;
+  min-height: 1.4rem;
+  height: 1.4rem;
+  padding: 0;
+  flex: none;
+}
+
+.pf-note {
+  border-left: 4px solid var(--warning);
+  padding: 0.3rem 0 0.3rem 0.7rem;
+  font-size: 0.92rem;
+}
+.pf-divider {
+  border: 0;
+  border-top: 2px dashed var(--secondary-foreground);
+  opacity: 0.4;
+}
+
+/* Event screen */
+.pf-choices {
+  display: grid;
+  gap: 0.75rem;
+}
+.pf-choice {
+  justify-content: flex-start;
+  text-align: left;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  white-space: normal;
+  line-height: 1.35;
+}
+.pf-effects {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.pf-effect {
+  border: var(--border-sm);
+  border-radius: 9999px;
+  background: var(--panel);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  animation: pf-pop 0.35s ease both;
+}
+.pf-effect.is-up {
+  color: #14532d;
+  border-color: var(--success);
+}
+.pf-effect.is-down {
+  color: #7f1d1d;
+  border-color: var(--destructive);
+}
+
+/* Verdict words sit on tinted cards, so they use the dark shade of each marker colour (4.5:1 or more). */
+.pf-verdict-good {
+  color: #14532d;
+}
+.pf-verdict-mixed {
+  color: #6b4a00;
+}
+.pf-verdict-bad {
+  color: #7f1d1d;
+}
+@keyframes pf-pop {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 380px) {
+  .pf-bar-row {
+    grid-template-columns: minmax(0, 1fr) 3.4rem 2.8rem;
+  }
+  .pf-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

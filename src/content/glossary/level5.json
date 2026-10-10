@@ -1,0 +1,68 @@
+[
+  {
+    "id": "inflation",
+    "introducedIn": "5.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "purchasingPower",
+    "introducedIn": "5.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "realReturn",
+    "introducedIn": "5.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "simpleInterest",
+    "introducedIn": "5.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "compoundInterest",
+    "introducedIn": "5.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "ruleOf72",
+    "introducedIn": "5.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "fixedDeposit",
+    "introducedIn": "5.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "prematureWithdrawal",
+    "introducedIn": "5.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "ruleOf70",
+    "introducedIn": "5.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "smallSavingsScheme",
+    "introducedIn": "5.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "taxOnInterest",
+    "introducedIn": "5.3",
+    "core": false,
+    "verified": true
+  }
+]

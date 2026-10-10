@@ -1,0 +1,133 @@
+[
+  {
+    "id": "e1_1",
+    "level": 1,
+    "kind": "life",
+    "after": "1.4",
+    "titleKey": "event.e1_1.title",
+    "introKey": "event.e1_1.intro",
+    "choices": [
+      {
+        "id": "combo",
+        "labelKey": "event.e1_1.combo.label",
+        "verdict": "bad",
+        "now": {
+          "money": -1500,
+          "joy": 3
+        },
+        "flags": [
+          "impulse_buy"
+        ],
+        "outcomeKey": "event.e1_1.combo.outcome",
+        "whyKey": "event.e1_1.combo.why"
+      },
+      {
+        "id": "cover",
+        "labelKey": "event.e1_1.cover.label",
+        "verdict": "mixed",
+        "now": {
+          "money": -600,
+          "joy": 2
+        },
+        "outcomeKey": "event.e1_1.cover.outcome",
+        "whyKey": "event.e1_1.cover.why"
+      },
+      {
+        "id": "skip",
+        "labelKey": "event.e1_1.skip.label",
+        "verdict": "good",
+        "now": {
+          "goal": 600
+        },
+        "outcomeKey": "event.e1_1.skip.outcome",
+        "whyKey": "event.e1_1.skip.why"
+      }
+    ]
+  },
+  {
+    "id": "e1_2",
+    "level": 1,
+    "kind": "life",
+    "after": "1.4",
+    "titleKey": "event.e1_2.title",
+    "introKey": "event.e1_2.intro",
+    "choices": [
+      {
+        "id": "contribute",
+        "labelKey": "event.e1_2.contribute.label",
+        "verdict": "mixed",
+        "now": {
+          "money": -500,
+          "joy": 2
+        },
+        "outcomeKey": "event.e1_2.contribute.outcome",
+        "whyKey": "event.e1_2.contribute.why"
+      },
+      {
+        "id": "handmade",
+        "labelKey": "event.e1_2.handmade.label",
+        "verdict": "good",
+        "now": {
+          "money": -150,
+          "joy": 1
+        },
+        "outcomeKey": "event.e1_2.handmade.outcome",
+        "whyKey": "event.e1_2.handmade.why"
+      },
+      {
+        "id": "skip",
+        "labelKey": "event.e1_2.skip.label",
+        "verdict": "mixed",
+        "now": {
+          "joy": -1
+        },
+        "outcomeKey": "event.e1_2.skip.outcome",
+        "whyKey": "event.e1_2.skip.why"
+      }
+    ]
+  },
+  {
+    "id": "e1_3",
+    "level": 1,
+    "kind": "life",
+    "after": "1.4",
+    "titleKey": "event.e1_3.title",
+    "introKey": "event.e1_3.intro",
+    "choices": [
+      {
+        "id": "spend",
+        "labelKey": "event.e1_3.spend.label",
+        "verdict": "bad",
+        "now": {
+          "joy": 3
+        },
+        "outcomeKey": "event.e1_3.spend.outcome",
+        "whyKey": "event.e1_3.spend.why"
+      },
+      {
+        "id": "split",
+        "labelKey": "event.e1_3.split.label",
+        "verdict": "good",
+        "now": {
+          "money": 600,
+          "goal": 600,
+          "joy": 1
+        },
+        "outcomeKey": "event.e1_3.split.outcome",
+        "whyKey": "event.e1_3.split.why"
+      },
+      {
+        "id": "save",
+        "labelKey": "event.e1_3.save.label",
+        "verdict": "mixed",
+        "now": {
+          "money": 1500,
+          "goal": 1500,
+          "joy": -1
+        },
+        "outcomeKey": "event.e1_3.save.outcome",
+        "whyKey": "event.e1_3.save.why"
+      }
+    ]
+  }
+]

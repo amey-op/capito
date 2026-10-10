@@ -1,0 +1,155 @@
+{
+  "id": "5.2",
+  "level": 5,
+  "tier": "must",
+  "titleKey": "lesson.5_2.title",
+  "gutCheck": {
+    "promptKey": "lesson.5_2.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.5_2.gut.a.label",
+        "resultKey": "lesson.5_2.gut.a.result",
+        "tone": "good"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.5_2.gut.b.label",
+        "resultKey": "lesson.5_2.gut.b.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.5_2.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.5_2.c1.text",
+      "art": "snowball"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.5_2.c2.text",
+      "art": "flat-steps",
+      "terms": [
+        "simpleInterest"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_2.c2.reveal.prompt",
+        "answerKey": "lesson.5_2.c2.reveal.answer"
+      }
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.5_2.c3.text",
+      "art": "growing-steps",
+      "terms": [
+        "compoundInterest"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_2.c3.reveal.prompt",
+        "answerKey": "lesson.5_2.c3.reveal.answer"
+      }
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.5_2.c4.text",
+      "art": "seventy-two",
+      "terms": [
+        "ruleOf72"
+      ],
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.5_2.c4.reveal.prompt",
+        "answerKey": "lesson.5_2.c4.reveal.answer"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.5_2.c5.text",
+      "art": "two-runners"
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.5_2.c6.text",
+      "art": "snowball-downhill"
+    },
+    {
+      "id": "c7",
+      "textKey": "lesson.5_2.c7.text",
+      "art": "time-machine",
+      "interaction": {
+        "type": "tool",
+        "toolId": "timeMachine",
+        "prefill": {
+          "monthly": 500,
+          "ratePct": 8,
+          "years": 10
+        }
+      }
+    }
+  ],
+  "tool": {
+    "id": "timeMachine",
+    "prefill": {
+      "monthly": 500,
+      "ratePct": 8,
+      "years": 10
+    }
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.5_2.q1.prompt",
+      "options": [
+        "lesson.5_2.q1.o1",
+        "lesson.5_2.q1.o2",
+        "lesson.5_2.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.5_2.q1.right",
+      "feedbackWrongKey": "lesson.5_2.q1.wrong",
+      "terms": [
+        "compoundInterest"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "single",
+      "promptKey": "lesson.5_2.q2.prompt",
+      "options": [
+        "lesson.5_2.q2.o1",
+        "lesson.5_2.q2.o2",
+        "lesson.5_2.q2.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.5_2.q2.right",
+      "feedbackWrongKey": "lesson.5_2.q2.wrong",
+      "terms": [
+        "ruleOf72"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "trueFalse",
+      "promptKey": "lesson.5_2.q3.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.5_2.q3.right",
+      "feedbackWrongKey": "lesson.5_2.q3.wrong"
+    }
+  ],
+  "terms": [
+    "simpleInterest",
+    "compoundInterest",
+    "ruleOf72"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.5_2.effect",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": []
+}
