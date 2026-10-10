@@ -19,7 +19,7 @@ export function ToolEmbed({ toolId, prefill, onClose }: ToolEmbedProps) {
     if (toolId === 'scamShield') return <ScamShieldPage embedded />;
     if (toolId === 'checkIt') return <CheckItTool />;
     if (toolId === 'nowWhat') return <NowWhatTool />;
-    if (toolId === 'budgetBuilder') return <BudgetBuilder />;
+    if (toolId === 'budgetBuilder') return <BudgetBuilder prefill={prefill} />;
     if (toolId === 'upiPractice') return <UpiPractice />;
     if (toolId === 'badYear') return <BadYearSimulator />;
   }

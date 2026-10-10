@@ -148,6 +148,79 @@
   border-width: 2px;
 }
 
+/* Budget Builder: one bar split between wants and savings */
+.tl-split {
+  display: flex;
+  height: 1.4rem;
+  border: var(--border-sm);
+  border-radius: 9999px;
+  overflow: hidden;
+  background: var(--secondary);
+}
+.tl-split-wants {
+  background: var(--warning);
+}
+.tl-split-savings {
+  background: var(--success);
+}
+.tl-range-wants {
+  accent-color: var(--warning);
+}
+.tl-range-savings {
+  accent-color: var(--success);
+}
+
+/* UPI practice: send / receive tabs, then the pretend phone screen */
+.tl-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.btn.tl-tab {
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border-width: 2px;
+  line-height: 1.25;
+}
+.btn.tl-tab .num {
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+.btn.tl-tab.is-on {
+  background: var(--foreground);
+  color: var(--ground);
+}
+
+/* UPI practice: the pretend phone screen */
+.tl-phone {
+  align-items: center;
+  text-align: center;
+  background: var(--info-bg);
+  border-color: var(--info);
+  box-shadow: 3px 3px 0 0 var(--info);
+}
+.tl-phone-amount {
+  font-size: clamp(1.8rem, 9vw, 2.4rem);
+  line-height: 1.1;
+}
+.tl-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+.tl-choices .btn {
+  border-radius: var(--radius-sm);
+  white-space: normal;
+  line-height: 1.35;
+}
+.tl-rules {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
 /* Phones: one result per row, label left and figure right, so long rupee figures never break. */
 @media (max-width: 480px) {
   .tl-results {
