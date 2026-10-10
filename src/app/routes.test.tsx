@@ -19,13 +19,10 @@ beforeAll(() => {
 afterEach(cleanup);
 
 describe('app shell routes', () => {
-  it.each([
-    ['/glossary', 'Word Bank', 'Team · work package A1'],
-  ])('%s renders its placeholder with the owner', (path, title, owner) => {
-    open(path);
-    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(title);
-    expect(screen.getByText(new RegExp(owner))).toBeTruthy();
-    expect(screen.getByText(/needs \(food, home, school fees, travel\) are already taken care of/)).toBeTruthy();
+  it('/glossary renders the Word Bank with search', () => {
+    open('/glossary');
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Word Bank');
+    expect(screen.getByRole('searchbox')).toBeTruthy();
   });
 
   // These routes now render their real pages.
