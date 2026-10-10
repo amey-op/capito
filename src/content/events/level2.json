@@ -1,0 +1,134 @@
+[
+  {
+    "id": "e2_1",
+    "level": 2,
+    "kind": "life",
+    "after": "2.1",
+    "titleKey": "event.e2_1.title",
+    "introKey": "event.e2_1.intro",
+    "choices": [
+      {
+        "id": "drawer",
+        "labelKey": "event.e2_1.drawer.label",
+        "verdict": "bad",
+        "now": {
+          "money": 3000
+        },
+        "later": [
+          {
+            "inMonths": 1,
+            "money": -800,
+            "noteKey": "event.e2_1.drawer.later"
+          }
+        ],
+        "outcomeKey": "event.e2_1.drawer.outcome",
+        "whyKey": "event.e2_1.drawer.why"
+      },
+      {
+        "id": "bank",
+        "labelKey": "event.e2_1.bank.label",
+        "verdict": "good",
+        "now": {
+          "money": 3000,
+          "to": "savings"
+        },
+        "outcomeKey": "event.e2_1.bank.outcome",
+        "whyKey": "event.e2_1.bank.why"
+      },
+      {
+        "id": "spend",
+        "labelKey": "event.e2_1.spend.label",
+        "verdict": "mixed",
+        "now": {
+          "joy": 3
+        },
+        "outcomeKey": "event.e2_1.spend.outcome",
+        "whyKey": "event.e2_1.spend.why"
+      }
+    ]
+  },
+  {
+    "id": "e2_2",
+    "level": 2,
+    "kind": "scamAlert",
+    "after": "2.2",
+    "titleKey": "event.e2_2.title",
+    "introKey": "event.e2_2.intro",
+    "choices": [
+      {
+        "id": "pin",
+        "labelKey": "event.e2_2.pin.label",
+        "verdict": "bad",
+        "now": {
+          "money": -1500
+        },
+        "shield": -1,
+        "flags": [
+          "fell_for_upi"
+        ],
+        "outcomeKey": "event.e2_2.pin.outcome",
+        "whyKey": "event.e2_2.pin.why"
+      },
+      {
+        "id": "ignore",
+        "labelKey": "event.e2_2.ignore.label",
+        "verdict": "good",
+        "shield": 1,
+        "outcomeKey": "event.e2_2.ignore.outcome",
+        "whyKey": "event.e2_2.ignore.why"
+      },
+      {
+        "id": "ask",
+        "labelKey": "event.e2_2.ask.label",
+        "verdict": "good",
+        "now": {
+          "joy": 1
+        },
+        "shield": 1,
+        "outcomeKey": "event.e2_2.ask.outcome",
+        "whyKey": "event.e2_2.ask.why"
+      }
+    ]
+  },
+  {
+    "id": "e2_3",
+    "level": 2,
+    "kind": "life",
+    "after": "2.2",
+    "titleKey": "event.e2_3.title",
+    "introKey": "event.e2_3.intro",
+    "choices": [
+      {
+        "id": "b",
+        "labelKey": "event.e2_3.b.label",
+        "verdict": "bad",
+        "flags": [
+          "account_b"
+        ],
+        "outcomeKey": "event.e2_3.b.outcome",
+        "whyKey": "event.e2_3.b.why"
+      },
+      {
+        "id": "a",
+        "labelKey": "event.e2_3.a.label",
+        "verdict": "good",
+        "flags": [
+          "account_a"
+        ],
+        "outcomeKey": "event.e2_3.a.outcome",
+        "whyKey": "event.e2_3.a.why"
+      },
+      {
+        "id": "read",
+        "labelKey": "event.e2_3.read.label",
+        "verdict": "good",
+        "flags": [
+          "account_a",
+          "read_terms"
+        ],
+        "outcomeKey": "event.e2_3.read.outcome",
+        "whyKey": "event.e2_3.read.why"
+      }
+    ]
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "e7_1",
+    "level": 7,
+    "kind": "life",
+    "after": "7.1",
+    "titleKey": "event.e7_1.title",
+    "introKey": "event.e7_1.intro",
+    "choices": [
+      {
+        "id": "read",
+        "labelKey": "event.e7_1.read.label",
+        "verdict": "good",
+        "now": {
+          "joy": 1
+        },
+        "flags": [
+          "keeps_records"
+        ],
+        "outcomeKey": "event.e7_1.read.outcome",
+        "whyKey": "event.e7_1.read.why"
+      },
+      {
+        "id": "ignore",
+        "labelKey": "event.e7_1.ignore.label",
+        "verdict": "mixed",
+        "outcomeKey": "event.e7_1.ignore.outcome",
+        "whyKey": "event.e7_1.ignore.why"
+      }
+    ]
+  },
+  {
+    "id": "e7_2",
+    "level": 7,
+    "kind": "life",
+    "after": "7.1",
+    "titleKey": "event.e7_2.title",
+    "introKey": "event.e7_2.intro",
+    "choices": [
+      {
+        "id": "record",
+        "labelKey": "event.e7_2.record.label",
+        "verdict": "good",
+        "flags": [
+          "keeps_records"
+        ],
+        "outcomeKey": "event.e7_2.record.outcome",
+        "whyKey": "event.e7_2.record.why"
+      },
+      {
+        "id": "skip",
+        "labelKey": "event.e7_2.skip.label",
+        "verdict": "mixed",
+        "flags": [
+          "no_records"
+        ],
+        "outcomeKey": "event.e7_2.skip.outcome",
+        "whyKey": "event.e7_2.skip.why"
+      }
+    ]
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "e4_1",
+    "level": 4,
+    "kind": "life",
+    "after": "4.1",
+    "titleKey": "event.e4_1.title",
+    "introKey": "event.e4_1.intro",
+    "choices": [
+      {
+        "id": "nocost",
+        "labelKey": "event.e4_1.nocost.label",
+        "verdict": "mixed",
+        "now": {
+          "loan": {
+            "kind": "noCostEmi",
+            "principal": 6000,
+            "months": 6
+          },
+          "possessions": [
+            {
+              "nameKey": "event.e4_1.phone",
+              "cost": 6000,
+              "category": "phone"
+            }
+          ]
+        },
+        "outcomeKey": "event.e4_1.nocost.outcome",
+        "whyKey": "event.e4_1.nocost.why",
+        "termsToReinforce": [
+          "noCostEmi"
+        ]
+      },
+      {
+        "id": "bank",
+        "labelKey": "event.e4_1.bank.label",
+        "verdict": "mixed",
+        "now": {
+          "loan": {
+            "kind": "bank",
+            "principal": 6000,
+            "months": 6
+          },
+          "money": -6000,
+          "possessions": [
+            {
+              "nameKey": "event.e4_1.phone",
+              "cost": 6000,
+              "category": "phone"
+            }
+          ]
+        },
+        "outcomeKey": "event.e4_1.bank.outcome",
+        "whyKey": "event.e4_1.bank.why",
+        "termsToReinforce": [
+          "emi"
+        ]
+      },
+      {
+        "id": "wait",
+        "labelKey": "event.e4_1.wait.label",
+        "verdict": "good",
+        "flags": [
+          "waited_for_phone"
+        ],
+        "outcomeKey": "event.e4_1.wait.outcome",
+        "whyKey": "event.e4_1.wait.why"
+      }
+    ]
+  },
+  {
+    "id": "e4_2",
+    "level": 4,
+    "kind": "life",
+    "after": "4.2",
+    "titleKey": "event.e4_2.title",
+    "introKey": "event.e4_2.intro",
+    "choices": [
+      {
+        "id": "cosign",
+        "labelKey": "event.e4_2.cosign.label",
+        "verdict": "bad",
+        "later": [
+          {
+            "inMonths": 2,
+            "money": -850,
+            "credit": -30,
+            "noteKey": "event.e4_2.cosign.later"
+          }
+        ],
+        "flags": [
+          "co_signed"
+        ],
+        "outcomeKey": "event.e4_2.cosign.outcome",
+        "whyKey": "event.e4_2.cosign.why"
+      },
+      {
+        "id": "decline",
+        "labelKey": "event.e4_2.decline.label",
+        "verdict": "good",
+        "now": {
+          "money": -300,
+          "joy": 1
+        },
+        "outcomeKey": "event.e4_2.decline.outcome",
+        "whyKey": "event.e4_2.decline.why"
+      }
+    ]
+  },
+  {
+    "id": "e4_3",
+    "level": 4,
+    "kind": "life",
+    "after": "4.3",
+    "titleKey": "event.e4_3.title",
+    "introKey": "event.e4_3.intro",
+    "choices": [
+      {
+        "id": "accept",
+        "labelKey": "event.e4_3.accept.label",
+        "verdict": "bad",
+        "now": {
+          "loan": {
+            "kind": "loanApp",
+            "principal": 3000,
+            "months": 1
+          }
+        },
+        "flags": [
+          "fell_for_loan_app"
+        ],
+        "outcomeKey": "event.e4_3.accept.outcome",
+        "whyKey": "event.e4_3.accept.why"
+      },
+      {
+        "id": "decline",
+        "labelKey": "event.e4_3.decline.label",
+        "verdict": "good",
+        "outcomeKey": "event.e4_3.decline.outcome",
+        "whyKey": "event.e4_3.decline.why"
+      },
+      {
+        "id": "check",
+        "labelKey": "event.e4_3.check.label",
+        "verdict": "good",
+        "shield": 1,
+        "outcomeKey": "event.e4_3.check.outcome",
+        "whyKey": "event.e4_3.check.why"
+      }
+    ]
+  }
+]

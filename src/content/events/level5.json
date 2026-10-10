@@ -1,0 +1,203 @@
+[
+  {
+    "id": "e5_1",
+    "level": 5,
+    "kind": "life",
+    "after": "5.3",
+    "titleKey": "event.e5_1.title",
+    "introKey": "event.e5_1.intro",
+    "choices": [
+      {
+        "id": "spend",
+        "labelKey": "event.e5_1.spend.label",
+        "verdict": "mixed",
+        "now": {
+          "joy": 3
+        },
+        "outcomeKey": "event.e5_1.spend.outcome",
+        "whyKey": "event.e5_1.spend.why"
+      },
+      {
+        "id": "savings",
+        "labelKey": "event.e5_1.savings.label",
+        "verdict": "mixed",
+        "now": {
+          "money": 6000,
+          "to": "savings"
+        },
+        "outcomeKey": "event.e5_1.savings.outcome",
+        "whyKey": "event.e5_1.savings.why"
+      },
+      {
+        "id": "fd",
+        "labelKey": "event.e5_1.fd.label",
+        "verdict": "good",
+        "now": {
+          "money": 6000,
+          "moves": [
+            {
+              "from": "wallet",
+              "to": "fd",
+              "amount": 6000
+            }
+          ]
+        },
+        "outcomeKey": "event.e5_1.fd.outcome",
+        "whyKey": "event.e5_1.fd.why",
+        "termsToReinforce": [
+          "fixedDeposit"
+        ]
+      },
+      {
+        "id": "split",
+        "labelKey": "event.e5_1.split.label",
+        "verdict": "good",
+        "now": {
+          "money": 5000,
+          "moves": [
+            {
+              "from": "wallet",
+              "to": "fd",
+              "amount": 3000
+            },
+            {
+              "from": "wallet",
+              "to": "savings",
+              "amount": 2000
+            }
+          ],
+          "joy": 1
+        },
+        "outcomeKey": "event.e5_1.split.outcome",
+        "whyKey": "event.e5_1.split.why"
+      }
+    ]
+  },
+  {
+    "id": "e5_2",
+    "level": 5,
+    "kind": "life",
+    "after": "5.3",
+    "titleKey": "event.e5_2.title",
+    "introKey": "event.e5_2.intro",
+    "choices": [
+      {
+        "id": "breakfd",
+        "labelKey": "event.e5_2.breakfd.label",
+        "verdict": "mixed",
+        "now": {
+          "moves": [
+            {
+              "from": "fd",
+              "to": "wallet",
+              "amount": null
+            }
+          ],
+          "money": -3000
+        },
+        "availableIf": {
+          "minBucket": {
+            "bucket": "fd",
+            "amount": 3000
+          }
+        },
+        "outcomeKey": "event.e5_2.breakfd.outcome",
+        "whyKey": "event.e5_2.breakfd.why",
+        "termsToReinforce": [
+          "prematureWithdrawal"
+        ]
+      },
+      {
+        "id": "fund",
+        "labelKey": "event.e5_2.fund.label",
+        "verdict": "good",
+        "now": {
+          "money": -3000,
+          "from": "emergency"
+        },
+        "availableIf": {
+          "minBucket": {
+            "bucket": "emergency",
+            "amount": 3000
+          }
+        },
+        "outcomeKey": "event.e5_2.fund.outcome",
+        "whyKey": "event.e5_2.fund.why"
+      },
+      {
+        "id": "pay",
+        "labelKey": "event.e5_2.pay.label",
+        "verdict": "mixed",
+        "now": {
+          "money": -3000
+        },
+        "availableIf": {
+          "minBucket": {
+            "bucket": "wallet",
+            "amount": 3000
+          }
+        },
+        "outcomeKey": "event.e5_2.pay.outcome",
+        "whyKey": "event.e5_2.pay.why"
+      },
+      {
+        "id": "skip",
+        "labelKey": "event.e5_2.skip.label",
+        "verdict": "mixed",
+        "now": {
+          "joy": -2
+        },
+        "outcomeKey": "event.e5_2.skip.outcome",
+        "whyKey": "event.e5_2.skip.why"
+      }
+    ]
+  },
+  {
+    "id": "e5_3",
+    "level": 5,
+    "kind": "scamAlert",
+    "after": "5.3",
+    "titleKey": "event.e5_3.title",
+    "introKey": "event.e5_3.intro",
+    "choices": [
+      {
+        "id": "invest",
+        "labelKey": "event.e5_3.invest.label",
+        "verdict": "bad",
+        "now": {
+          "money": -2000
+        },
+        "later": [
+          {
+            "inMonths": 1,
+            "noteKey": "event.e5_3.invest.later"
+          }
+        ],
+        "shield": -1,
+        "flags": [
+          "fell_for_double"
+        ],
+        "outcomeKey": "event.e5_3.invest.outcome",
+        "whyKey": "event.e5_3.invest.why"
+      },
+      {
+        "id": "ignore",
+        "labelKey": "event.e5_3.ignore.label",
+        "verdict": "mixed",
+        "outcomeKey": "event.e5_3.ignore.outcome",
+        "whyKey": "event.e5_3.ignore.why"
+      },
+      {
+        "id": "ask",
+        "labelKey": "event.e5_3.ask.label",
+        "verdict": "good",
+        "shield": 1,
+        "flags": [
+          "knows_five_checks"
+        ],
+        "outcomeKey": "event.e5_3.ask.outcome",
+        "whyKey": "event.e5_3.ask.why"
+      }
+    ]
+  }
+]

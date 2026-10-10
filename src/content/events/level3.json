@@ -1,0 +1,174 @@
+[
+  {
+    "id": "e3_1",
+    "level": 3,
+    "kind": "life",
+    "after": "3.1",
+    "titleKey": "event.e3_1.title",
+    "introKey": "event.e3_1.intro",
+    "choices": [
+      {
+        "id": "fund",
+        "labelKey": "event.e3_1.fund.label",
+        "verdict": "good",
+        "now": {
+          "money": -2800,
+          "from": "emergency"
+        },
+        "availableIf": {
+          "minBucket": {
+            "bucket": "emergency",
+            "amount": 2800
+          }
+        },
+        "outcomeKey": "event.e3_1.fund.outcome",
+        "whyKey": "event.e3_1.fund.why"
+      },
+      {
+        "id": "goal",
+        "labelKey": "event.e3_1.goal.label",
+        "verdict": "mixed",
+        "now": {
+          "money": -2800,
+          "goal": -2800,
+          "goalSlipMonths": 1
+        },
+        "outcomeKey": "event.e3_1.goal.outcome",
+        "whyKey": "event.e3_1.goal.why"
+      },
+      {
+        "id": "lender",
+        "labelKey": "event.e3_1.lender.label",
+        "verdict": "bad",
+        "now": {
+          "loan": {
+            "kind": "informal",
+            "principal": 2800,
+            "months": 3
+          },
+          "money": -2800
+        },
+        "flags": [
+          "informal_loan"
+        ],
+        "outcomeKey": "event.e3_1.lender.outcome",
+        "whyKey": "event.e3_1.lender.why"
+      },
+      {
+        "id": "skip",
+        "labelKey": "event.e3_1.skip.label",
+        "verdict": "mixed",
+        "now": {
+          "joy": -3
+        },
+        "outcomeKey": "event.e3_1.skip.outcome",
+        "whyKey": "event.e3_1.skip.why"
+      }
+    ]
+  },
+  {
+    "id": "e3_2",
+    "level": 3,
+    "kind": "life",
+    "after": "3.3",
+    "titleKey": "event.e3_2.title",
+    "introKey": "event.e3_2.intro",
+    "choices": [
+      {
+        "id": "insured",
+        "labelKey": "event.e3_2.insured.label",
+        "verdict": "good",
+        "now": {
+          "money": -500
+        },
+        "availableIf": {
+          "insured": true
+        },
+        "outcomeKey": "event.e3_2.insured.outcome",
+        "whyKey": "event.e3_2.insured.why"
+      },
+      {
+        "id": "fund",
+        "labelKey": "event.e3_2.fund.label",
+        "verdict": "mixed",
+        "now": {
+          "money": -3500,
+          "from": "emergency"
+        },
+        "availableIf": {
+          "insured": false,
+          "minBucket": {
+            "bucket": "emergency",
+            "amount": 3500
+          }
+        },
+        "outcomeKey": "event.e3_2.fund.outcome",
+        "whyKey": "event.e3_2.fund.why"
+      },
+      {
+        "id": "goal",
+        "labelKey": "event.e3_2.goal.label",
+        "verdict": "mixed",
+        "now": {
+          "money": -3500,
+          "goal": -3500,
+          "goalSlipMonths": 1
+        },
+        "availableIf": {
+          "insured": false
+        },
+        "outcomeKey": "event.e3_2.goal.outcome",
+        "whyKey": "event.e3_2.goal.why"
+      },
+      {
+        "id": "lender",
+        "labelKey": "event.e3_2.lender.label",
+        "verdict": "bad",
+        "now": {
+          "loan": {
+            "kind": "informal",
+            "principal": 3500,
+            "months": 3
+          },
+          "money": -3500
+        },
+        "flags": [
+          "informal_loan"
+        ],
+        "availableIf": {
+          "insured": false
+        },
+        "outcomeKey": "event.e3_2.lender.outcome",
+        "whyKey": "event.e3_2.lender.why"
+      }
+    ]
+  },
+  {
+    "id": "e3_3",
+    "level": 3,
+    "kind": "life",
+    "after": "3.3",
+    "titleKey": "event.e3_3.title",
+    "introKey": "event.e3_3.intro",
+    "choices": [
+      {
+        "id": "rd",
+        "labelKey": "event.e3_3.rd.label",
+        "verdict": "good",
+        "outcomeKey": "event.e3_3.rd.outcome",
+        "whyKey": "event.e3_3.rd.why"
+      },
+      {
+        "id": "skip",
+        "labelKey": "event.e3_3.skip.label",
+        "verdict": "bad",
+        "now": {
+          "money": -550,
+          "joy": 1
+        },
+        "outcomeKey": "event.e3_3.skip.outcome",
+        "whyKey": "event.e3_3.skip.why"
+      }
+    ]
+  }
+]
