@@ -7,6 +7,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { PortfolioPage } from '@/pages/PortfolioPage';
 import { ScamShieldPage } from '@/pages/ScamShieldPage';
 import { ToolPage } from '@/pages/ToolPage';
+import { ToolsPage } from '@/pages/ToolsPage';
 import { Layout } from './Layout';
 
 /** Opt in to React Router v7 behaviour now, so upgrading later changes nothing. */
@@ -27,6 +28,7 @@ export const routes: RouteObject[] = [
       { path: '/lesson/:id', element: <LessonPage /> },
       { path: '/portfolio', element: <PortfolioPage /> },
       { path: '/event/:id', element: <EventPage /> },
+      { path: '/tools', element: <ToolsPage /> },
       { path: '/tool/:id', element: <ToolPage /> },
       { path: '/scam-shield', element: <ScamShieldPage /> },
       { path: '/glossary', element: <GlossaryPage /> },
