@@ -8,10 +8,12 @@ import './scamshield.css';
 interface ScamShieldPageProps {
   /** Fixed deck for tests; a fresh shuffled round otherwise. */
   deck?: Scenario[];
+  /** Inside a lesson or the tool page: no page heading and no links away from the lesson. */
+  embedded?: boolean;
 }
 
 /** Scam Shield: read a message, call it a scam or fine, then see the tell-tale signs. */
-export function ScamShieldPage({ deck: fixedDeck }: ScamShieldPageProps) {
+export function ScamShieldPage({ deck: fixedDeck, embedded = false }: ScamShieldPageProps) {
   const { t } = useTranslation();
   const dispatch = useGameStore(selectDispatch);
   const shield = useGameStore((s) => s.game.shield);
@@ -26,10 +28,11 @@ export function ScamShieldPage({ deck: fixedDeck }: ScamShieldPageProps) {
   const title = (
     <div>
       <span className="eyebrow e-red">{t('scamshield.ui.eyebrow')}</span>
-      <h1>{t('scamshield.ui.title')}</h1>
+      {embedded ? <h2>{t('scamshield.ui.title')}</h2> : <h1>{t('scamshield.ui.title')}</h1>}
     </div>
   );
-  const more = (
+  const wrap = embedded ? 'card stack' : 'stack';
+  const more = embedded ? null : (
     <section className="card-sm stack" aria-labelledby="ss-more">
       <h2 id="ss-more">{t('scamshield.ui.more')}</h2>
       <div className="row">
@@ -46,7 +49,7 @@ export function ScamShieldPage({ deck: fixedDeck }: ScamShieldPageProps) {
   if (finished || !scenario) {
     const all = correct === deck.length;
     return (
-      <div className="stack">
+      <div className={wrap} data-tool-id="scamShield">
         {title}
         <section className={`card stack ${all ? 'panel-green' : 'panel-yellow'}`} role="status">
           <span className="ss-label">{t('scamshield.ui.resultLabel')}</span>
@@ -68,9 +71,11 @@ export function ScamShieldPage({ deck: fixedDeck }: ScamShieldPageProps) {
           >
             {t('scamshield.ui.again')}
           </button>
-          <Link className="btn btn-secondary" to="/portfolio">
-            {t('scamshield.ui.toPortfolio')}
-          </Link>
+          {!embedded && (
+            <Link className="btn btn-secondary" to="/portfolio">
+              {t('scamshield.ui.toPortfolio')}
+            </Link>
+          )}
         </div>
         {more}
       </div>
@@ -98,7 +103,7 @@ export function ScamShieldPage({ deck: fixedDeck }: ScamShieldPageProps) {
   };
 
   return (
-    <div className="stack">
+    <div className={wrap} data-tool-id="scamShield">
       {title}
       <p>{t('scamshield.ui.intro')}</p>
 
@@ -110,7 +115,7 @@ export function ScamShieldPage({ deck: fixedDeck }: ScamShieldPageProps) {
         <span style={{ width: `${((index + (answered ? 1 : 0)) / deck.length) * 100}%` }} />
       </div>
 
-      <section className="card stack" aria-labelledby="ss-message">
+      <section className={`${embedded ? 'card-sm' : 'card'} stack`} aria-labelledby="ss-message">
         <div>
           <span className="eyebrow e-blue">{t(`scamshield.channel.${scenario.channel}`)}</span>
         </div>
