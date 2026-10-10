@@ -1,0 +1,22 @@
+{
+  "term.income.name": "Income",
+  "term.income.simple": "Money that comes to you.",
+  "term.income.life": "Your uncle gives ₹500 at Diwali; that's money in.",
+  "term.income.real": "Income = money you receive, from pocket money, a job, a gift or a scholarship.",
+  "term.expense.name": "Expense",
+  "term.expense.simple": "Money you spend.",
+  "term.expense.life": "Ravi's phone recharge every month.",
+  "term.expense.real": "Expense = money that goes out. Fixed: same each time. Variable: changes.",
+  "term.need.name": "Need",
+  "term.need.simple": "Something you must have to live and study.",
+  "term.need.life": "Rice, school fees, the bus.",
+  "term.need.real": "Need = an essential.",
+  "term.want.name": "Want",
+  "term.want.simple": "Something nice you could live without.",
+  "term.want.life": "Branded sneakers, a movie with friends.",
+  "term.want.real": "Want = a non-essential you'd like. Wants are fine when planned.",
+  "term.fixedExpense.name": "Fixed expense",
+  "term.fixedExpense.simple": "An expense that stays the same each time, like a bus pass.",
+  "term.variableExpense.name": "Variable expense",
+  "term.variableExpense.simple": "An expense that changes, like snacks and outings."
+}

@@ -1,0 +1,114 @@
+{
+  "id": "1.1",
+  "level": 1,
+  "tier": "must",
+  "titleKey": "lesson.1_1.title",
+  "gutCheck": {
+    "promptKey": "lesson.1_1.gut.prompt",
+    "choices": [
+      { "id": "a", "labelKey": "lesson.1_1.gut.a.label", "resultKey": "lesson.1_1.gut.a.result", "tone": "mixed" },
+      { "id": "b", "labelKey": "lesson.1_1.gut.b.label", "resultKey": "lesson.1_1.gut.b.result", "tone": "mixed" },
+      { "id": "c", "labelKey": "lesson.1_1.gut.c.label", "resultKey": "lesson.1_1.gut.c.result", "tone": "good" }
+    ],
+    "bridgeKey": "lesson.1_1.gut.bridge"
+  },
+  "cards": [
+    { "id": "c1", "textKey": "lesson.1_1.c1.text", "art": "wallet-in-out" },
+    {
+      "id": "c2",
+      "textKey": "lesson.1_1.c2.text",
+      "art": "hand-wallet-in",
+      "terms": ["income"],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.1_1.c2.sort.prompt",
+        "categories": [
+          { "id": "income", "labelKey": "lesson.1_1.c2.sort.income" },
+          { "id": "notIncome", "labelKey": "lesson.1_1.c2.sort.notIncome" }
+        ],
+        "items": [
+          { "id": "gift", "labelKey": "lesson.1_1.c2.sort.gift", "category": "income" },
+          { "id": "busFee", "labelKey": "lesson.1_1.c2.sort.busFee", "category": "notIncome" }
+        ]
+      }
+    },
+    { "id": "c3", "textKey": "lesson.1_1.c3.text", "art": "wallet-out", "terms": ["expense"] },
+    {
+      "id": "c4",
+      "textKey": "lesson.1_1.c4.text",
+      "art": "two-columns",
+      "terms": ["fixedExpense", "variableExpense"],
+      "interaction": { "type": "reveal", "promptKey": "lesson.1_1.c4.reveal.prompt", "answerKey": "lesson.1_1.c4.reveal.answer" }
+    },
+    { "id": "c5", "textKey": "lesson.1_1.c5.text", "art": "rice-and-sneakers", "terms": ["need", "want"] },
+    {
+      "id": "c6",
+      "textKey": "lesson.1_1.c6.text",
+      "art": "phone-slider",
+      "terms": ["need", "want"],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.1_1.c6.sort.prompt",
+        "categories": [
+          { "id": "need", "labelKey": "lesson.1_1.c6.sort.need" },
+          { "id": "want", "labelKey": "lesson.1_1.c6.sort.want" }
+        ],
+        "items": [
+          { "id": "fees", "labelKey": "lesson.1_1.c6.sort.fees", "category": "need" },
+          { "id": "riceDal", "labelKey": "lesson.1_1.c6.sort.riceDal", "category": "need" },
+          { "id": "gameSkin", "labelKey": "lesson.1_1.c6.sort.gameSkin", "category": "want" },
+          { "id": "sneakers", "labelKey": "lesson.1_1.c6.sort.sneakers", "category": "want" },
+          { "id": "recharge", "labelKey": "lesson.1_1.c6.sort.recharge", "category": "need" },
+          { "id": "movie", "labelKey": "lesson.1_1.c6.sort.movie", "category": "want" }
+        ],
+        "feedbackKey": "lesson.1_1.c6.sort.feedback"
+      }
+    },
+    { "id": "c7", "textKey": "lesson.1_1.c7.text", "art": "house-shield", "footerKey": "lesson.1_1.c7.footer" },
+    {
+      "id": "c8",
+      "textKey": "lesson.1_1.c8.text",
+      "art": "coin-tower",
+      "interaction": { "type": "tool", "toolId": "leakFinder", "prefill": { "amount": 40 } }
+    }
+  ],
+  "tool": { "id": "leakFinder", "prefill": { "amount": 40 } },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.1_1.q1.prompt",
+      "options": ["lesson.1_1.q1.o1", "lesson.1_1.q1.o2", "lesson.1_1.q1.o3", "lesson.1_1.q1.o4"],
+      "correct": 2,
+      "feedbackRightKey": "lesson.1_1.q1.right",
+      "feedbackWrongKey": "lesson.1_1.q1.wrong",
+      "terms": ["want"]
+    },
+    {
+      "id": "q2",
+      "type": "single",
+      "promptKey": "lesson.1_1.q2.prompt",
+      "options": ["lesson.1_1.q2.o1", "lesson.1_1.q2.o2", "lesson.1_1.q2.o3"],
+      "correct": 1,
+      "feedbackRightKey": "lesson.1_1.q2.right",
+      "feedbackWrongKey": "lesson.1_1.q2.wrong",
+      "terms": ["expense"]
+    },
+    {
+      "id": "q3",
+      "type": "trueFalse",
+      "promptKey": "lesson.1_1.q3.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.1_1.q3.right",
+      "feedbackWrongKey": "lesson.1_1.q3.wrong",
+      "terms": ["want"]
+    }
+  ],
+  "terms": ["income", "expense", "need", "want"],
+  "portfolioEffect": {
+    "decisionKey": "lesson.1_1.effect",
+    "unlocks": ["wallet", "myWants"],
+    "monthAdvances": true
+  },
+  "facts": [{ "key": "leak.per_year", "verified": true }]
+}

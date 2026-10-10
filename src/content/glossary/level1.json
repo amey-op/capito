@@ -1,0 +1,8 @@
+[
+  { "id": "income", "introducedIn": "1.1", "core": true, "verified": true },
+  { "id": "expense", "introducedIn": "1.1", "core": true, "verified": true },
+  { "id": "need", "introducedIn": "1.1", "core": true, "verified": true },
+  { "id": "want", "introducedIn": "1.1", "core": true, "verified": true },
+  { "id": "fixedExpense", "introducedIn": "1.1", "core": false, "verified": true },
+  { "id": "variableExpense", "introducedIn": "1.1", "core": false, "verified": true }
+]
