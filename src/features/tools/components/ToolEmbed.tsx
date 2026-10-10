@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { configToolIds, isToolId, type ConfigToolId, type ToolEmbedProps } from '@/core/tools';
-import { CheckItTool, NowWhatTool } from '../../scamshield';
+import { CheckItTool, NowWhatTool, ScamShieldPage } from '../../scamshield';
 import { toolRegistry } from '../registry';
 import { BadYearSimulator } from './BadYearSimulator';
 import { BudgetBuilder } from './BudgetBuilder';
@@ -16,6 +16,7 @@ export function ToolEmbed({ toolId, prefill, onClose }: ToolEmbedProps) {
 
   if (isToolId(toolId)) {
     if (isConfigTool(toolId)) return <ConfigCalculator toolDef={toolRegistry[toolId]} prefill={prefill} onClose={onClose} />;
+    if (toolId === 'scamShield') return <ScamShieldPage embedded />;
     if (toolId === 'checkIt') return <CheckItTool />;
     if (toolId === 'nowWhat') return <NowWhatTool />;
     if (toolId === 'budgetBuilder') return <BudgetBuilder prefill={prefill} />;

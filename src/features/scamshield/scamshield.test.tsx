@@ -122,3 +122,32 @@ describe('Check-it and Now what', () => {
     expect(untranslated()).toEqual([]);
   });
 });
+
+describe('Scam Shield inside a lesson', () => {
+  it('the tool id scamShield runs the same game without leaving the lesson', async () => {
+    const { ToolEmbed } = await import('@/features/tools');
+    render(
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ToolEmbed toolId="scamShield" />
+      </MemoryRouter>,
+    );
+    expect(screen.getByRole('heading', { level: 2, name: 'Scam Shield' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { level: 1 })).toBeNull();
+    expect(screen.queryByRole('link')).toBeNull();
+    for (let i = 0; i < DECK_SIZE; i++) {
+      fireEvent.click(screen.getByRole('button', { name: 'Scam' }));
+      fireEvent.click(screen.getByRole('button', { name: i < DECK_SIZE - 1 ? 'Next message' : 'See my result' }));
+    }
+    expect(useGameStore.getState().game.shield.seen).toBe(DECK_SIZE);
+    expect(screen.queryByRole('link', { name: 'Back to my portfolio' })).toBeNull();
+    expect(untranslated()).toEqual([]);
+  });
+
+  it('lesson 8.1 has the game as its tool step', async () => {
+    const { lessonById } = await import('@/content');
+    const { lessonSteps } = await import('@/features/lessons');
+    const lesson = lessonById.get('8.1')!;
+    expect(lesson.tool).toEqual({ id: 'scamShield' });
+    expect(lessonSteps(lesson)).toContain('tool');
+  });
+});

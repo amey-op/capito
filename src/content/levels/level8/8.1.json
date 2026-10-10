@@ -43,6 +43,9 @@
       "textKey": "lesson.8_1.c5.text"
     }
   ],
+  "tool": {
+    "id": "scamShield"
+  },
   "quiz": [
     {
       "id": "q1",
