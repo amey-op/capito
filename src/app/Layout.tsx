@@ -6,6 +6,7 @@ import { useGameStore } from '@/core/store';
 const nav = [
   { to: '/', key: 'ui.nav.home', end: true },
   { to: '/portfolio', key: 'ui.nav.portfolio', end: false },
+  { to: '/tools', key: 'ui.nav.tools', end: false },
   { to: '/glossary', key: 'ui.nav.glossary', end: false },
   { to: '/scam-shield', key: 'ui.nav.scamShield', end: false },
 ] as const;
