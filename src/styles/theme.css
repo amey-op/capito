@@ -41,7 +41,8 @@
 
   --font-sans: 'Nunito', 'Segoe UI', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
-  --font-indic: 'Noto Sans Devanagari', 'Noto Sans Telugu', var(--font-sans);
+  --font-indic: 'Noto Sans Devanagari', 'Noto Sans Telugu', 'Nirmala UI', 'Mangal', 'Gautami',
+    var(--font-sans);
 }
 
 *,
@@ -116,6 +117,28 @@ h3 {
 :lang(te) :is(h1, h2, h3, h4),
 .indic :is(h1, h2, h3, h4) {
   line-height: 1.35;
+}
+/* Long Telugu and Hindi words wrap instead of pushing the page sideways. */
+:lang(hi) :is(h1, h2, h3, p, li, dd, label, button),
+:lang(te) :is(h1, h2, h3, p, li, dd, label, button) {
+  overflow-wrap: anywhere;
+}
+
+/* Language switcher in the header, and the draft-translation note under it. */
+.lang-switch {
+  padding: 0.4rem 2.2rem 0.4rem 0.8rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.app-header .container:has(> .lang-draft) {
+  min-height: 0;
+  padding-bottom: 0.4rem;
+}
+.app-header .lang-draft {
+  white-space: normal;
+  margin: 0;
+  font-size: 0.85rem;
 }
 
 /* Rupee figures: mono, tabular, no tilt */
