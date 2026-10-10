@@ -19,7 +19,6 @@ describe('app shell routes', () => {
   it.each([
     ['/', 'Home and level map', 'Team · work package A3'],
     ['/scam-shield', 'Scam Shield', 'Team · work package R3'],
-    ['/glossary', 'Word Bank', 'Team · work package A1'],
   ])('%s renders its placeholder with the owner', (path, title, owner) => {
     open(path);
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(title);
@@ -33,6 +32,7 @@ describe('app shell routes', () => {
     ['/event/e1_1', 'Life event'],
     ['/tool/emi?principal=6000', 'Tool'],
     ['/tools', 'Tools'],
+    ['/glossary', 'Word Bank'],
     ['/lesson/1.1', 'Income, expenses, needs and wants'],
   ])('%s renders its page inside the shell', (path, title) => {
     open(path);
