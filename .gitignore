@@ -1,0 +1,42 @@
+# --- Private / local-only (never commit) ---
+memory/
+send/
+# stray copy of the brief at the root (canonical copy lives in resources/)
+/Vanguard-ps.pdf
+# excluded problem statements (large, not ours)
+resources/archive-excluded/
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Dependencies and build output ---
+node_modules/
+dist/
+dist-ssr/
+build/
+coverage/
+.vite/
+*.tsbuildinfo
+.vercel/
+android/
+ios/
+
+# --- Logs ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*~

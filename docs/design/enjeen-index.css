@@ -1,0 +1,458 @@
+/* Nunito is loaded via a non-render-blocking <link rel="preload"> in index.html */
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Whiteboard / marker theme */
+  --ground: #faf9f4;          /* off-white whiteboard */
+  --panel: #ffffff;
+  --foreground: #17170f;      /* marker black */
+  --secondary: #f1f0e8;
+  --secondary-foreground: #57574c;
+
+  --primary: #17170f;
+  --primary-hover: #000000;
+
+  /* Marker colours */
+  --info: #2563eb;            /* blue marker  — primary accent / interactive */
+  --info-bg: #e7effd;
+  --success: #16a34a;         /* green marker — positive / safe */
+  --success-bg: #e7f6ec;
+  --warning: #ca8a04;         /* yellow sticky note — deadlines / caution */
+  --warning-bg: #fbf1d9;
+  --destructive: #dc2626;     /* red marker — traps / noise */
+  --destructive-bg: #fdeaea;
+  --purple: #7c3aed;          /* purple marker — mentorship / seniors */
+  --purple-bg: #f1e9fd;
+
+  --accent: var(--info);
+
+  /* Hard offset shadows — no blur */
+  --shadow-card: 5px 5px 0 0 var(--foreground);
+  --shadow-card-hover: 8px 8px 0 0 var(--foreground);
+  --shadow-sm: 3px 3px 0 0 var(--foreground);
+
+  --font-sans: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--ground);
+  background-image: radial-gradient(rgba(23, 23, 15, 0.16) 1.6px, transparent 1.6px);
+  background-size: 22px 22px;
+  color: var(--foreground);
+  line-height: 1.6;
+  overflow-x: clip;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* Brand wordmark — the exam sits inside the name */
+.wordmark {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.wordmark b {
+  color: var(--info);
+  font-weight: 900;
+}
+
+/* Marker highlight behind a word — like the posters */
+.hl {
+  display: inline-block;
+  padding: 0.02em 0.32em;
+  border-radius: 0.28em;
+  color: #fff;
+  background: var(--foreground);
+}
+.hl-green  { background: var(--success);     transform: rotate(-1deg); }
+.hl-blue   { background: var(--info);        transform: rotate(0.6deg); }
+.hl-yellow { background: var(--warning);     transform: rotate(-0.6deg); color: #1a1300; }
+.hl-purple { background: var(--purple);      transform: rotate(1deg); }
+.hl-red    { background: var(--destructive); transform: rotate(-0.8deg); }
+
+/* Tilted sticky-note eyebrow above section headings */
+.eyebrow {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.85rem;
+  border: 2.5px solid var(--foreground);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-1.5deg);
+  margin-bottom: 1rem;
+  background: var(--warning-bg);
+  color: #6b4a00;
+}
+.eyebrow.e-blue   { background: var(--info-bg);        color: #1a3a8f; }
+.eyebrow.e-green  { background: var(--success-bg);     color: #14532d; }
+.eyebrow.e-red    { background: var(--destructive-bg); color: #7f1d1d; }
+.eyebrow.e-purple { background: var(--purple-bg);      color: #4c1d95; }
+
+/* Coloured card variants — tinted fill + matching hard shadow */
+.glass-panel.panel-blue   { background: var(--info-bg);        border-color: var(--info);        box-shadow: 5px 5px 0 0 var(--info); }
+.glass-panel.panel-green  { background: var(--success-bg);     border-color: var(--success);     box-shadow: 5px 5px 0 0 var(--success); }
+.glass-panel.panel-yellow { background: var(--warning-bg);     border-color: var(--warning);     box-shadow: 5px 5px 0 0 var(--warning); }
+.glass-panel.panel-red    { background: var(--destructive-bg); border-color: var(--destructive); box-shadow: 5px 5px 0 0 var(--destructive); }
+.glass-panel.panel-purple { background: var(--purple-bg);      border-color: var(--purple);      box-shadow: 5px 5px 0 0 var(--purple); }
+.glass-panel.panel-blue:hover   { box-shadow: 8px 8px 0 0 var(--info); }
+.glass-panel.panel-green:hover  { box-shadow: 8px 8px 0 0 var(--success); }
+.glass-panel.panel-yellow:hover { box-shadow: 8px 8px 0 0 var(--warning); }
+.glass-panel.panel-red:hover    { box-shadow: 8px 8px 0 0 var(--destructive); }
+.glass-panel.panel-purple:hover { box-shadow: 8px 8px 0 0 var(--purple); }
+
+/* Tilted sticky note */
+.sticky {
+  transform: rotate(-1.2deg);
+  background: var(--warning-bg);
+}
+.glass-panel.sticky.s-purple { background: var(--purple-bg); border-color: var(--purple); box-shadow: 5px 5px 0 0 var(--purple); }
+
+/* Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+/* Neobrutalist card — solid fill, thick border, hard offset shadow, pop-out hover.
+   Kept the .glass-panel name so existing markup picks it up. */
+.glass-panel {
+  background: var(--panel);
+  border: 3px solid var(--foreground);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.glass-panel:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  font-weight: 800;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  font-family: var(--font-sans);
+  border: 3px solid var(--foreground);
+  gap: 0.5rem;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--info);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-secondary {
+  background: var(--panel);
+  color: var(--foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Ghost / whiteboard button — transparent so the grid shows through */
+.btn-ghost {
+  background: transparent;
+  color: var(--foreground);
+  box-shadow: none;
+}
+.btn-ghost:hover {
+  background: var(--panel);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Rough marker underline under a heading */
+.marker-underline {
+  position: relative;
+  display: inline-block;
+}
+.marker-underline::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.15em;
+  height: 0.32em;
+  background: var(--warning);
+  border-radius: 0.2em;
+  transform: rotate(-0.6deg);
+  z-index: -1;
+  opacity: 0.9;
+}
+.marker-underline.u-blue::after   { background: var(--info); }
+.marker-underline.u-green::after  { background: var(--success); }
+.marker-underline.u-purple::after { background: var(--purple); }
+
+/* Custom select — drop the native chrome arrow */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2317170f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.4rem !important;
+}
+
+/* Icon chip that sits above card titles */
+.marker-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid var(--foreground);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Layout Utilities */
+.section {
+  padding: 4.5rem 0;
+  position: relative;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.grid-cards-large {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.grid-cards-medium {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.grid-cards-small {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid-cols-2, .grid-cols-3,
+  .grid-cards-large, .grid-cards-medium, .grid-cards-small {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  h1 {
+    font-size: 2.4rem !important;
+    white-space: normal !important;
+  }
+
+  /* Collapse the nav to just the wordmark + one button */
+  .nav-links a:not(.btn) {
+    display: none;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 1rem !important;
+  }
+  .btn-nav-outline {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.12s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.footer-link {
+  color: var(--secondary-foreground);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: var(--foreground);
+}
+
+/* Feature roulette — expand-on-hover accordion (skiper-ui skiper52 pattern) */
+.roulette {
+  display: flex;
+  gap: 0.85rem;
+  height: 420px;
+  width: 100%;
+}
+.roulette-panel {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  border: 3px solid var(--foreground);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex-grow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+.roulette-panel.is-active { flex-grow: 6; }
+.rp-blue   { background: var(--info-bg); }
+.rp-green  { background: var(--success-bg); }
+.rp-yellow { background: var(--warning-bg); }
+.rp-purple { background: var(--purple-bg); }
+
+.roulette-panel > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
+}
+.roulette-panel.is-active > img { opacity: 1; }
+
+/* Expanded: black caption bar (hidden on desktop until the panel is active) */
+.roulette-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  background: var(--foreground);
+  color: var(--ground);
+  font-weight: 900;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.roulette-panel:not(.is-active) .roulette-label { display: none; }
+
+/* Collapsed: centred number + label on the tinted panel */
+.roulette-tab {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+.roulette-tab-text {
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: var(--foreground);
+  line-height: 1.15;
+}
+.roulette-num {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-weight: 700;
+  opacity: 0.75;
+}
+.roulette-label .roulette-num { font-size: 0.8rem; }
+.roulette-tab .roulette-num {
+  font-size: 1.4rem;
+  border: 3px solid var(--foreground);
+  border-radius: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 900px) {
+  .roulette {
+    height: auto;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .roulette-panel,
+  .roulette-panel.is-active {
+    flex: 0 0 auto;
+    height: 300px;
+  }
+  /* On touch, every panel shows its screenshot + full caption */
+  .roulette-panel > img { opacity: 1; }
+  .roulette-tab { display: none; }
+  .roulette-panel .roulette-label,
+  .roulette-panel:not(.is-active) .roulette-label { display: flex; }
+}
