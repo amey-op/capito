@@ -3,6 +3,9 @@ import { ToolEmbedProps, isToolId, configToolIds } from '../../../core/tools';
 import { ConfigCalculator } from './ConfigCalculator';
 import { toolRegistry } from '../registry';
 import { CheckItTool, NowWhatTool } from '../../scamshield';
+import { BudgetBuilder } from './BudgetBuilder';
+import { UpiPractice } from './UpiPractice';
+import { BadYearSimulator } from './BadYearSimulator';
 
 export function ToolEmbed({ toolId, prefill, onClose }: ToolEmbedProps) {
   if (!isToolId(toolId)) {
@@ -32,7 +35,19 @@ export function ToolEmbed({ toolId, prefill, onClose }: ToolEmbedProps) {
     return <NowWhatTool />;
   }
 
-  // Bespoke & static tools will go here later (R2, R3)
+  if (toolId === 'budgetBuilder') {
+    return <BudgetBuilder />;
+  }
+
+  if (toolId === 'upiPractice') {
+    return <UpiPractice />;
+  }
+
+  if (toolId === 'badYear') {
+    return <BadYearSimulator />;
+  }
+
+  // Bespoke & static tools will go here later
   return (
     <div className="p-4 border-2 border-dashed border-gray-400 bg-gray-50 text-center">
       <h3 className="font-bold text-gray-700">[{toolId}]</h3>
