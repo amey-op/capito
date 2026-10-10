@@ -17,7 +17,7 @@
 - [ ] `verified:false` facts are flagged and not displayed as fact
 - [ ] No personal data, secrets, `.env`, analytics or trackers
 - [ ] Engine code is deterministic (no `Math.random` / `Date.now`)
-- [ ] Commits are under my own human's git identity, with no AI author/co-author lines
+- [ ] My commits are under my own git identity
 
 ## How to test
 <!-- Steps, routes to open, screenshots for UI (360 px). -->

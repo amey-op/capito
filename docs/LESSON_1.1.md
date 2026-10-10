@@ -1,6 +1,6 @@
 # Template lesson: 1.1 "Income, expenses, needs and wants"
 
-> This is the pattern for every other lesson: **gut-check → cards → tool → quiz → money → Plan the Month**. Lane 2 copies this shape for the remaining lessons. English text only; Hindi/Telugu follow after the English freeze, with the English term kept beside each translated term.
+> This is the pattern for every other lesson: **gut-check → cards → tool → quiz → money → Plan the Month**. Copy this shape for the remaining lessons. English text only; Hindi/Telugu follow after the English freeze, with the English term kept beside each translated term.
 > Reading level: short sentences, one idea per card. Money in this lesson is **practice money**.
 
 ---

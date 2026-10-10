@@ -5,7 +5,7 @@ A mobile-first financial-literacy game for Grade 11–12 students in Hyderabad (
 > **Golden assumption:** needs are covered by family or by you; practice money is only for wants and savings.
 > **Guardrail:** we educate, never recommend. Every projection is an assumption, not a promise.
 
-Team docs: start with [`AGENTS.md`](AGENTS.md), then [`docs/WORKFLOW.md`](docs/WORKFLOW.md) and your handoff in [`docs/handoffs/`](docs/handoffs/).
+Design docs are in [`docs/`](docs/), starting with [`docs/PLAN.md`](docs/PLAN.md).
 
 ## Run it
 

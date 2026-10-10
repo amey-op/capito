@@ -31,7 +31,7 @@ A mobile-first, offline-capable web app (PWA, also an APK) where Grade 11–12 s
 | Languages | English, Hindi, Telugu; **English term always shown beside translated text** |
 | AI | No runtime LLM |
 | NGO | Separate NGO account; **anonymous progress syncs to the server** (no personal data) |
-| Team | Amey + Amey (Harness: main, review, integration), Nipun + Nipun (heaviest: engine, events, portfolio UI, L4-6), Aryan + Aryan (tools, Scam Shield, L7-9). See WORKFLOW.md |
+| Team | Three people working in parallel lanes on separate branches, merged by pull request |
 | Hosting / backend | **Vercel** (PR previews) + **Supabase** (auth + data) in **Phase 2**; Phase 1 is localStorage only |
 | Phases | 0 foundation (Harness) → 1 content + simulator, English only → 2 auth, NGO, Hindi/Telugu, PWA/APK → 3 polish and pitch. Branches + PRs, Harness reviews, Amey merges |
 
@@ -138,10 +138,9 @@ src/
 **Contracts first (hour 0–1):** shared TS types (`SubSection`, `Card`, `QuizItem`, `Term`, `Choice`, `LifeEvent`, `Bucket`, `PortfolioState`, `Scenario`, `ProgressEvent`, `DataAdapter`, tool registry `{id, inputs, compute(), explain()}`). `economy.config.ts` holds every number from MECHANICS.md.
 
 **Design rules:** 360 px first; one decision per screen; ≥ 44 px tap targets; high contrast; icons + words; no horizontal scroll; first load < ~1.5 MB; works with data off.
+**Look (decided 10 Oct):** the **whiteboard theme** (the team's existing design system) (dot grid, ink borders, hard offset shadows, marker colours, Nunito). Our own name/wordmark ("Rupee Quest"), **not** the EnJEEn wordmark, tagline or voice rules. Adjustments for us: (1) **Indic text:** `letter-spacing: 0` and `line-height ≥ 1.35` on Hindi/Telugu (negative tracking and 1.1 line-height break conjuncts/matras); Noto Sans Devanagari/Telugu at the same weights, self-hosted. (2) **Dense screens (portfolio, Plan the Month):** 2px borders and `3px 3px` shadows on small items; 3px/5px only on hero cards and buttons. (3) **Colour meaning:** green = good, yellow = mixed/caution, red = bad (event verdicts); blue = actions; purple = credit score and Joy (replaces "mentors"). (4) Tilts only on eyebrows and sticky notes; none on tables, numbers or quiz options; honour `prefers-reduced-motion`. (5) Self-host Nunito (and IBM Plex Mono for ₹ figures, after checking the ₹ glyph) so it works offline. (6) Drop dark mode unless time remains. Source of truth: `docs/design/enjeen-index.css` (copied from the EnJEEn landing page).
 
 ---
-
-> **Superseded by docs/WORKFLOW.md** (named owners, branches, work packages N1-N4, A0-A3, R1-R4, phases) and docs/handoffs/. The table below is the original lane sketch.
 
 ## 6. Work split (original sketch)
 
@@ -149,11 +148,10 @@ src/
 |---|---|---|---|
 | **1. Foundation + engine** | **Lane 1** | scaffold, design system, router, i18n wiring, store, economy config, DataAdapter, **ledger/month-close/credit/health/consequence engines with tests**, portfolio screen, Plan the Month, wants/goals, milestones, PWA, deploy, APK | Shell by hour 3; engine + portfolio playable by hour 6 |
 | **2. Lessons, content, games** | **Lane 2** | lesson player (gut-check → cards → tool slot → quiz), Word Bank, **23 MUST lessons as JSON (EN)**, events and scam alerts as data, Scam Shield, Check-it, glossary | Player + Level 1 by hour 3; all MUST content by hour 6 |
-| **3. Tools + NGO** | **Lane 3** | generic config-calculator component + ~14 formulas with Vitest first, Budget Builder, UPI Practice, NGO login/class/dashboard | Calculators by hour 5; NGO by hour 8 |
+| **3. Tools + NGO** | Lane 3 | generic config-calculator component + ~14 formulas with Vitest first, Budget Builder, UPI Practice, NGO login/class/dashboard | Calculators by hour 5; NGO by hour 8 |
 | **Docs & pitch** | Lane 1 (last hours) | README, architecture slide, deck, demo script, privacy/Responsible-AI note | Deck by hour 11 |
 
 Prompt for each agent: *"Read PLAN.md, CONTENT.md, MECHANICS.md and `src/core/types.ts`. You own only `<folders>`. Do not edit others. Build `<deliverables>`. Run `npm run dev` and `npm test` before saying done."*
-**[DECIDE]** swap lanes if you prefer (e.g. Lane 3 drafts Hindi/Telugu).
 
 ---
 
