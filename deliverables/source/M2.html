@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>M2 Progress</title>
+<style>
+  @page { size: A4; margin: 14mm 14mm 13mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; font-size: 9.6pt; line-height: 1.38; color: #17170f; margin: 0; }
+  .top { display: flex; justify-content: space-between; border-bottom: 2px solid #17170f; padding-bottom: 4px; margin-bottom: 8px; font-weight: 700; font-size: 9pt; }
+  h1 { font-size: 15pt; margin: 0 0 2px; }
+  .sub { color: #57574c; margin: 0 0 8px; }
+  h2 { font-size: 11pt; margin: 10px 0 4px; border-left: 4px solid #2563eb; padding-left: 6px; }
+  ul { margin: 2px 0 4px; padding-left: 16px; }
+  li { margin: 1px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 3px 0 4px; font-size: 9pt; }
+  th, td { border: 1px solid #b9b8ae; padding: 3px 5px; vertical-align: top; text-align: left; }
+  th { background: #f1f0e8; }
+  .ok { color: #15803d; font-weight: 700; white-space: nowrap; }
+  .wip { color: #a16207; font-weight: 700; white-space: nowrap; }
+  .todo { color: #57574c; font-weight: 700; white-space: nowrap; }
+  .num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .note { font-size: 8.6pt; color: #57574c; }
+  .avoid { break-inside: avoid; }
+  tr { break-inside: avoid; }
+</style>
+</head>
+<body>
+<div class="top"><span>TEAM NUMBER: 028</span><span>Megathon X: Singularity · M2 Progress</span></div>
+<h1>Capito: learn money by growing a practice portfolio</h1>
+<p class="sub">Vanguard India brief: digital financial literacy for Grade 11–12 students in Hyderabad. Status at M2 (11 Oct).</p>
+
+<h2>1. What changed since M1</h2>
+<ul>
+  <li><b>Name settled:</b> the working name is now the product name, Capito, across the app, page title, saved-game keys and docs.</li>
+  <li><b>Built, not just designed:</b> all 29 lessons, the simulation engine, 25 life events with consequences, the portfolio and Plan the Month, every calculator, Scam Shield, the lesson player, the home page, the Word Bank and the end-of-game summary now exist as working code.</li>
+  <li><b>One lesson player for every lesson:</b> gut-check, 5–8 swipe cards with tap-to-open Word Bank terms, tap-sort and reveal activities, an embedded tool (Scam Shield runs inside lesson 8.1), a 3-question quiz with teaching feedback, then practice money and Plan the Month. Lesson 9.1 adds the 10-question final quiz.</li>
+  <li><b>A full loop:</b> lesson → practice money → Plan the Month → the month closes → that lesson's life events → the next lesson. The home page's Continue button always points to the next step.</li>
+  <li><b>How we check work:</b> each pull request runs typecheck, all tests and a production build locally before it is merged with a merge commit; <i>main</i> has stayed buildable after every merge.</li>
+  <li><b>Two portals:</b> a start page with two doors. The <i>Student</i> app is the game; the <i>NGO</i> view shows what a partner NGO would see for a class: progress and quiz scores by level, weak spots (the risky first choices), scam safety and a nickname-only learner table with CSV export. For the demo it runs on a sample class, with this device added as one live learner; there is no login yet.</li>
+  <li><b>Hindi and Telugu:</b> a language switch in the header. Screens, the portfolio and Level 1 are translated, with the English money term kept beside each translation and a "draft translation" note; untranslated text falls back to English.</li>
+  <li><b>Not built yet:</b> real accounts with class codes and server sync, offline install and hosting. We demo from a local build.</li>
+</ul>
+
+<h2>2. What is built</h2>
+<table>
+  <tr><th style="width:24%">Area</th><th style="width:11%">Status</th><th>Details</th></tr>
+  <tr><td>Lessons</td><td class="ok">29 of 29</td></tr>
+  <tr><td>Simulation engine</td><td class="ok">Done</td></tr>
+  <tr><td>Life events</td><td class="ok">Done</td><td><b>25 events</b> across levels 1–8 (19 life events, 6 scam alerts). Each choice has a good, mixed or bad verdict, money and meter effects, "what if" previews of the other choices and one try-again.</td></tr>
+  <tr><td>Portfolio</td><td class="ok">Done</td></tr>
+  <tr><td>Calculators and tools</td><td class="ok">Done</td></tr>
+  <tr><td>Scam Shield</td><td class="ok">Done</td></tr>
+  <tr><td>Home, Word Bank</td><td class="ok">Done</td><td>Level map (done / open / locked), Continue, month and wallet; searchable Word Bank with <b>117</b> plain-language terms.</td></tr>
+  <tr><td>NGO portal</td><td class="ok">In review</td></tr>
+  <tr><td>Hindi and Telugu</td><td class="wip">In progress</td></tr>
+  <tr><td>Finance library</td><td class="ok">Done</td></tr>
+</table>
+
+<div class="avoid"><h2>3. Tests</h2>
+<table>
+  <tr><th>Area</th><th class="num">Tests</th><th>What they prove</th></tr>
+  <tr><td>Content checks</td><td class="num">426</td><td>Every lesson, event and term matches its schema; every text key exists; 5–8 cards and exactly 3 quiz questions; rupee figures in lesson text match the formulas; guardrail lint for product names and advice wording.</td></tr>
+  <tr><td>Engine</td><td class="num">132</td><td>Month-close order, shortfall and credit rules, scripted market episodes, health-score band edges, events, what-if leaves state untouched, same actions give the same state.</td></tr>
+  <tr><td>Finance and core</td><td class="num">46</td><td>Hand-computed figures: SIP ₹10,000 × 15 years at 10% = ₹41.79 lakh; EMI on ₹6,000 over 6 months at 18% = ₹1,053; FD ₹6,000 for 6 months at 6.5% = ₹6,195; RD ₹500 × 6 ≈ ₹3,057; phone ₹6,000 after 6 months ≈ ₹5,020.</td></tr>
+  <tr><td>Screens, tools, Scam Shield</td><td class="num">100</td><td>Routes render; lesson 1.1 played end to end; retry payout; final quiz; Plan the Month, events and the summary; every calculator; Scam Shield scoring.</td></tr>
+  <tr><th>Total on main</th><th class="num">704</th><th>703 passing; the production build succeeds. The remaining test fails only on one test-runner setup (simulated page navigation) and is being rewritten. The NGO portal adds 16 more (720 with it merged).</th></tr>
+</table></div>
+
+<h2 class="avoid">4. Plan to the final submission</h2>
+<table class="avoid">
+  <tr><th>Work</th><th style="width:16%">Status</th></tr>
+  <tr><td>Merge the NGO portal; finish Hindi and Telugu for tools, Scam Shield and Levels 2–3</td><td class="wip">In progress</td></tr>
+  <tr><td>Tougher, applied quiz questions in all 29 lessons (calculations, real situations, spot the trap)</td><td class="todo">To do</td></tr>
+  <tr><td>Fix the last test; two full playthroughs from 1.1 to the final quiz (phone and laptop), bug fixes</td><td class="todo">To do</td></tr>
+  <tr><td>Read every lesson for plain language and the no-advice guardrail</td><td class="todo">To do</td></tr>
+  <tr><td>Final report, slides, demo video (under 4 minutes), code archive</td><td class="todo">To do</td></tr>
+</table>
+<p class="note"><b>After that, if time allows:</b> Hindi and Telugu for Levels 4–9, native-speaker review of the drafts, offline install, hosting, and real class codes with server sync behind the NGO dashboard. If time runs short these are presented as designed, not as built. Guardrails throughout: we explain, never recommend a product; every projection is labelled an assumption, not a promise; no personal data is collected.</p>
+</body>
+</html>
