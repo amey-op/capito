@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { eventById } from '@/content';
 import { useGameStore } from '@/core/store';
 import type { Effect } from '@/core/types';
+import { engine } from '@/engine';
 import { Buckets } from '@/features/portfolio/Buckets';
 import { EffectList } from '@/features/portfolio/EffectList';
 import { Liabilities, ThingsOwned } from '@/features/portfolio/Liabilities';
@@ -27,6 +28,8 @@ export function PortfolioPage() {
   }
 
   const pending = game.pendingEvents.filter((id) => eventById.has(id));
+  // Nothing earned yet: point the student at the first lesson instead of an empty page.
+  const isNewPlayer = Object.keys(game.progress).length === 0 && engine.netWorth(game) === 0;
   return (
     <div className="stack">
       <div>
@@ -57,11 +60,35 @@ export function PortfolioPage() {
         </section>
       )}
 
+      {isNewPlayer && (
+        <section className="card panel-blue stack" aria-labelledby="pf-start">
+          <h2 id="pf-start">{t('portfolio.start.title')}</h2>
+          <p>{t('portfolio.start.text')}</p>
+          <div>
+            <Link className="btn btn-primary" to="/">
+              {t('portfolio.start.cta')}
+            </Link>
+          </div>
+        </section>
+      )}
+
       <TopCard game={game} />
       <Buckets game={game} dispatch={dispatch} />
       <WantsGoals game={game} dispatch={dispatch} />
       <ThingsOwned game={game} />
       <Liabilities game={game} dispatch={dispatch} />
+
+      <section className="card-sm stack" aria-labelledby="pf-practice">
+        <h2 id="pf-practice">{t('portfolio.practice.title')}</h2>
+        <div className="row">
+          <Link className="btn btn-secondary pf-btn" to="/scam-shield">
+            {t('portfolio.practice.scamShield')}
+          </Link>
+          <Link className="btn btn-secondary pf-btn" to="/tool/budgetBuilder">
+            {t('portfolio.practice.budget')}
+          </Link>
+        </div>
+      </section>
 
       <p className="muted">{t('portfolio.practiceMoney')}</p>
     </div>
