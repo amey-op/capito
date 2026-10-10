@@ -1,0 +1,74 @@
+[
+  {
+    "id": "emergencyFund",
+    "introducedIn": "3.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "liquidity",
+    "introducedIn": "3.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "recurringDeposit",
+    "introducedIn": "3.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "maturity",
+    "introducedIn": "3.3",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "buffer",
+    "introducedIn": "3.1",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "premium",
+    "introducedIn": "3.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "claim",
+    "introducedIn": "3.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "sumAssured",
+    "introducedIn": "3.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "termEndowment",
+    "introducedIn": "3.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "disclosure",
+    "introducedIn": "3.2",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "instalment",
+    "introducedIn": "3.3",
+    "core": false,
+    "verified": true
+  },
+  {
+    "id": "prematureClosure",
+    "introducedIn": "3.3",
+    "core": false,
+    "verified": true
+  }
+]
