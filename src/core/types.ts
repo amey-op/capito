@@ -1,7 +1,7 @@
 /**
  * Shared game contracts: state, actions, engine API, effects. docs/MECHANICS.md is the rulebook.
- * CONTRACT FILE: change only through a small `contract-change` PR approved by Amey.
- * The engine (src/engine, Nipun's lane) implements EngineAPI; the UI only dispatches Actions.
+ * CONTRACT FILE: change only through a small, separate `contract-change` PR.
+ * The engine (src/engine) implements EngineAPI; the UI only dispatches Actions.
  */
 import type { DepreciationCategory } from './economy.config';
 import type { BucketId, LifeEvent, LoanTerms, Tone, UnlockId } from './content-schema';

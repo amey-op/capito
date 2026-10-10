@@ -1,6 +1,6 @@
 /**
  * Every game number lives here (docs/MECHANICS.md). Practice values, labelled as such on screen.
- * CONTRACT FILE: change only through a small `contract-change` PR approved by Amey.
+ * CONTRACT FILE: change only through a small, separate `contract-change` PR.
  * Percentages are written as percent (6.5 = 6.5%), money in whole rupees.
  */
 

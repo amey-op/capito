@@ -33,7 +33,7 @@ A mobile-first, offline-capable web app (PWA, also an APK) where Grade 11–12 s
 | NGO | Separate NGO account; **anonymous progress syncs to the server** (no personal data) |
 | Team | Three people working in parallel lanes on separate branches, merged by pull request |
 | Hosting / backend | **Vercel** (PR previews) + **Supabase** (auth + data) in **Phase 2**; Phase 1 is localStorage only |
-| Phases | 0 foundation (Harness) → 1 content + simulator, English only → 2 auth, NGO, Hindi/Telugu, PWA/APK → 3 polish and pitch. Branches + PRs, Harness reviews, Amey merges |
+| Phases | 0 foundation → 1 content + simulator, English only → 2 auth, NGO, Hindi/Telugu, PWA/APK → 3 polish and pitch. Branches + PRs, reviewed and merged with merge commits |
 
 ---
 
