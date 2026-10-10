@@ -1,31 +1,24 @@
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { parsePrefill, type ToolId } from '@/core/tools';
+import { ToolEmbed } from '@/features/tools';
 
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { ToolEmbed } from '../features/tools';
-import { parsePrefill, ToolId } from '../core/tools';
-
+/** One tool on its own page: /tool/<id>?principal=6000 (the query fills the inputs). */
 export function ToolPage() {
-  const { id } = useParams<{ id: string }>();
+  const { t } = useTranslation();
+  const { id = '' } = useParams<{ id: string }>();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  if (!id) return null;
-
-  const prefill = parsePrefill(searchParams);
-
   return (
-    <div className="min-h-screen bg-white">
-      <header className="p-4 border-b-4 border-black mb-4 flex items-center">
-        <button 
-          onClick={() => navigate(-1)} 
-          className="mr-4 font-bold border-2 border-black px-3 py-1 shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-gray-100"
-        >
-          ← Back
+    <div className="stack">
+      <div className="row">
+        <button type="button" className="btn btn-secondary tl-btn" onClick={() => navigate(-1)}>
+          {t('tools.common.back')}
         </button>
-        <h1 className="font-black text-2xl font-['Nunito'] tracking-tight">Tool</h1>
-      </header>
-      <main className="pb-8">
-        <ToolEmbed toolId={id as ToolId} prefill={prefill} />
-      </main>
+        <h1>{t('ui.page.tool')}</h1>
+      </div>
+      <ToolEmbed toolId={id as ToolId} prefill={parsePrefill(searchParams)} />
     </div>
   );
 }
