@@ -1,5 +1,5 @@
 /**
- * The Rupee Quest engine (work packages N1 and N2a). docs/MECHANICS.md is the rulebook.
+ * The Capito engine. docs/MECHANICS.md is the rulebook.
  *
  * Pure and deterministic: no React, no storage, no Math.random, no Date.now. `reduce` works on a
  * deep copy of the state, so the state passed in is never changed. Every number comes from
