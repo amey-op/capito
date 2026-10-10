@@ -135,7 +135,7 @@ h3 {
   min-height: 0;
   padding-bottom: 0.4rem;
 }
-.app-header .lang-draft {
+.app-header p.lang-draft {
   white-space: normal;
   margin: 0;
   font-size: 0.85rem;
