@@ -1,0 +1,32 @@
+[
+  {
+    "id": "tax",
+    "introducedIn": "7.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "gst",
+    "introducedIn": "7.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "pan",
+    "introducedIn": "7.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "slab",
+    "introducedIn": "7.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "tds",
+    "introducedIn": "7.1",
+    "core": true,
+    "verified": true
+  }
+]

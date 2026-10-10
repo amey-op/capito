@@ -1,0 +1,87 @@
+{
+  "id": "8.1",
+  "level": 8,
+  "tier": "must",
+  "titleKey": "lesson.8_1.title",
+  "gutCheck": {
+    "promptKey": "lesson.8_1.gut.prompt",
+    "choices": [
+      {
+        "id": "c1",
+        "labelKey": "lesson.8_1.gut.c1.label",
+        "resultKey": "lesson.8_1.gut.c1.result",
+        "tone": "bad"
+      },
+      {
+        "id": "c2",
+        "labelKey": "lesson.8_1.gut.c2.label",
+        "resultKey": "lesson.8_1.gut.c2.result",
+        "tone": "good"
+      }
+    ],
+    "bridgeKey": "lesson.8_1.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.8_1.c1.text"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.8_1.c2.text"
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.8_1.c3.text"
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.8_1.c4.text"
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.8_1.c5.text"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.8_1.q1.prompt",
+      "options": [
+        "lesson.8_1.q1.o1",
+        "lesson.8_1.q1.o2"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.8_1.q1.right",
+      "feedbackWrongKey": "lesson.8_1.q1.wrong"
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.8_1.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.8_1.q2.right",
+      "feedbackWrongKey": "lesson.8_1.q2.wrong"
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.8_1.q3.prompt",
+      "options": [
+        "lesson.8_1.q3.o1",
+        "lesson.8_1.q3.o2"
+      ],
+      "correct": 0,
+      "feedbackRightKey": "lesson.8_1.q3.right",
+      "feedbackWrongKey": "lesson.8_1.q3.wrong"
+    }
+  ],
+  "terms": [],
+  "portfolioEffect": {
+    "decisionKey": "lesson.8_1.portfolio",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": []
+}

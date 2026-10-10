@@ -1,0 +1,44 @@
+[
+  {
+    "id": "phishing",
+    "introducedIn": "8.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "socialEngineering",
+    "introducedIn": "8.1",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "ponziScheme",
+    "introducedIn": "8.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "mlm",
+    "introducedIn": "8.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "registeredIntermediary",
+    "introducedIn": "8.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "guaranteedReturns",
+    "introducedIn": "8.2",
+    "core": true,
+    "verified": true
+  },
+  {
+    "id": "cybercrime1930",
+    "introducedIn": "8.3",
+    "core": true,
+    "verified": true
+  }
+]
