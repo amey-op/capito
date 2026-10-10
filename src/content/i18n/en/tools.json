@@ -1,0 +1,148 @@
+{
+  "leakFinder": {
+    "title": "Leak Finder",
+    "perDay": "Amount per day",
+    "daysPerYear": "Days per year",
+    "perYear": "Total per year",
+    "shocker": "That's {{bags}} × a ₹3,000 laptop bag every year!"
+  },
+  "goalPlanner": {
+    "title": "Goal Planner",
+    "target": "Target Amount",
+    "months": "Months to save",
+    "delayMonths": "If I wait (months)",
+    "monthly": "Monthly saving needed",
+    "monthlyIfLate": "Monthly needed if you wait",
+    "shocker": "Waiting costs you an extra ₹{{extra}} per month!"
+  },
+  "depreciation": {
+    "title": "Depreciation",
+    "cost": "Cost today",
+    "yearlyLossPct": "Loses value per year (%)",
+    "months": "Months from now",
+    "valueNow": "Value then",
+    "lostAmount": "Lost value",
+    "shocker": "You lost ₹{{lost}} out of your ₹{{cost}} in that time."
+  },
+  "emi": {
+    "title": "EMI & Total Cost",
+    "principal": "Loan Amount",
+    "ratePct": "Interest Rate (%)",
+    "months": "Tenure (Months)",
+    "cashPrice": "Cash Price (Optional)",
+    "emi": "Monthly EMI",
+    "totalPaid": "Total You Pay",
+    "extraCost": "Extra Paid for Loan",
+    "extraVsCash": "Extra Paid vs Cash",
+    "shocker": "You are paying ₹{{extra}} extra just for the convenience."
+  },
+  "inflation": {
+    "title": "Inflation Eraser",
+    "amount": "Amount",
+    "inflationPct": "Inflation Rate (%)",
+    "years": "Years",
+    "buyingPower": "Future Buying Power",
+    "lostPct": "Value Lost (%)",
+    "ruleOf70": "Years to Halve in Value",
+    "shocker": "Your money will feel like just ₹{{power}}."
+  },
+  "timeMachine": {
+    "title": "Time Machine",
+    "monthly": "Monthly Saving",
+    "ratePct": "Expected Return (%)",
+    "years": "Total Years",
+    "delayYears": "Years Delayed",
+    "startNow": "If you start NOW",
+    "startLater": "If you wait",
+    "gap": "The gap",
+    "shocker": "Waiting {{delayYears}} years costs you ₹{{gap}} in growth!"
+  },
+  "fd": {
+    "title": "Fixed Deposit (FD)",
+    "principal": "Amount",
+    "ratePct": "Interest Rate (%)",
+    "months": "Months",
+    "inflationPct": "Inflation (%)",
+    "maturity": "Maturity Value",
+    "interest": "Interest Earned",
+    "realRate": "Real Return (%)",
+    "shocker": "You earned ₹{{interest}} in safety."
+  },
+  "rd": {
+    "title": "Recurring Deposit (RD)",
+    "instalment": "Monthly Instalment",
+    "ratePct": "Interest Rate (%)",
+    "months": "Months",
+    "maturity": "Maturity Value",
+    "invested": "Total Invested",
+    "interest": "Interest Earned",
+    "shocker": "You grew your money to ₹{{maturity}} step by step."
+  },
+  "sip": {
+    "title": "SIP Explorer",
+    "monthly": "Monthly SIP",
+    "ratePct": "Expected Return (%)",
+    "years": "Years",
+    "invested": "Total Invested",
+    "returns": "Returns Earned",
+    "total": "Total Value",
+    "shocker": "Your small steps grew to ₹{{total}} over time!"
+  },
+  "lumpsum": {
+    "title": "Lump Sum",
+    "principal": "Amount",
+    "ratePct": "Expected Return (%)",
+    "years": "Years",
+    "finalValue": "Final Value",
+    "ruleOf72": "Years to Double",
+    "shocker": "Your money doubles roughly every {{r72}} years."
+  },
+  "goalSip": {
+    "title": "Goal SIP",
+    "target": "Target Corpus",
+    "ratePct": "Expected Return (%)",
+    "years": "Years",
+    "sipNeeded": "Monthly SIP Needed",
+    "noReturns": "If saved with NO returns",
+    "shocker": "Investing saves you from putting in an extra ₹{{diff}} every month."
+  },
+  "feeLens": {
+    "title": "Fee Lens",
+    "monthly": "Monthly SIP",
+    "ratePct": "Return (%)",
+    "feeGapPct": "Fee Difference (%)",
+    "years": "Years",
+    "corpusA": "Corpus at Full Rate",
+    "corpusB": "Corpus after Fees",
+    "gap": "Difference Lost to Fees",
+    "shocker": "That small fee difference ate up ₹{{gap}} of your wealth."
+  },
+  "goldCompare": {
+    "title": "Gold Cost Compare",
+    "amount": "Investment Amount",
+    "makingChargePct": "Physical Making Charge (%)",
+    "etfCostPct": "ETF Cost (%)",
+    "physical": "Physical Value Day 1",
+    "etf": "ETF Value Day 1",
+    "difference": "Value Difference",
+    "shocker": "You immediately lose ₹{{diff}} more on physical gold."
+  },
+  "slab": {
+    "title": "Tax Slab Calculator",
+    "income": "Gross Income",
+    "standardDeduction": "Standard Deduction",
+    "taxable": "Taxable Income",
+    "tax": "Tax Due",
+    "effectiveRate": "Effective Rate (%)",
+    "shocker": "You owe ₹{{tax}} in taxes to the government."
+  },
+  "takeHome": {
+    "title": "Take-Home Pay",
+    "grossMonthly": "Gross Monthly Salary",
+    "retirementPct": "Retirement Deduction (%)",
+    "taxMonthly": "Monthly Tax",
+    "inHand": "In-Hand Salary",
+    "deductions": "Total Deductions",
+    "shocker": "You only see ₹{{inHand}} in your bank account."
+  }
+}
