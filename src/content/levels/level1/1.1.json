@@ -69,10 +69,10 @@
       "id": "c8",
       "textKey": "lesson.1_1.c8.text",
       "art": "coin-tower",
-      "interaction": { "type": "tool", "toolId": "leakFinder", "prefill": { "amount": 40 } }
+      "interaction": { "type": "tool", "toolId": "leakFinder", "prefill": { "perDay": 40 } }
     }
   ],
-  "tool": { "id": "leakFinder", "prefill": { "amount": 40 } },
+  "tool": { "id": "leakFinder", "prefill": { "perDay": 40 } },
   "quiz": [
     {
       "id": "q1",

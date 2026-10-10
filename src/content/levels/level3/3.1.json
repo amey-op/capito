@@ -1,0 +1,184 @@
+{
+  "id": "3.1",
+  "level": 3,
+  "tier": "must",
+  "titleKey": "lesson.3_1.title",
+  "gutCheck": {
+    "promptKey": "lesson.3_1.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.3_1.gut.a.label",
+        "resultKey": "lesson.3_1.gut.a.result",
+        "tone": "bad"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.3_1.gut.b.label",
+        "resultKey": "lesson.3_1.gut.b.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.3_1.gut.c.label",
+        "resultKey": "lesson.3_1.gut.c.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.3_1.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.3_1.c1.text",
+      "art": "cracked-phone"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.3_1.c2.text",
+      "art": "cushion",
+      "terms": [
+        "emergencyFund",
+        "buffer"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.3_1.c3.text",
+      "art": "three-jars",
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.3_1.c3.reveal.prompt",
+        "answerKey": "lesson.3_1.c3.reveal.answer"
+      }
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.3_1.c4.text",
+      "art": "tap-water",
+      "terms": [
+        "liquidity"
+      ],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.3_1.c4.sort.prompt",
+        "categories": [
+          {
+            "id": "yes",
+            "labelKey": "lesson.3_1.c4.sort.yes"
+          },
+          {
+            "id": "no",
+            "labelKey": "lesson.3_1.c4.sort.no"
+          }
+        ],
+        "items": [
+          {
+            "id": "savings",
+            "labelKey": "lesson.3_1.c4.sort.savings",
+            "category": "yes"
+          },
+          {
+            "id": "locked",
+            "labelKey": "lesson.3_1.c4.sort.locked",
+            "category": "no"
+          },
+          {
+            "id": "shares",
+            "labelKey": "lesson.3_1.c4.sort.shares",
+            "category": "no"
+          },
+          {
+            "id": "friend",
+            "labelKey": "lesson.3_1.c4.sort.friend",
+            "category": "no"
+          }
+        ],
+        "feedbackKey": "lesson.3_1.c4.sort.feedback"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.3_1.c5.text",
+      "art": "domino"
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.3_1.c6.text",
+      "art": "refill",
+      "interaction": {
+        "type": "tool",
+        "toolId": "monthsCovered"
+      }
+    }
+  ],
+  "tool": {
+    "id": "monthsCovered"
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.3_1.q1.prompt",
+      "options": [
+        "lesson.3_1.q1.o1",
+        "lesson.3_1.q1.o2",
+        "lesson.3_1.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.3_1.q1.right",
+      "feedbackWrongKey": "lesson.3_1.q1.wrong",
+      "terms": [
+        "emergencyFund"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "trueFalse",
+      "promptKey": "lesson.3_1.q2.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.3_1.q2.right",
+      "feedbackWrongKey": "lesson.3_1.q2.wrong",
+      "terms": [
+        "liquidity"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "single",
+      "promptKey": "lesson.3_1.q3.prompt",
+      "options": [
+        "lesson.3_1.q3.o1",
+        "lesson.3_1.q3.o2",
+        "lesson.3_1.q3.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.3_1.q3.right",
+      "feedbackWrongKey": "lesson.3_1.q3.wrong",
+      "terms": [
+        "emergencyFund"
+      ]
+    }
+  ],
+  "terms": [
+    "emergencyFund",
+    "liquidity"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.3_1.effect",
+    "unlocks": [
+      "emergency"
+    ],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "emergency.reference_month_3000",
+      "verified": true
+    },
+    {
+      "key": "emergency.3_to_6_months_guide",
+      "verified": true
+    }
+  ]
+}

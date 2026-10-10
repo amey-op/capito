@@ -1,128 +1,164 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { useGameStore, selectDispatch } from '../../core/store';
-import scenariosData from './data/scenarios.json';
+import { Link } from 'react-router-dom';
+import { selectDispatch, useGameStore } from '@/core/store';
+import { buildDeck, type Scenario } from './deck';
+import './scamshield.css';
 
-interface Scenario {
-  id: string;
-  channel: string;
-  isScam: boolean;
-  redFlags: string[];
+interface ScamShieldPageProps {
+  /** Fixed deck for tests; a fresh shuffled round otherwise. */
+  deck?: Scenario[];
 }
 
-export function ScamShieldPage() {
+/** Scam Shield: read a message, call it a scam or fine, then see the tell-tale signs. */
+export function ScamShieldPage({ deck: fixedDeck }: ScamShieldPageProps) {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const dispatch = useGameStore(selectDispatch);
+  const shield = useGameStore((s) => s.game.shield);
 
-  // Shuffle and pick 10 ensuring mix of genuine and scam (randomized simply)
-  const deck = useMemo(() => {
-    const shuffled = [...(scenariosData as Scenario[])].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 10);
-  }, []);
+  const [deck, setDeck] = useState<Scenario[]>(() => fixedDeck ?? buildDeck());
+  const [index, setIndex] = useState(0);
+  const [correct, setCorrect] = useState(0);
+  const [vote, setVote] = useState<boolean | null>(null);
+  const [finished, setFinished] = useState(false);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [correctCount, setCorrectCount] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [chosenScam, setChosenScam] = useState<boolean | null>(null);
+  const scenario = deck[index];
+  const title = (
+    <div>
+      <span className="eyebrow e-red">{t('scamshield.ui.eyebrow')}</span>
+      <h1>{t('scamshield.ui.title')}</h1>
+    </div>
+  );
+  const more = (
+    <section className="card-sm stack" aria-labelledby="ss-more">
+      <h2 id="ss-more">{t('scamshield.ui.more')}</h2>
+      <div className="row">
+        <Link className="btn btn-secondary" to="/tool/checkIt">
+          {t('scamshield.checkIt.title')}
+        </Link>
+        <Link className="btn btn-secondary" to="/tool/nowWhat">
+          {t('scamshield.nowWhat.title')}
+        </Link>
+      </div>
+    </section>
+  );
 
-  const scenario = deck[currentIndex];
+  if (finished || !scenario) {
+    const all = correct === deck.length;
+    return (
+      <div className="stack">
+        {title}
+        <section className={`card stack ${all ? 'panel-green' : 'panel-yellow'}`} role="status">
+          <span className="ss-label">{t('scamshield.ui.resultLabel')}</span>
+          <strong className="num ss-score">{t('scamshield.ui.score', { correct, total: deck.length })}</strong>
+          <p>{t(all ? 'scamshield.ui.resultAll' : 'scamshield.ui.resultSome')}</p>
+          <p className="muted">{t('scamshield.ui.shieldTotal', { correct: shield.correct, seen: shield.seen })}</p>
+        </section>
+        <div className="row">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              setDeck(fixedDeck ?? buildDeck());
+              setIndex(0);
+              setCorrect(0);
+              setVote(null);
+              setFinished(false);
+            }}
+          >
+            {t('scamshield.ui.again')}
+          </button>
+          <Link className="btn btn-secondary" to="/portfolio">
+            {t('scamshield.ui.toPortfolio')}
+          </Link>
+        </div>
+        {more}
+      </div>
+    );
+  }
 
-  const handleChoice = (votedScam: boolean) => {
-    if (showAnswer) return;
-    setChosenScam(votedScam);
-    if (votedScam === scenario.isScam) {
-      setCorrectCount(c => c + 1);
-    }
-    setShowAnswer(true);
+  const answered = vote !== null;
+  const right = vote === scenario.isScam;
+  const last = index === deck.length - 1;
+
+  const choose = (votedScam: boolean) => {
+    if (answered) return;
+    setVote(votedScam);
+    if (votedScam === scenario.isScam) setCorrect((c) => c + 1);
   };
-
-  const handleNext = () => {
-    if (currentIndex < deck.length - 1) {
-      setShowAnswer(false);
-      setChosenScam(null);
-      setCurrentIndex(i => i + 1);
-    } else {
-      // Finish
-      dispatch({ type: 'SHIELD_RESULT', seen: deck.length, correct: correctCount });
-      navigate(-1); // Or to wherever Amey routes us next
+  const next = () => {
+    if (last) {
+      // One result per finished round feeds the scam-safety part of the Money Health Score.
+      dispatch({ type: 'SHIELD_RESULT', seen: deck.length, correct });
+      setFinished(true);
+      return;
     }
+    setVote(null);
+    setIndex((i) => i + 1);
   };
-
-  if (!scenario) return null;
-
-  const isCorrect = chosenScam === scenario.isScam;
 
   return (
-    <div className="min-h-screen bg-white p-4 max-w-sm mx-auto flex flex-col font-['Nunito']">
-      <header className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-black uppercase tracking-tight">{t('scamshield.ui.title')}</h1>
-        <div className="font-bold border-2 border-black px-2 py-1 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          {currentIndex + 1} / {deck.length}
-        </div>
-      </header>
+    <div className="stack">
+      {title}
+      <p>{t('scamshield.ui.intro')}</p>
 
-      <div className="flex-1 flex flex-col">
-        <div className="bg-blue-50 border-4 border-black p-4 mb-6 relative shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-          <div className="absolute top-0 right-0 bg-black text-white px-2 py-1 text-xs font-bold uppercase">
-            {scenario.channel}
-          </div>
-          <p className="font-semibold text-lg mt-4 mb-4">
-            {t(`scamshield.scenario.${scenario.id}.message`)}
-          </p>
-        </div>
+      <div className="ss-head">
+        <span className="ss-label">{t('scamshield.ui.progress', { n: index + 1, total: deck.length })}</span>
+        <span className="ss-label">{t('scamshield.ui.correctSoFar', { correct })}</span>
+      </div>
+      <div className="ss-progress" aria-hidden="true">
+        <span style={{ width: `${((index + (answered ? 1 : 0)) / deck.length) * 100}%` }} />
+      </div>
 
-        {!showAnswer ? (
-          <div className="flex gap-4 mt-auto mb-8">
-            <button 
-              onClick={() => handleChoice(true)}
-              className="flex-1 bg-red-400 border-4 border-black py-3 font-black uppercase text-xl shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform"
-            >
-              {t('scamshield.ui.scam')}
-            </button>
-            <button 
-              onClick={() => handleChoice(false)}
-              className="flex-1 bg-green-400 border-4 border-black py-3 font-black uppercase text-xl shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform"
-            >
-              {t('scamshield.ui.safe')}
-            </button>
-          </div>
-        ) : (
-          <div className="mt-auto mb-8 animate-fade-in">
-            <div className={`p-4 border-4 border-black mb-4 font-bold shadow-[4px_4px_0px_rgba(0,0,0,1)] ${isCorrect ? 'bg-green-200' : 'bg-red-200'}`}>
-              <h2 className="text-xl uppercase mb-2">
-                {isCorrect ? t('scamshield.ui.correct') : t('scamshield.ui.wrong')}
-              </h2>
-              <p className="mb-2">{t(`scamshield.scenario.${scenario.id}.tell`)}</p>
-              
-              {scenario.isScam && scenario.redFlags.length > 0 && (
-                <div className="mt-4 pt-4 border-t-2 border-black">
-                  <p className="uppercase text-xs tracking-wider mb-1 opacity-80">{t('scamshield.ui.why')}</p>
-                  <ul className="list-disc pl-4 text-sm">
-                    {scenario.redFlags.map(flag => (
-                      <li key={flag}>{t(`scamshield.flag.${flag}`)}</li>
+      <section className="card stack" aria-labelledby="ss-message">
+        <div>
+          <span className="eyebrow e-blue">{t(`scamshield.channel.${scenario.channel}`)}</span>
+        </div>
+        <p id="ss-message" className="ss-message">
+          {t(`scamshield.scenario.${scenario.id}.message`)}
+        </p>
+      </section>
+
+      {!answered ? (
+        <div className="ss-choices">
+          <button type="button" className="btn ss-scam" onClick={() => choose(true)}>
+            {t('scamshield.ui.scam')}
+          </button>
+          <button type="button" className="btn ss-ok" onClick={() => choose(false)}>
+            {t('scamshield.ui.safe')}
+          </button>
+        </div>
+      ) : (
+        <>
+          <section className={`card stack ${right ? 'panel-green' : 'panel-red'}`} role="status">
+            <h2>{t(right ? 'scamshield.ui.correct' : 'scamshield.ui.wrong')}</h2>
+            <p>
+              <strong>{t(scenario.isScam ? 'scamshield.ui.wasScam' : 'scamshield.ui.wasGenuine')}</strong>{' '}
+              {t(`scamshield.scenario.${scenario.id}.tell`)}
+            </p>
+            {scenario.isScam && (
+              <>
+                <div className="stack">
+                  <span className="ss-label">{t('scamshield.ui.why')}</span>
+                  <ul className="ss-flags">
+                    {scenario.redFlags.map((flag) => (
+                      <li key={flag} className="ss-flag">
+                        {t(`scamshield.flag.${flag}`)}
+                      </li>
                     ))}
                   </ul>
                 </div>
-              )}
+                <p>{t('scamshield.ui.reportTo', { target: t(`scamshield.scenario.${scenario.id}.report`) })}</p>
+              </>
+            )}
+          </section>
+          <button type="button" className="btn btn-primary btn-block" onClick={next}>
+            {t(last ? 'scamshield.ui.finish' : 'scamshield.ui.next')}
+          </button>
+        </>
+      )}
 
-              {scenario.isScam && (
-                <div className="mt-4 pt-4 border-t-2 border-black text-sm bg-black text-white p-2 text-center uppercase tracking-widest">
-                  {t('scamshield.ui.reportTo', { target: t(`scamshield.scenario.${scenario.id}.report`) })}
-                </div>
-              )}
-            </div>
-            
-            <button 
-              onClick={handleNext}
-              className="w-full bg-blue-400 border-4 border-black py-3 font-black uppercase text-xl shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform"
-            >
-              {currentIndex < deck.length - 1 ? t('scamshield.ui.next') : t('scamshield.ui.finish')}
-            </button>
-          </div>
-        )}
-      </div>
+      {more}
     </div>
   );
 }

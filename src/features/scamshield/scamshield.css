@@ -1,0 +1,127 @@
+/* Scam Shield game, Check-it and the "now what" steps. Builds on src/styles/theme.css. */
+
+.ss-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.ss-progress {
+  height: 0.7rem;
+  border: var(--border-sm);
+  border-radius: 9999px;
+  background: var(--secondary);
+  overflow: hidden;
+}
+.ss-progress > span {
+  display: block;
+  height: 100%;
+  background: var(--info);
+}
+
+.ss-message {
+  font-size: 1.1rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.ss-choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.ss-choices .btn {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.btn.ss-scam {
+  background: var(--destructive-bg);
+  border-color: var(--destructive);
+  box-shadow: 3px 3px 0 0 var(--destructive);
+  color: #7f1d1d;
+}
+.btn.ss-ok {
+  background: var(--success-bg);
+  border-color: var(--success);
+  box-shadow: 3px 3px 0 0 var(--success);
+  color: #14532d;
+}
+.btn.ss-pick {
+  background: var(--foreground);
+  border-color: var(--foreground);
+  color: var(--ground);
+}
+
+.ss-flags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.ss-flag {
+  border: var(--border-sm);
+  border-radius: 9999px;
+  background: var(--panel);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+.ss-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--secondary-foreground);
+}
+.ss-score {
+  font-size: clamp(2rem, 9vw, 3rem);
+  line-height: 1.1;
+}
+
+.ss-list {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+.ss-question {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.ss-question > p {
+  flex: 1 1 14rem;
+  min-width: 0;
+  font-weight: 700;
+}
+.ss-yesno {
+  display: flex;
+  gap: 0.5rem;
+}
+.ss-yesno .btn {
+  min-width: 4.5rem;
+  padding: 0.4rem 0.9rem;
+  border-width: 2px;
+}
+.ss-step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.ss-step-n {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--foreground);
+  color: var(--ground);
+  font-weight: 900;
+}
+.ss-step > div {
+  min-width: 0;
+}
