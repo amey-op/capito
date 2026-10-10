@@ -151,3 +151,24 @@ describe('upi practice', () => {
     expect(upiRounds.filter((r) => r.tab === 'receive').every((r) => r.safe === 'decline')).toBe(true);
   });
 });
+
+describe('tools hub', () => {
+  it('lists every working tool once, each with a title and a one-line purpose', async () => {
+    const { MemoryRouter } = await import('react-router-dom');
+    const { ToolsHub, hubGroups } = await import('./ToolsHub');
+    render(
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ToolsHub />
+      </MemoryRouter>,
+    );
+    expect(untranslated()).toEqual([]);
+    const items = hubGroups.flatMap((g) => g.items);
+    expect(new Set(items.map((i) => i.id)).size).toBe(items.length);
+    for (const id of [...configToolIds, 'budgetBuilder', 'upiPractice', 'badYear', 'checkIt', 'nowWhat']) {
+      expect(document.querySelector(`a[href="/tool/${id}"]`), id).toBeTruthy();
+    }
+    expect(document.querySelector('a[href="/scam-shield"]')).toBeTruthy();
+    expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(hubGroups.length);
+    expect(screen.getByText(/your assumption, not a promise/)).toBeTruthy();
+  });
+});

@@ -237,3 +237,41 @@
     width: 6.5rem;
   }
 }
+
+/* Tools hub: grouped cards, the whole card is the link */
+.tl-hub {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+.tl-hub > li {
+  display: flex;
+}
+.tl-hub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+  min-height: var(--tap);
+  color: var(--foreground);
+  font-weight: 400;
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.tl-hub-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-card);
+}
+.tl-hub-card strong {
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+.tl-hub-open {
+  margin-top: auto;
+  padding-top: 0.3rem;
+  color: var(--info);
+  font-weight: 800;
+}
