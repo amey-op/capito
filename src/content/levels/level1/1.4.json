@@ -1,0 +1,198 @@
+{
+  "id": "1.4",
+  "level": 1,
+  "tier": "must",
+  "titleKey": "lesson.1_4.title",
+  "gutCheck": {
+    "promptKey": "lesson.1_4.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.1_4.gut.a.label",
+        "resultKey": "lesson.1_4.gut.a.result",
+        "tone": "mixed"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.1_4.gut.b.label",
+        "resultKey": "lesson.1_4.gut.b.result",
+        "tone": "good"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.1_4.gut.c.label",
+        "resultKey": "lesson.1_4.gut.c.result",
+        "tone": "bad"
+      }
+    ],
+    "bridgeKey": "lesson.1_4.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.1_4.c1.text",
+      "art": "scale-total"
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.1_4.c2.text",
+      "art": "gold-coin",
+      "terms": [
+        "asset"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.1_4.c3.text",
+      "art": "small-coin-big-bill",
+      "terms": [
+        "liability"
+      ],
+      "interaction": {
+        "type": "tapSort",
+        "promptKey": "lesson.1_4.c3.sort.prompt",
+        "categories": [
+          {
+            "id": "asset",
+            "labelKey": "lesson.1_4.c3.sort.asset"
+          },
+          {
+            "id": "liability",
+            "labelKey": "lesson.1_4.c3.sort.liability"
+          }
+        ],
+        "items": [
+          {
+            "id": "savings",
+            "labelKey": "lesson.1_4.c3.sort.savings",
+            "category": "asset"
+          },
+          {
+            "id": "phoneLoan",
+            "labelKey": "lesson.1_4.c3.sort.phoneLoan",
+            "category": "liability"
+          },
+          {
+            "id": "earrings",
+            "labelKey": "lesson.1_4.c3.sort.earrings",
+            "category": "asset"
+          },
+          {
+            "id": "friend",
+            "labelKey": "lesson.1_4.c3.sort.friend",
+            "category": "liability"
+          }
+        ],
+        "feedbackKey": "lesson.1_4.c3.sort.feedback"
+      }
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.1_4.c4.text",
+      "art": "two-scales",
+      "terms": [
+        "netWorth"
+      ]
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.1_4.c5.text",
+      "art": "melting-coin",
+      "terms": [
+        "depreciation"
+      ],
+      "interaction": {
+        "type": "tool",
+        "toolId": "depreciation",
+        "prefill": {
+          "cost": 6000,
+          "yearlyLossPct": 30,
+          "months": 6
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.1_4.c6.text",
+      "art": "arrow-up"
+    },
+    {
+      "id": "c7",
+      "textKey": "lesson.1_4.c7.text",
+      "art": "phone-slider"
+    }
+  ],
+  "tool": {
+    "id": "depreciation",
+    "prefill": {
+      "cost": 6000,
+      "yearlyLossPct": 30,
+      "months": 6
+    }
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.1_4.q1.prompt",
+      "options": [
+        "lesson.1_4.q1.o1",
+        "lesson.1_4.q1.o2",
+        "lesson.1_4.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.1_4.q1.right",
+      "feedbackWrongKey": "lesson.1_4.q1.wrong",
+      "terms": [
+        "liability"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "single",
+      "promptKey": "lesson.1_4.q2.prompt",
+      "options": [
+        "lesson.1_4.q2.o1",
+        "lesson.1_4.q2.o2",
+        "lesson.1_4.q2.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.1_4.q2.right",
+      "feedbackWrongKey": "lesson.1_4.q2.wrong",
+      "terms": [
+        "netWorth"
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "trueFalse",
+      "promptKey": "lesson.1_4.q3.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.1_4.q3.right",
+      "feedbackWrongKey": "lesson.1_4.q3.wrong",
+      "terms": [
+        "depreciation"
+      ]
+    }
+  ],
+  "terms": [
+    "asset",
+    "liability",
+    "netWorth",
+    "depreciation"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.1_4.effect",
+    "unlocks": [
+      "netWorth",
+      "possessions"
+    ],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "phone.depreciation",
+      "verified": true
+    }
+  ]
+}

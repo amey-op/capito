@@ -5,7 +5,7 @@
 import { describe, expect, it } from 'vitest';
 import { coreTermLayers, eventFile, glossaryFile, lesson as lessonSchema } from '@/core/content-schema';
 import { economy } from '@/core/economy.config';
-import { leakPerYear } from '@/core/finance';
+import { defaultSplit, depreciatedValue, goalSavingMonthly, leakPerYear, savingsMonthInterest } from '@/core/finance';
 import { formatINR } from '@/core/format';
 import { curriculum, curriculumById } from './curriculum';
 import { localeFiles, mergeLocaleFiles } from './i18n';
@@ -204,7 +204,31 @@ describe('numbers in text come from the formulas ([CALC])', () => {
     ['lesson.1_1.c8.text', leakPerYear(40)],
     ['lesson.1_1.q2.o2', leakPerYear(40)],
     ['lesson.1_1.q2.right', leakPerYear(40)],
+    // 1.2 monthly targets
+    ['lesson.1_2.c4.text', goalSavingMonthly(3000, 6)],
+    ['lesson.1_2.c5.text', goalSavingMonthly(3000, 3)],
+    ['lesson.1_2.q2.o2', goalSavingMonthly(3000, 6)],
+    ['lesson.1_2.gut.c.result', goalSavingMonthly(1200, 2)],
+    // 1.3 the 60/40 split of ₹4,000 and three months of saving first
+    ['lesson.1_3.c4.reveal.answer', defaultSplit(4000).wants],
+    ['lesson.1_3.c4.reveal.answer', defaultSplit(4000).savings],
+    ['lesson.1_3.q2.o2', defaultSplit(4000).savings],
+    ['lesson.1_3.gut.b.result', defaultSplit(4000).wants],
+    ['lesson.1_3.gut.b.result', defaultSplit(4000).savings * 3],
+    ['lesson.1_3.gut.c.result', 4000 * 3],
+    // 1.4 depreciation and a year of savings interest
+    ['lesson.1_4.c5.text', depreciatedValue(6000, economy.depreciationPa.phone, 6)],
+    ['lesson.1_4.gut.a.result', depreciatedValue(6000, economy.depreciationPa.phone, 12)],
+    ['lesson.1_4.c4.text', 60000 - 10000],
+    ['lesson.1_4.q2.o2', 20000 - 5000],
   ];
+  it('1.4: "about ₹6,180" after a year of savings interest at 3%', () => {
+    let balance = 6000;
+    for (let m = 0; m < 12; m++) balance += savingsMonthInterest(balance);
+    expect(Math.round(balance / 10) * 10).toBe(6180);
+    expect(en['lesson.1_4.gut.b.result']).toContain(formatINR(6180));
+  });
+
   it.each(checks)('%s quotes %d', (key, value) => {
     expect(en[key]).toContain(formatINR(value));
   });

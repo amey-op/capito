@@ -1,0 +1,141 @@
+/*
+ * Home page: hero with Continue, milestones, level map. Builds on src/styles/theme.css.
+ * 360px first; level cards go two-up on laptops; no tilt on numbers or lesson rows.
+ */
+
+.home-hero h1 {
+  margin-top: 0.25rem;
+}
+.home-sub {
+  margin-top: 0.4rem;
+}
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+.home-stats dt {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.home-stats .card-sm {
+  padding: 0.6rem 0.7rem;
+  min-width: 0;
+}
+.home-stats dd {
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+.home-continue {
+  white-space: normal;
+  text-align: center;
+}
+
+.home-milestones {
+  list-style: none;
+  gap: 0.5rem;
+}
+.home-milestones li {
+  font-weight: 800;
+  padding: 0.4rem 0.8rem;
+  background: var(--purple-bg);
+  border-color: var(--purple);
+}
+
+.home-levels {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.1rem;
+}
+@media (max-width: 380px) {
+  .home-levels {
+    grid-template-columns: 1fr;
+  }
+}
+.home-level {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+.home-level.is-done {
+  background: var(--success-bg);
+}
+.home-level.is-locked {
+  background: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+.home-level-head {
+  justify-content: space-between;
+}
+.home-level-head .eyebrow {
+  margin-bottom: 0;
+}
+
+.home-pill {
+  font-weight: 900;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 2px solid currentColor;
+  border-radius: 9999px;
+  padding: 0.1rem 0.55rem;
+  white-space: nowrap;
+}
+.home-pill.is-done {
+  color: var(--success);
+  background: var(--panel);
+}
+.home-pill.is-open {
+  color: var(--info);
+  background: var(--info-bg);
+}
+.home-pill.is-locked {
+  color: var(--secondary-foreground);
+}
+.home-pill.is-small {
+  font-size: 0.65rem;
+}
+
+.home-lessons {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.25rem;
+}
+.home-lesson {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: var(--tap);
+  padding: 0.45rem 0.7rem;
+  border: var(--border-sm);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 700;
+}
+a.home-lesson:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translate(-1px, -1px);
+}
+.home-lesson.is-open {
+  border-color: var(--info);
+  box-shadow: 3px 3px 0 0 var(--info);
+}
+.home-lesson.is-locked {
+  color: var(--secondary-foreground);
+  border-style: dashed;
+  background: transparent;
+}
+.home-lesson-id {
+  font-size: 0.85rem;
+}
+.home-lesson-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

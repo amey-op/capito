@@ -19,7 +19,7 @@ export function Layout() {
   const { pathname } = useLocation();
   // A new page starts at the top (the browser keeps the old scroll position otherwise).
   useEffect(() => {
-    window.scrollTo?.({ top: 0 });
+    document.documentElement.scrollTop = 0;
   }, [pathname]);
   return (
     <div className="app">

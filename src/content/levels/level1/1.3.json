@@ -1,0 +1,150 @@
+{
+  "id": "1.3",
+  "level": 1,
+  "tier": "must",
+  "titleKey": "lesson.1_3.title",
+  "gutCheck": {
+    "promptKey": "lesson.1_3.gut.prompt",
+    "choices": [
+      {
+        "id": "a",
+        "labelKey": "lesson.1_3.gut.a.label",
+        "resultKey": "lesson.1_3.gut.a.result",
+        "tone": "bad"
+      },
+      {
+        "id": "b",
+        "labelKey": "lesson.1_3.gut.b.label",
+        "resultKey": "lesson.1_3.gut.b.result",
+        "tone": "good"
+      },
+      {
+        "id": "c",
+        "labelKey": "lesson.1_3.gut.c.label",
+        "resultKey": "lesson.1_3.gut.c.result",
+        "tone": "mixed"
+      }
+    ],
+    "bridgeKey": "lesson.1_3.gut.bridge"
+  },
+  "cards": [
+    {
+      "id": "c1",
+      "textKey": "lesson.1_3.c1.text",
+      "art": "checklist",
+      "terms": [
+        "budget"
+      ]
+    },
+    {
+      "id": "c2",
+      "textKey": "lesson.1_3.c2.text",
+      "art": "slice",
+      "terms": [
+        "payYourselfFirst"
+      ]
+    },
+    {
+      "id": "c3",
+      "textKey": "lesson.1_3.c3.text",
+      "art": "pie-chart",
+      "terms": [
+        "fiftyThirtyTwenty"
+      ]
+    },
+    {
+      "id": "c4",
+      "textKey": "lesson.1_3.c4.text",
+      "art": "house-shield",
+      "interaction": {
+        "type": "reveal",
+        "promptKey": "lesson.1_3.c4.reveal.prompt",
+        "answerKey": "lesson.1_3.c4.reveal.answer"
+      }
+    },
+    {
+      "id": "c5",
+      "textKey": "lesson.1_3.c5.text",
+      "art": "gauge",
+      "terms": [
+        "savingsRate"
+      ]
+    },
+    {
+      "id": "c6",
+      "textKey": "lesson.1_3.c6.text",
+      "art": "coin-tower"
+    },
+    {
+      "id": "c7",
+      "textKey": "lesson.1_3.c7.text",
+      "art": "magnifier-record",
+      "interaction": {
+        "type": "tool",
+        "toolId": "budgetBuilder"
+      }
+    }
+  ],
+  "tool": {
+    "id": "budgetBuilder"
+  },
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "single",
+      "promptKey": "lesson.1_3.q1.prompt",
+      "options": [
+        "lesson.1_3.q1.o1",
+        "lesson.1_3.q1.o2",
+        "lesson.1_3.q1.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.1_3.q1.right",
+      "feedbackWrongKey": "lesson.1_3.q1.wrong",
+      "terms": [
+        "payYourselfFirst"
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "single",
+      "promptKey": "lesson.1_3.q2.prompt",
+      "options": [
+        "lesson.1_3.q2.o1",
+        "lesson.1_3.q2.o2",
+        "lesson.1_3.q2.o3"
+      ],
+      "correct": 1,
+      "feedbackRightKey": "lesson.1_3.q2.right",
+      "feedbackWrongKey": "lesson.1_3.q2.wrong"
+    },
+    {
+      "id": "q3",
+      "type": "trueFalse",
+      "promptKey": "lesson.1_3.q3.prompt",
+      "correct": false,
+      "feedbackRightKey": "lesson.1_3.q3.right",
+      "feedbackWrongKey": "lesson.1_3.q3.wrong",
+      "terms": [
+        "budget"
+      ]
+    }
+  ],
+  "terms": [
+    "budget",
+    "payYourselfFirst",
+    "fiftyThirtyTwenty",
+    "savingsRate"
+  ],
+  "portfolioEffect": {
+    "decisionKey": "lesson.1_3.effect",
+    "unlocks": [],
+    "monthAdvances": true
+  },
+  "facts": [
+    {
+      "key": "split.60_40",
+      "verified": true
+    }
+  ]
+}
