@@ -1,0 +1,160 @@
+import json
+
+l7_glossary = [
+  {"id": "tax", "introducedIn": "7.1", "core": True, "verified": True},
+  {"id": "gst", "introducedIn": "7.1", "core": True, "verified": True},
+  {"id": "pan", "introducedIn": "7.1", "core": True, "verified": True},
+  {"id": "slab", "introducedIn": "7.1", "core": True, "verified": True},
+  {"id": "tds", "introducedIn": "7.1", "core": True, "verified": True}
+]
+with open("src/content/glossary/level7.json", "w") as f: json.dump(l7_glossary, f, indent=2)
+
+l8_glossary = [
+  {"id": "phishing", "introducedIn": "8.1", "core": True, "verified": True},
+  {"id": "socialEngineering", "introducedIn": "8.1", "core": True, "verified": True},
+  {"id": "ponziScheme", "introducedIn": "8.2", "core": True, "verified": True},
+  {"id": "mlm", "introducedIn": "8.2", "core": True, "verified": True},
+  {"id": "registeredIntermediary", "introducedIn": "8.2", "core": True, "verified": True},
+  {"id": "guaranteedReturns", "introducedIn": "8.2", "core": True, "verified": True},
+  {"id": "cybercrime1930", "introducedIn": "8.3", "core": True, "verified": True}
+]
+with open("src/content/glossary/level8.json", "w") as f: json.dump(l8_glossary, f, indent=2)
+
+with open("src/content/glossary/level9.json", "w") as f: json.dump([], f, indent=2)
+
+l7_i18n = {
+  "lesson.7_1.title": "Why taxes exist and slabs",
+  "lesson.7_1.gut.prompt": "You earn ₹6,000 from giving tuitions. Do you owe income tax to the government?",
+  "lesson.7_1.gut.c1.label": "Yes",
+  "lesson.7_1.gut.c1.result": "Actually, you don't!",
+  "lesson.7_1.gut.c2.label": "No",
+  "lesson.7_1.gut.c2.result": "You're right!",
+  "lesson.7_1.gut.bridge": "Let's see how taxes work and who actually pays them.",
+  "lesson.7_1.c1.text": "Taxes are how we pay for roads, government schools, and hospitals.",
+  "lesson.7_1.c2.text": "When you buy a phone or a snack, you pay GST. That is an indirect tax.",
+  "lesson.7_1.c3.text": "Income Tax is a direct tax on what you earn. But it uses a slab system, so you only pay on the amount above a certain limit.",
+  "lesson.7_1.c4.text": "For FY 2025-26, income up to ₹12 lakh is effectively tax-free for most people. So your ₹6,000 tuition money is yours to keep!",
+  "lesson.7_1.c5.text": "When you get a formal job, your employer might deduct tax before paying you. This is called TDS.",
+  "lesson.7_1.q1.prompt": "Which of these is an indirect tax?",
+  "lesson.7_1.q1.o1": "Income Tax",
+  "lesson.7_1.q1.o2": "GST",
+  "lesson.7_1.q1.o3": "TDS",
+  "lesson.7_1.q1.right": "Correct! You pay GST indirectly when you buy things.",
+  "lesson.7_1.q1.wrong": "Not quite. GST is the indirect tax added to goods and services.",
+  "lesson.7_1.q2.prompt": "Income tax is charged at a flat rate on everything you earn, right from ₹1.",
+  "lesson.7_1.q2.right": "Correct! It uses a slab system, so lower incomes are tax-free.",
+  "lesson.7_1.q2.wrong": "False! India uses a slab system where the lowest amounts are tax-free.",
+  "lesson.7_1.q3.prompt": "What does TDS stand for?",
+  "lesson.7_1.q3.o1": "Tax Deducted at Source",
+  "lesson.7_1.q3.o2": "Total Direct Savings",
+  "lesson.7_1.q3.o3": "Tax Direct System",
+  "lesson.7_1.q3.right": "Correct! The employer or bank deducts the tax for the government.",
+  "lesson.7_1.q3.wrong": "It stands for Tax Deducted at Source.",
+  "lesson.7_1.portfolio": "Track your taxes.",
+  
+  "lesson.7_2.title": "First Paycheck",
+  "lesson.7_2.gut.prompt": "You got a job offering ₹20,000 a month. Will ₹20,000 land in your bank account?",
+  "lesson.7_2.gut.c1.label": "Yes",
+  "lesson.7_2.gut.c1.result": "Not quite.",
+  "lesson.7_2.gut.c2.label": "No",
+  "lesson.7_2.gut.c2.result": "You're right!",
+  "lesson.7_2.gut.bridge": "Let's see what happens between your offer letter and your bank account.",
+  "lesson.7_2.c1.text": "Your CTC (Cost to Company) is the total amount the company spends on you.",
+  "lesson.7_2.c2.text": "But before you get paid, some money is sent directly to a retirement fund called EPF.",
+  "lesson.7_2.c3.text": "EPF is actually good! Your employer puts money there for your future.",
+  "lesson.7_2.c4.text": "TDS (tax) might also be cut if your salary is high enough.",
+  "lesson.7_2.c5.text": "What lands in your bank is your 'In-hand' or 'Net' salary. Always budget using your net salary, not your CTC.",
+  "lesson.7_2.q1.prompt": "Which number is usually higher?",
+  "lesson.7_2.q1.o1": "In-hand Salary",
+  "lesson.7_2.q1.o2": "CTC",
+  "lesson.7_2.q1.right": "Correct! CTC includes EPF and other benefits before deductions.",
+  "lesson.7_2.q1.wrong": "CTC is usually higher because deductions happen before you get your in-hand pay.",
+  "lesson.7_2.q2.prompt": "EPF deductions mean you are losing that money forever.",
+  "lesson.7_2.q2.right": "Correct! It is going into a retirement savings account for you.",
+  "lesson.7_2.q2.wrong": "False! EPF is your money, saved for your retirement.",
+  "lesson.7_2.q3.prompt": "When making a monthly budget, which number should you use?",
+  "lesson.7_2.q3.o1": "Net (In-hand) Salary",
+  "lesson.7_2.q3.o2": "Gross Salary",
+  "lesson.7_2.q3.right": "Correct! Always budget with the money you actually receive.",
+  "lesson.7_2.q3.wrong": "Always use your Net Salary, because that's what you actually have to spend."
+}
+with open("src/content/i18n/en/level7.json", "w") as f: json.dump(l7_i18n, f, indent=2)
+
+l8_i18n = {
+  "lesson.8_1.title": "Phishing and Tricks",
+  "lesson.8_1.gut.prompt": "A call says your SIM will be blocked in one hour unless you press 1. What do you do?",
+  "lesson.8_1.gut.c1.label": "Press 1",
+  "lesson.8_1.gut.c1.result": "You just connected to a scammer.",
+  "lesson.8_1.gut.c2.label": "Cut the call",
+  "lesson.8_1.gut.c2.result": "Perfect! You stayed safe.",
+  "lesson.8_1.gut.bridge": "Scammers don't hack computers; they hack human emotions.",
+  "lesson.8_1.c1.text": "Scammers use urgency. If someone says 'DO IT NOW or you lose your account', it's a scam.",
+  "lesson.8_1.c2.text": "Phishing is when they send fake links that look like your real bank to steal your passwords.",
+  "lesson.8_1.c3.text": "They use authority. A scammer might say they are from the Police or Customs and threaten you with 'Digital Arrest'.",
+  "lesson.8_1.c4.text": "Remember: The real police will never ask you to transfer a 'security deposit' over a video call to clear your name.",
+  "lesson.8_1.c5.text": "Never share your OTP or UPI PIN. A PIN is only for sending money, never receiving.",
+  "lesson.8_1.q1.prompt": "What is Phishing?",
+  "lesson.8_1.q1.o1": "Sending fake links to steal passwords",
+  "lesson.8_1.q1.o2": "A type of safe investment",
+  "lesson.8_1.q1.right": "Correct! It's a trick to steal your login details.",
+  "lesson.8_1.q1.wrong": "Phishing is a scam technique using fake links or emails.",
+  "lesson.8_1.q2.prompt": "The Police can put you under 'Digital Arrest' via a Skype video call.",
+  "lesson.8_1.q2.right": "Correct! 'Digital Arrest' does not exist in Indian law.",
+  "lesson.8_1.q2.wrong": "False! There is no such thing as Digital Arrest.",
+  "lesson.8_1.q3.prompt": "When should you enter your UPI PIN?",
+  "lesson.8_1.q3.o1": "To receive a refund",
+  "lesson.8_1.q3.o2": "To send money",
+  "lesson.8_1.q3.right": "Correct! Never enter it to receive money.",
+  "lesson.8_1.q3.wrong": "A UPI PIN is ONLY used when money is leaving your account.",
+  "lesson.8_1.portfolio": "Stay safe from phishing."
+}
+with open("src/content/i18n/en/level8.json", "w") as f: json.dump(l8_i18n, f, indent=2)
+
+l9_i18n = {
+  "lesson.9_1.title": "Final Check-up",
+  "lesson.9_1.gut.prompt": "You've built your portfolio and learned the rules of the game. Ready for the final review?",
+  "lesson.9_1.gut.c1.label": "Maybe later",
+  "lesson.9_1.gut.c1.result": "Take your time!",
+  "lesson.9_1.gut.c2.label": "Let's go!",
+  "lesson.9_1.gut.c2.result": "Awesome!",
+  "lesson.9_1.gut.bridge": "Let's review everything you've learned.",
+  "lesson.9_1.c1.text": "You started with just wants and goals, and built a habit of saving first.",
+  "lesson.9_1.c2.text": "You protected yourself with an emergency fund and health insurance.",
+  "lesson.9_1.c3.text": "You saw how loans work, and why the credit score matters.",
+  "lesson.9_1.c4.text": "You watched your money grow through FDs, Gold, Mutual Funds, and Shares.",
+  "lesson.9_1.c5.text": "And you learned how to defend it against scams.",
+  "lesson.9_1.fq1.prompt": "Needs should be covered before practice money is spent on wants.",
+  "lesson.9_1.fq1.right": "Correct!",
+  "lesson.9_1.fq1.wrong": "Review Level 1.",
+  "lesson.9_1.fq2.prompt": "You enter a UPI PIN to receive money.",
+  "lesson.9_1.fq2.right": "Correct! It's only for sending.",
+  "lesson.9_1.fq2.wrong": "Review Level 2.",
+  "lesson.9_1.fq3.prompt": "An emergency fund should be locked in a long-term FD.",
+  "lesson.9_1.fq3.right": "Correct! It should be easy to withdraw quickly.",
+  "lesson.9_1.fq3.wrong": "Review Level 3.",
+  "lesson.9_1.fq4.prompt": "A higher credit score gets you better loan offers.",
+  "lesson.9_1.fq4.right": "Correct!",
+  "lesson.9_1.fq4.wrong": "Review Level 4.",
+  "lesson.9_1.fq5.prompt": "Inflation reduces your purchasing power over time.",
+  "lesson.9_1.fq5.right": "Correct!",
+  "lesson.9_1.fq5.wrong": "Review Level 5.",
+  "lesson.9_1.fq6.prompt": "Mutual funds guarantee a fixed 12% return.",
+  "lesson.9_1.fq6.right": "Correct! They do not guarantee returns.",
+  "lesson.9_1.fq6.wrong": "Review Level 6.",
+  "lesson.9_1.fq7.prompt": "Direct mutual funds charge lower fees than Regular ones.",
+  "lesson.9_1.fq7.right": "Correct!",
+  "lesson.9_1.fq7.wrong": "Review Level 6.",
+  "lesson.9_1.fq8.prompt": "A 'digital arrest' by police over a video call is real.",
+  "lesson.9_1.fq8.right": "Correct! It is a scam.",
+  "lesson.9_1.fq8.wrong": "Review Level 8.",
+  "lesson.9_1.fq9.prompt": "Income tax applies equally to everyone from the first rupee earned.",
+  "lesson.9_1.fq9.right": "Correct! We use a slab system.",
+  "lesson.9_1.fq9.wrong": "Review Level 7.",
+  "lesson.9_1.fq10.prompt": "You should use your Net (In-hand) salary for budgeting.",
+  "lesson.9_1.fq10.right": "Correct!",
+  "lesson.9_1.fq10.wrong": "Review Level 7.",
+  "lesson.9_1.portfolio": "You are done!"
+}
+with open("src/content/i18n/en/level9.json", "w") as f: json.dump(l9_i18n, f, indent=2)
+
+print("Generated i18n glossaries and basics.")
