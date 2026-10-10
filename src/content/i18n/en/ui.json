@@ -107,5 +107,10 @@
   "ui.tool.unknown": "Unknown tool.",
   "ui.tool.placeholder": "The {{id}} tool arrives with work package R1.",
   "ui.back.home": "Back to home",
-  "ui.health.nextMoveStub": "The Money Health Score arrives with the engine (N1)."
+  "ui.health.nextMoveStub": "The Money Health Score arrives with the engine (N1).",
+  "ui.lang.label": "Language",
+  "ui.lang.en": "English",
+  "ui.lang.hi": "हिन्दी",
+  "ui.lang.te": "తెలుగు",
+  "ui.lang.draft": "Draft translation. A native speaker is checking it."
 }
