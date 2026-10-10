@@ -10,7 +10,7 @@
         "id": "c1",
         "labelKey": "lesson.9_1.gut.c1.label",
         "resultKey": "lesson.9_1.gut.c1.result",
-        "tone": "bad"
+        "tone": "mixed"
       },
       {
         "id": "c2",
@@ -87,9 +87,14 @@
   "finalQuiz": [
     {
       "id": "fq1",
-      "type": "trueFalse",
+      "type": "single",
       "promptKey": "lesson.9_1.fq1.prompt",
-      "correct": true,
+      "options": [
+        "lesson.9_1.fq1.o1",
+        "lesson.9_1.fq1.o2",
+        "lesson.9_1.fq1.o3"
+      ],
+      "correct": 1,
       "feedbackRightKey": "lesson.9_1.fq1.right",
       "feedbackWrongKey": "lesson.9_1.fq1.wrong"
     },
@@ -97,23 +102,33 @@
       "id": "fq2",
       "type": "trueFalse",
       "promptKey": "lesson.9_1.fq2.prompt",
-      "correct": true,
+      "correct": false,
       "feedbackRightKey": "lesson.9_1.fq2.right",
       "feedbackWrongKey": "lesson.9_1.fq2.wrong"
     },
     {
       "id": "fq3",
-      "type": "trueFalse",
+      "type": "single",
       "promptKey": "lesson.9_1.fq3.prompt",
-      "correct": true,
+      "options": [
+        "lesson.9_1.fq3.o1",
+        "lesson.9_1.fq3.o2",
+        "lesson.9_1.fq3.o3"
+      ],
+      "correct": 0,
       "feedbackRightKey": "lesson.9_1.fq3.right",
       "feedbackWrongKey": "lesson.9_1.fq3.wrong"
     },
     {
       "id": "fq4",
-      "type": "trueFalse",
+      "type": "single",
       "promptKey": "lesson.9_1.fq4.prompt",
-      "correct": true,
+      "options": [
+        "lesson.9_1.fq4.o1",
+        "lesson.9_1.fq4.o2",
+        "lesson.9_1.fq4.o3"
+      ],
+      "correct": 0,
       "feedbackRightKey": "lesson.9_1.fq4.right",
       "feedbackWrongKey": "lesson.9_1.fq4.wrong"
     },
@@ -121,15 +136,20 @@
       "id": "fq5",
       "type": "trueFalse",
       "promptKey": "lesson.9_1.fq5.prompt",
-      "correct": true,
+      "correct": false,
       "feedbackRightKey": "lesson.9_1.fq5.right",
       "feedbackWrongKey": "lesson.9_1.fq5.wrong"
     },
     {
       "id": "fq6",
-      "type": "trueFalse",
+      "type": "single",
       "promptKey": "lesson.9_1.fq6.prompt",
-      "correct": true,
+      "options": [
+        "lesson.9_1.fq6.o1",
+        "lesson.9_1.fq6.o2",
+        "lesson.9_1.fq6.o3"
+      ],
+      "correct": 1,
       "feedbackRightKey": "lesson.9_1.fq6.right",
       "feedbackWrongKey": "lesson.9_1.fq6.wrong"
     },
@@ -137,7 +157,7 @@
       "id": "fq7",
       "type": "trueFalse",
       "promptKey": "lesson.9_1.fq7.prompt",
-      "correct": true,
+      "correct": false,
       "feedbackRightKey": "lesson.9_1.fq7.right",
       "feedbackWrongKey": "lesson.9_1.fq7.wrong"
     },
@@ -145,23 +165,33 @@
       "id": "fq8",
       "type": "trueFalse",
       "promptKey": "lesson.9_1.fq8.prompt",
-      "correct": true,
+      "correct": false,
       "feedbackRightKey": "lesson.9_1.fq8.right",
       "feedbackWrongKey": "lesson.9_1.fq8.wrong"
     },
     {
       "id": "fq9",
-      "type": "trueFalse",
+      "type": "single",
       "promptKey": "lesson.9_1.fq9.prompt",
-      "correct": true,
+      "options": [
+        "lesson.9_1.fq9.o1",
+        "lesson.9_1.fq9.o2",
+        "lesson.9_1.fq9.o3"
+      ],
+      "correct": 1,
       "feedbackRightKey": "lesson.9_1.fq9.right",
       "feedbackWrongKey": "lesson.9_1.fq9.wrong"
     },
     {
       "id": "fq10",
-      "type": "trueFalse",
+      "type": "single",
       "promptKey": "lesson.9_1.fq10.prompt",
-      "correct": true,
+      "options": [
+        "lesson.9_1.fq10.o1",
+        "lesson.9_1.fq10.o2",
+        "lesson.9_1.fq10.o3"
+      ],
+      "correct": 1,
       "feedbackRightKey": "lesson.9_1.fq10.right",
       "feedbackWrongKey": "lesson.9_1.fq10.wrong"
     }
