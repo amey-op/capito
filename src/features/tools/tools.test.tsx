@@ -4,6 +4,8 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { configToolIds, staticToolIds } from '@/core/tools';
 import { BadYearSimulator, mixPath } from './components/BadYearSimulator';
+import { BudgetBuilder, surprises } from './components/BudgetBuilder';
+import { UpiPractice, upiRounds } from './components/UpiPractice';
 import { ToolEmbed } from './components/ToolEmbed';
 import { toolRegistry } from './registry';
 
@@ -12,7 +14,12 @@ afterEach(cleanup);
 /** A key that was never translated shows up as the key itself. */
 const untranslated = () => (document.body.textContent ?? '').match(/\b(tools|ui|scamshield)\.[A-Za-z0-9_.]+/g) ?? [];
 /** Rupee figures must come from formatINR: no decimals and Indian grouping. */
-const rawRupees = () => (document.body.textContent ?? '').match(/₹\d+\.\d|₹\d{4,}/g) ?? [];
+const rawRupees = () => {
+  const texts: string[] = [];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) texts.push(walker.currentNode.textContent ?? '');
+  return texts.join(' ').match(/₹\d+\.\d|₹\d{4,}/g) ?? [];
+};
 
 describe('config calculators', () => {
   it.each(configToolIds)('%s renders with every text translated and rupees formatted', (id) => {
@@ -65,5 +72,66 @@ describe('other tools', () => {
     expect(mixPath(10000, { ...only, savings: 0 }, 'crashYear')).toEqual([10000, 10000, 10000, 10000, 10000, 10000]);
     // The crash year hits shares hardest in year one.
     expect(mixPath(10000, { ...only, savings: 0, shares: 100 }, 'crashYear')[1]).toBeCloseTo(7500, 5);
+  });
+});
+
+describe('budget builder', () => {
+  it('starts on the default split and keeps wants + savings equal to the money', () => {
+    render(<BudgetBuilder prefill={{ income: 5000 }} />);
+    expect((screen.getByLabelText('Wants') as HTMLInputElement).value).toBe('3000');
+    expect((screen.getByLabelText('Savings') as HTMLInputElement).value).toBe('2000');
+    fireEvent.change(screen.getByLabelText('Wants'), { target: { value: '4500' } });
+    expect((screen.getByLabelText('Savings') as HTMLInputElement).value).toBe('500');
+    expect(screen.getByText('₹4,500')).toBeTruthy();
+  });
+
+  it('a surprise is covered or not depending on the savings side', () => {
+    render(<BudgetBuilder prefill={{ income: 5000 }} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Draw a surprise expense' }));
+    // First surprise costs ₹1,200; savings are ₹2,000.
+    expect(screen.getByText(/₹800 is still there afterwards/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Change my split' }));
+    fireEvent.change(screen.getByLabelText('Savings'), { target: { value: '500' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Draw a surprise expense' }));
+    expect(screen.getByText(/fall ₹700 short/)).toBeTruthy();
+    expect(untranslated()).toEqual([]);
+    expect(rawRupees()).toEqual([]);
+  });
+
+  it('every surprise has its text', () => {
+    render(<BudgetBuilder />);
+    fireEvent.click(screen.getByRole('button', { name: 'Draw a surprise expense' }));
+    for (let i = 1; i < surprises.length; i++) {
+      fireEvent.click(screen.getByRole('button', { name: 'Draw another' }));
+      expect(untranslated()).toEqual([]);
+    }
+  });
+});
+
+describe('upi practice', () => {
+  const play = (picks: Array<'pin' | 'decline'>) => {
+    render(<UpiPractice />);
+    picks.forEach((pick) => {
+      const [pinButton, declineButton] = screen.getAllByRole('button');
+      fireEvent.click(pick === 'pin' ? pinButton! : declineButton!);
+      expect(untranslated()).toEqual([]);
+      expect(rawRupees()).toEqual([]);
+      fireEvent.click(screen.getByRole('button', { name: /Next screen|See my score/ }));
+    });
+  };
+
+  it('the safe choices score full marks: a PIN only when you are the one paying', () => {
+    play(upiRounds.map((r) => r.safe));
+    expect(screen.getByText('You kept your money safe on 5 of 5 screens.')).toBeTruthy();
+    expect(screen.getByText(/A UPI PIN only ever sends money/)).toBeTruthy();
+  });
+
+  it('entering the PIN everywhere is right only once', () => {
+    play(upiRounds.map(() => 'pin'));
+    expect(screen.getByText('You kept your money safe on 1 of 5 screens.')).toBeTruthy();
+  });
+
+  it('only the round where you chose to pay is safe with a PIN', () => {
+    expect(upiRounds.filter((r) => r.safe === 'pin').map((r) => r.id)).toEqual(['canteen']);
   });
 });

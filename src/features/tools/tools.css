@@ -148,6 +148,56 @@
   border-width: 2px;
 }
 
+/* Budget Builder: one bar split between wants and savings */
+.tl-split {
+  display: flex;
+  height: 1.4rem;
+  border: var(--border-sm);
+  border-radius: 9999px;
+  overflow: hidden;
+  background: var(--secondary);
+}
+.tl-split-wants {
+  background: var(--warning);
+}
+.tl-split-savings {
+  background: var(--success);
+}
+.tl-range-wants {
+  accent-color: var(--warning);
+}
+.tl-range-savings {
+  accent-color: var(--success);
+}
+
+/* UPI practice: the pretend phone screen */
+.tl-phone {
+  align-items: center;
+  text-align: center;
+  background: var(--info-bg);
+  border-color: var(--info);
+  box-shadow: 3px 3px 0 0 var(--info);
+}
+.tl-phone-amount {
+  font-size: clamp(1.8rem, 9vw, 2.4rem);
+  line-height: 1.1;
+}
+.tl-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+.tl-choices .btn {
+  border-radius: var(--radius-sm);
+  white-space: normal;
+  line-height: 1.35;
+}
+.tl-rules {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
 /* Phones: one result per row, label left and figure right, so long rupee figures never break. */
 @media (max-width: 480px) {
   .tl-results {
