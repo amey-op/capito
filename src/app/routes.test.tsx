@@ -26,13 +26,18 @@ describe('app shell routes', () => {
     expect(screen.getByText(/needs \(food, home, school fees, travel\) are already taken care of/)).toBeTruthy();
   });
 
+  it('/glossary renders the Word Bank with search', () => {
+    open('/glossary');
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Word Bank');
+    expect(screen.getByRole('searchbox')).toBeTruthy();
+  });
+
   // These routes now render their real pages.
   it.each([
     ['/portfolio', 'Your portfolio'],
     ['/event/e1_1', 'Life event'],
     ['/tool/emi?principal=6000', 'Tool'],
     ['/tools', 'Tools'],
-    ['/glossary', 'Word Bank'],
     ['/lesson/1.1', 'Income, expenses, needs and wants'],
   ])('%s renders its page inside the shell', (path, title) => {
     open(path);
