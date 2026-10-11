@@ -55,9 +55,11 @@ describe('language switch', () => {
   });
 
   it('a key with no translation falls back to English', async () => {
-    const missing = Object.keys(en).find((k) => !(k in hi) && !en[k]!.includes('{{'));
-    expect(missing).toBeTruthy();
+    // Every real key is translated now, so add an English-only one for the check.
+    const missing = 'test.englishOnly';
+    i18n.addResource('en', 'translation', missing, 'Only in English');
+    expect(missing in hi).toBe(false);
     await act(() => setLanguage('hi'));
-    expect(i18n.t(missing!)).toBe(en[missing!]);
+    expect(i18n.t(missing)).toBe('Only in English');
   });
 });
