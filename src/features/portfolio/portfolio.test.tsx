@@ -257,11 +257,18 @@ describe('lesson → Plan the Month → events → next lesson', () => {
     expect(game().pendingEvents).toContain('e4_1');
     expect(screen.queryByRole('link', { name: /^Start lesson / })).toBeNull();
 
-    fireEvent.click(within(screen.getByRole('region', { name: 'Something has come up' })).getAllByRole('link')[0]!);
+    // Check the links by href and open the next route directly: clicking a <Link> in jsdom
+    // fails on Node 24 (its fetch rejects jsdom's AbortSignal), so the route never changes.
+    const eventLink = within(screen.getByRole('region', { name: 'Something has come up' })).getAllByRole('link')[0]!;
+    expect(eventLink.getAttribute('href')).toBe('/event/e4_1');
+    cleanup();
+    open('/event/e4_1');
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(en['event.e4_1.title']);
     const choices = screen.getAllByRole('button').filter((b) => b.className.includes('pf-choice'));
     fireEvent.click(choices[choices.length - 1]!);
-    fireEvent.click(screen.getByRole('link', { name: 'Back to your portfolio' }));
+    expect(screen.getByRole('link', { name: 'Back to your portfolio' }).getAttribute('href')).toBe('/portfolio');
+    cleanup();
+    open('/portfolio');
 
     expect(game().pendingEvents).toEqual([]);
     expect(screen.getByRole('link', { name: /^Start lesson / })).toBeTruthy();
