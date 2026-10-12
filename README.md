@@ -2,7 +2,7 @@
 
 ## Live demo
 
-The app is deployed at **https://capito-rho.vercel.app** (start at https://capito-rho.vercel.app/start). Nothing needs to be installed to try it there.
+The app is deployed at **https://capitoit.vercel.app**. Nothing needs to be installed to try it there.
 
 ## Requirements
 
